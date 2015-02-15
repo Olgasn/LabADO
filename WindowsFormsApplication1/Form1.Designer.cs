@@ -35,6 +35,8 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.labelInfo = new System.Windows.Forms.Label();
+            this.textBoxConnectionString = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -90,17 +92,36 @@
             // 
             // labelInfo
             // 
-            this.labelInfo.Location = new System.Drawing.Point(557, 44);
+            this.labelInfo.Location = new System.Drawing.Point(557, 102);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelInfo.Size = new System.Drawing.Size(463, 187);
+            this.labelInfo.Size = new System.Drawing.Size(463, 107);
             this.labelInfo.TabIndex = 5;
+            // 
+            // textBoxConnectionString
+            // 
+            this.textBoxConnectionString.Location = new System.Drawing.Point(560, 38);
+            this.textBoxConnectionString.Name = "textBoxConnectionString";
+            this.textBoxConnectionString.Size = new System.Drawing.Size(460, 20);
+            this.textBoxConnectionString.TabIndex = 6;
+            this.textBoxConnectionString.Text = "Data Source=.\\sqlexpress;Initial Catalog=toplivo;Integrated Security=True";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(557, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(191, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "строка подключения к базе данных:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 578);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxConnectionString);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
@@ -125,6 +146,8 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Label labelInfo;
+        private System.Windows.Forms.TextBox textBoxConnectionString;
+        private System.Windows.Forms.Label label1;
     }
 }
 

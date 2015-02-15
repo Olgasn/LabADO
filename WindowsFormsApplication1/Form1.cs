@@ -30,7 +30,7 @@ namespace WindowsFormsApplication1
         private void buttonFill_Click(object sender, EventArgs e)
         {
             string commandText = Convert.ToString(textBoxCommand.Text);
-            string ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=toplivo;Integrated Security=True";
+            string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
             SqlConnection conn = new SqlConnection(ConnectionString);
             labelInfo.Text = "Ход выполнения процесса:\r\n";
             labelInfo.Refresh();
