@@ -56,9 +56,7 @@ namespace WindowsFormsApplication1
                 labelInfo.Refresh();
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
-
-
-
+                
 
 
 

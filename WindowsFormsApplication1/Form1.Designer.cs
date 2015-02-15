@@ -48,7 +48,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 260);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(269, 311);
+            this.dataGridView1.Size = new System.Drawing.Size(279, 311);
             this.dataGridView1.TabIndex = 0;
             // 
             // buttonFill
@@ -78,7 +78,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(297, 260);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(332, 311);
+            this.dataGridView2.Size = new System.Drawing.Size(350, 311);
             this.dataGridView2.TabIndex = 3;
             // 
             // dataGridView3
@@ -87,7 +87,7 @@
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(653, 260);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(393, 311);
+            this.dataGridView3.Size = new System.Drawing.Size(403, 311);
             this.dataGridView3.TabIndex = 4;
             // 
             // labelInfo
@@ -95,14 +95,14 @@
             this.labelInfo.Location = new System.Drawing.Point(557, 102);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelInfo.Size = new System.Drawing.Size(463, 107);
+            this.labelInfo.Size = new System.Drawing.Size(408, 107);
             this.labelInfo.TabIndex = 5;
             // 
             // textBoxConnectionString
             // 
             this.textBoxConnectionString.Location = new System.Drawing.Point(560, 38);
             this.textBoxConnectionString.Name = "textBoxConnectionString";
-            this.textBoxConnectionString.Size = new System.Drawing.Size(460, 20);
+            this.textBoxConnectionString.Size = new System.Drawing.Size(405, 20);
             this.textBoxConnectionString.TabIndex = 6;
             this.textBoxConnectionString.Text = "Data Source=.\\sqlexpress;Initial Catalog=toplivo;Integrated Security=True";
             // 
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1123, 578);
+            this.ClientSize = new System.Drawing.Size(1068, 578);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxConnectionString);
             this.Controls.Add(this.labelInfo);
