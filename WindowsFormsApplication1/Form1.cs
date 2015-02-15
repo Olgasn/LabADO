@@ -35,62 +35,74 @@ namespace WindowsFormsApplication1
             labelInfo.Text = "Ход выполнения процесса:\r\n";
             labelInfo.Refresh();
 
-            conn.Open();
-            labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено\r\n";
-            labelInfo.Refresh();
-            SqlCommand MyCommand = new SqlCommand();
-            MyCommand.Connection = conn;
-            //или SqlCommand MyCommand=conn.CreateCommand(); 
-            MyCommand.CommandText = commandText;
-            labelInfo.Text = labelInfo.Text  + "2. заполнение таблиц базы данных начато, подолжите немного \r\n";
-            labelInfo.Refresh();
-
-            MyCommand.ExecuteNonQuery();
-            labelInfo.Text = labelInfo.Text + "3. заполнение таблиц базы данных окончено\r\n";
-            labelInfo.Refresh();
-
-            SqlDataAdapter dataAdapter = new SqlDataAdapter();
+            try
+            {
+                conn.Open();
 
 
 
 
+                labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено\r\n";
+                labelInfo.Refresh();
+                SqlCommand MyCommand = new SqlCommand();
+                MyCommand.Connection = conn;
+                //или SqlCommand MyCommand=conn.CreateCommand(); 
+                MyCommand.CommandText = commandText;
+                labelInfo.Text = labelInfo.Text + "2. заполнение таблиц базы данных начато, подолжите немного \r\n";
+                labelInfo.Refresh();
 
-            
-            DataSet ds = new DataSet();
+                MyCommand.ExecuteNonQuery();
+                labelInfo.Text = labelInfo.Text + "3. заполнение таблиц базы данных окончено\r\n";
+                labelInfo.Refresh();
 
-            labelInfo.Text = labelInfo.Text + "4. отбор ланных в локальное хранилище начато\r\n";
-            labelInfo.Refresh();
-
-            MyCommand.CommandText = "SELECT * FROM Fuels";
-            dataAdapter.SelectCommand = MyCommand;
-            ds.Tables.Add("Fuels");
-            dataAdapter.Fill(ds, "Fuels"); // 
-
-            MyCommand.CommandText = "SELECT * FROM Tanks";
-            dataAdapter.SelectCommand = MyCommand;
-            ds.Tables.Add("Tanks");
-            dataAdapter.Fill(ds, "Tanks"); // 
-
-
-            MyCommand.CommandText = "SELECT * FROM Operations";
-            dataAdapter.SelectCommand = MyCommand;
-            ds.Tables.Add("Operations");
-            dataAdapter.Fill(ds, "Operations");
-
-            labelInfo.Text = labelInfo.Text + "5. отбор данных в локальное хранилище закончено\r\n";
-            labelInfo.Refresh();
-
-            dataGridView1.DataSource = ds.Tables["Fuels"].DefaultView;
-            dataGridView2.DataSource = ds.Tables["Tanks"].DefaultView;
-            dataGridView3.DataSource = ds.Tables["Operations"].DefaultView;
-
-            labelInfo.Text = labelInfo.Text + "6. отображение данных из локального хранилища в табличных элементах управления закончено\r\n";
-            labelInfo.Refresh();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
 
 
 
 
-            conn.Close();
+
+
+                DataSet ds = new DataSet();
+
+                labelInfo.Text = labelInfo.Text + "4. отбор ланных в локальное хранилище начато\r\n";
+                labelInfo.Refresh();
+
+                MyCommand.CommandText = "SELECT * FROM Fuels";
+                dataAdapter.SelectCommand = MyCommand;
+                ds.Tables.Add("Fuels");
+                dataAdapter.Fill(ds, "Fuels"); // 
+
+                MyCommand.CommandText = "SELECT * FROM Tanks";
+                dataAdapter.SelectCommand = MyCommand;
+                ds.Tables.Add("Tanks");
+                dataAdapter.Fill(ds, "Tanks"); // 
+
+
+                MyCommand.CommandText = "SELECT * FROM Operations";
+                dataAdapter.SelectCommand = MyCommand;
+                ds.Tables.Add("Operations");
+                dataAdapter.Fill(ds, "Operations");
+
+                labelInfo.Text = labelInfo.Text + "5. отбор данных в локальное хранилище закончено\r\n";
+                labelInfo.Refresh();
+
+                dataGridView1.DataSource = ds.Tables["Fuels"].DefaultView;
+                dataGridView2.DataSource = ds.Tables["Tanks"].DefaultView;
+                dataGridView3.DataSource = ds.Tables["Operations"].DefaultView;
+
+                labelInfo.Text = labelInfo.Text + "6. отображение данных из локального хранилища в табличных элементах управления закончено\r\n";
+                labelInfo.Refresh();
+
+
+
+
+                conn.Close();
+            }
+            catch (Exception exeption)
+            {
+                labelInfo.Text = labelInfo.Text + "Ошибка: "+ exeption.Source;
+                labelInfo.Refresh();
+            }
 
         }
     }
