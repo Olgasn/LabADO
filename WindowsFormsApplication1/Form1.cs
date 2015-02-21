@@ -17,8 +17,6 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             
-
-
             
         }
 
@@ -39,16 +37,13 @@ namespace WindowsFormsApplication1
             {
                 conn.Open();
 
-
-
-
                 labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено\r\n";
                 labelInfo.Refresh();
                 SqlCommand MyCommand = new SqlCommand();
                 MyCommand.Connection = conn;
                 //или SqlCommand MyCommand=conn.CreateCommand(); 
                 MyCommand.CommandText = commandText;
-                labelInfo.Text = labelInfo.Text + "2. заполнение таблиц базы данных начато, подолжите немного \r\n";
+                labelInfo.Text = labelInfo.Text + "2. заполнение таблиц базы данных начато, подождите немного...\r\n";
                 labelInfo.Refresh();
 
                 MyCommand.ExecuteNonQuery();
@@ -85,8 +80,6 @@ namespace WindowsFormsApplication1
                 SqlDataAdapter dataAdapter = new SqlDataAdapter();
 
 
-
-
                 DataSet ds = new DataSet();
 
                 labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начато\r\n";
@@ -117,8 +110,6 @@ namespace WindowsFormsApplication1
 
                 labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
-
-
 
 
                 conn.Close();
