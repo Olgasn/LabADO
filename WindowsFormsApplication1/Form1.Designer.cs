@@ -37,6 +37,7 @@
             this.labelInfo = new System.Windows.Forms.Label();
             this.textBoxConnectionString = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonDisplay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -46,18 +47,18 @@
             // 
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(-2, 260);
+            this.dataGridView1.Location = new System.Drawing.Point(-2, 258);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(256, 311);
             this.dataGridView1.TabIndex = 0;
             // 
             // buttonFill
             // 
-            this.buttonFill.Location = new System.Drawing.Point(129, 215);
+            this.buttonFill.Location = new System.Drawing.Point(494, 229);
             this.buttonFill.Name = "buttonFill";
             this.buttonFill.Size = new System.Drawing.Size(163, 23);
             this.buttonFill.TabIndex = 1;
-            this.buttonFill.Text = "Выполнить и отобразить";
+            this.buttonFill.Text = "Выполнить";
             this.buttonFill.UseVisualStyleBackColor = true;
             this.buttonFill.Click += new System.EventHandler(this.buttonFill_Click);
             // 
@@ -67,7 +68,7 @@
             this.textBoxCommand.Multiline = true;
             this.textBoxCommand.Name = "textBoxCommand";
             this.textBoxCommand.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxCommand.Size = new System.Drawing.Size(474, 187);
+            this.textBoxCommand.Size = new System.Drawing.Size(474, 230);
             this.textBoxCommand.TabIndex = 2;
             this.textBoxCommand.Text = resources.GetString("textBoxCommand.Text");
             this.textBoxCommand.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -76,7 +77,7 @@
             // 
             this.dataGridView2.AllowUserToOrderColumns = true;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(260, 260);
+            this.dataGridView2.Location = new System.Drawing.Point(260, 258);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(289, 311);
             this.dataGridView2.TabIndex = 3;
@@ -85,17 +86,17 @@
             // 
             this.dataGridView3.AllowUserToOrderColumns = true;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(555, 260);
+            this.dataGridView3.Location = new System.Drawing.Point(555, 258);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(306, 311);
             this.dataGridView3.TabIndex = 4;
             // 
             // labelInfo
             // 
-            this.labelInfo.Location = new System.Drawing.Point(491, 101);
+            this.labelInfo.Location = new System.Drawing.Point(491, 75);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelInfo.Size = new System.Drawing.Size(408, 107);
+            this.labelInfo.Size = new System.Drawing.Size(370, 107);
             this.labelInfo.TabIndex = 5;
             // 
             // textBoxConnectionString
@@ -115,12 +116,23 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "строка подключения к базе данных:";
             // 
+            // buttonDisplay
+            // 
+            this.buttonDisplay.Location = new System.Drawing.Point(336, 575);
+            this.buttonDisplay.Name = "buttonDisplay";
+            this.buttonDisplay.Size = new System.Drawing.Size(134, 23);
+            this.buttonDisplay.TabIndex = 8;
+            this.buttonDisplay.Text = "Отобразить";
+            this.buttonDisplay.UseVisualStyleBackColor = true;
+            this.buttonDisplay.Click += new System.EventHandler(this.buttonDisplay_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(888, 578);
+            this.ClientSize = new System.Drawing.Size(888, 599);
+            this.Controls.Add(this.buttonDisplay);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxConnectionString);
             this.Controls.Add(this.labelInfo);
@@ -149,6 +161,7 @@
         private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.TextBox textBoxConnectionString;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonDisplay;
     }
 }
 
