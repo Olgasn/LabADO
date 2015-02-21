@@ -93,10 +93,10 @@
             // 
             // labelInfo
             // 
-            this.labelInfo.Location = new System.Drawing.Point(491, 75);
+            this.labelInfo.Location = new System.Drawing.Point(491, 62);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelInfo.Size = new System.Drawing.Size(370, 107);
+            this.labelInfo.Size = new System.Drawing.Size(370, 164);
             this.labelInfo.TabIndex = 5;
             // 
             // textBoxConnectionString
