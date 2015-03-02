@@ -128,19 +128,15 @@ namespace WindowsFormsApplication1
                 conn.Open();
 
                 DataTable table = ds.Tables["Fuels"];
-                // Create the UpdateCommand.
-                SqlCommand command = new SqlCommand("UPDATE Fuels SET FuelType = @FuelType WHERE FuelID = @FuelID", conn);
+                SqlCommand command = new SqlCommand("UPDATE Fuels SET FuelType = @FuelType, FuelDensity=@FuelDensity WHERE FuelID = @FuelID", conn);
                 // Add the parameters for the UpdateCommand.
                 command.Parameters.Add("@FuelID", SqlDbType.Int, 5, "FuelID");
                 command.Parameters.Add("@FuelType", SqlDbType.NVarChar, 50, "FuelType");
-                
-                
-// Next process updates.
+                command.Parameters.Add("@FuelDensity", SqlDbType.Real, 8, "FuelDensity");
+
                 dataAdapter.UpdateCommand = command;
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
 
-// Finally, process inserts.
-//dataAdapter.Update(table.Select(null, null, DataViewRowState.Added));
 
 
 
