@@ -13,16 +13,16 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+
+        SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        DataSet ds = new DataSet();
+
+
         public Form1()
         {
             InitializeComponent();
             
             
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonFill_Click(object sender, EventArgs e)
@@ -71,34 +71,30 @@ namespace WindowsFormsApplication1
             try
             {
                 conn.Open();
-
+                ds.Clear();
                 labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено\r\n";
                 labelInfo.Refresh();
                 SqlCommand MyCommand = new SqlCommand();
                 MyCommand.Connection = conn;
                 
-                SqlDataAdapter dataAdapter = new SqlDataAdapter();
-
-
-                DataSet ds = new DataSet();
 
                 labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начато\r\n";
                 labelInfo.Refresh();
 
                 MyCommand.CommandText = "SELECT * FROM Fuels";
                 dataAdapter.SelectCommand = MyCommand;
-                ds.Tables.Add("Fuels");
+                if (!(ds.Tables.Contains("Fuels"))) ds.Tables.Add("Fuels");
                 dataAdapter.Fill(ds, "Fuels"); // 
 
                 MyCommand.CommandText = "SELECT * FROM Tanks";
                 dataAdapter.SelectCommand = MyCommand;
-                ds.Tables.Add("Tanks");
+                if (!(ds.Tables.Contains("Tanks"))) ds.Tables.Add("Tanks");
                 dataAdapter.Fill(ds, "Tanks"); // 
 
 
                 MyCommand.CommandText = "SELECT * FROM Operations";
                 dataAdapter.SelectCommand = MyCommand;
-                ds.Tables.Add("Operations");
+                if (!(ds.Tables.Contains("Operations"))) ds.Tables.Add("Operations");
                 dataAdapter.Fill(ds, "Operations");
 
                 labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончено\r\n";
@@ -110,6 +106,42 @@ namespace WindowsFormsApplication1
 
                 labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
+
+
+                conn.Close();
+            }
+            catch (Exception exeption)
+            {
+                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.Source;
+                labelInfo.Refresh();
+            }
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            string commandText = Convert.ToString(textBoxCommand.Text);
+            string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            
+            try
+            {
+                conn.Open();
+
+                DataTable table = ds.Tables["Fuels"];
+                // Create the UpdateCommand.
+                SqlCommand command = new SqlCommand("UPDATE Fuels SET FuelType = @FuelType WHERE FuelID = @FuelID", conn);
+                // Add the parameters for the UpdateCommand.
+                command.Parameters.Add("@FuelID", SqlDbType.Int, 5, "FuelID");
+                command.Parameters.Add("@FuelType", SqlDbType.NVarChar, 50, "FuelType");
+                
+                
+// Next process updates.
+                dataAdapter.UpdateCommand = command;
+                dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
+
+// Finally, process inserts.
+//dataAdapter.Update(table.Select(null, null, DataViewRowState.Added));
+
 
 
                 conn.Close();

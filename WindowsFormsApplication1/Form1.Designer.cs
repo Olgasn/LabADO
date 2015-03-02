@@ -38,6 +38,7 @@
             this.textBoxConnectionString = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonDisplay = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -71,7 +72,6 @@
             this.textBoxCommand.Size = new System.Drawing.Size(474, 230);
             this.textBoxCommand.TabIndex = 2;
             this.textBoxCommand.Text = resources.GetString("textBoxCommand.Text");
-            this.textBoxCommand.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // dataGridView2
             // 
@@ -126,12 +126,23 @@
             this.buttonDisplay.UseVisualStyleBackColor = true;
             this.buttonDisplay.Click += new System.EventHandler(this.buttonDisplay_Click);
             // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(494, 575);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(105, 23);
+            this.buttonSave.TabIndex = 9;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(888, 599);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonDisplay);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxConnectionString);
@@ -162,6 +173,7 @@
         private System.Windows.Forms.TextBox textBoxConnectionString;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonDisplay;
+        private System.Windows.Forms.Button buttonSave;
     }
 }
 
