@@ -50,12 +50,15 @@ namespace WindowsFormsApplication1
                 labelInfo.Text = labelInfo.Text + "3. заполнение таблиц базы данных окончено!!!\r\n";
                 labelInfo.Refresh();
 
-                conn.Close();
             }
             catch (Exception exeption)
             {
                 labelInfo.Text = labelInfo.Text + "Ошибка: "+ exeption.Source;
                 labelInfo.Refresh();
+            }
+            finally
+            {
+                conn.Close();
             }
 
         }
@@ -107,13 +110,17 @@ namespace WindowsFormsApplication1
                 labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
 
-
-                conn.Close();
             }
             catch (Exception exeption)
             {
                 labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.Source;
                 labelInfo.Refresh();
+            }
+            finally
+            {
+
+                conn.Close();
+
             }
         }
 
@@ -137,15 +144,15 @@ namespace WindowsFormsApplication1
                 dataAdapter.UpdateCommand = command;
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
 
-
-
-
-                conn.Close();
             }
             catch (Exception exeption)
             {
                 labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.Source;
                 labelInfo.Refresh();
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     }
