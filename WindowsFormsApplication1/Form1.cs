@@ -37,13 +37,13 @@ namespace WindowsFormsApplication1
             {
                 conn.Open();
 
-                labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено\r\n";
+                labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
                 SqlCommand MyCommand = new SqlCommand();
                 MyCommand.Connection = conn;
                 //или SqlCommand MyCommand=conn.CreateCommand(); 
                 MyCommand.CommandText = commandText;
-                labelInfo.Text = labelInfo.Text + "2. заполнение таблиц базы данных начато, подождите немного...\r\n";
+                labelInfo.Text = labelInfo.Text + "2. заполнение таблиц базы данных начато, подождите немного...;\r\n";
                 labelInfo.Refresh();
 
                 MyCommand.ExecuteNonQuery();
@@ -75,13 +75,13 @@ namespace WindowsFormsApplication1
             {
                 conn.Open();
                 ds.Clear();
-                labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено\r\n";
+                labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
                 SqlCommand MyCommand = new SqlCommand();
                 MyCommand.Connection = conn;
                 
 
-                labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начато\r\n";
+                labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
                 MyCommand.CommandText = "SELECT * FROM Fuels";
@@ -100,7 +100,7 @@ namespace WindowsFormsApplication1
                 if (!(ds.Tables.Contains("Operations"))) ds.Tables.Add("Operations");
                 dataAdapter.Fill(ds, "Operations");
 
-                labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончено\r\n";
+                labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончено;\r\n";
                 labelInfo.Refresh();
 
                 dataGridView1.DataSource = ds.Tables["Fuels"].DefaultView;
