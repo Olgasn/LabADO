@@ -125,6 +125,8 @@ SELECT @RowCount=1 FROM dbo.Operations WITH (TABLOCKX) WHERE 1=0
 
 COMMIT TRAN
 GO
+-- ================================================
+-- создание представления для отбора данных всех операций
 CREATE VIEW [dbo].[View_AllOperations]
 AS
 SELECT        dbo.Operations.OperationID, dbo.Operations.FuelID, dbo.Operations.TankID, dbo.Operations.Inc_Exp, dbo.Operations.Date, dbo.Fuels.FuelType, 
@@ -132,5 +134,61 @@ SELECT        dbo.Operations.OperationID, dbo.Operations.FuelID, dbo.Operations.
 FROM            dbo.Fuels INNER JOIN
                          dbo.Operations ON dbo.Fuels.FuelID = dbo.Operations.FuelID INNER JOIN
                          dbo.Tanks ON dbo.Operations.TankID = dbo.Tanks.TankID
+GO
+-- ================================================
+-- создание хранимой процедуры для выбора данных одной или нескольких операций по заданным параметрам.
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 
+IF OBJECT_ID ( 'dbo.uspGetOperations', 'P' ) IS NOT NULL 
+    DROP PROCEDURE dbo.uspGetOperations;
+GO
+CREATE PROCEDURE dbo.uspGetOperations
+	@FuelID int =-100, 
+    @FuelType nvarchar(50) ='',
+	@TankID int =-100, 
+    @TankType nvarchar(20) =''
+AS 
+    BEGIN
+    
+	if @TankID>0 and @FuelID>0 	
+	SELECT * 
+    FROM dbo.View_AllOperations
+	WHERE (
+	(FuelType Like (@FuelType + '%')) AND 
+	(TankType Like (@TankType + '%')) AND
+	(TankID=@TankID) AND
+    (FuelID=@FuelID)	
+	);	
+	
+	if @TankID>0 and @FuelID<0	
+	SELECT * 
+    FROM dbo.View_AllOperations
+	WHERE (
+	(FuelType Like (@FuelType + '%')) AND 
+	(TankType Like (@TankType + '%')) AND
+	(TankID=@TankID)
+	);	
+	
+	if @TankID<0 and @FuelID>0	
+	SELECT * 
+    FROM dbo.View_AllOperations
+	WHERE (
+	(FuelType Like (@FuelType + '%')) AND 
+	(TankType Like (@TankType + '%')) AND
+	(FuelID=@FuelID)
+	);
+	
+	if @TankID<0 and @FuelID<0	
+	SELECT * 
+    FROM dbo.View_AllOperations
+	WHERE (
+	(FuelType Like (@FuelType + '%')) AND 
+	(TankType Like (@TankType + '%')) 
+	);		
+	
+	END;
+GO
