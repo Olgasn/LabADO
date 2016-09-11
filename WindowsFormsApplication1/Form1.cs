@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
+
     public partial class Form1 : Form
     {
-
-        SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        // Получить фабрику
+        DbProviderFactory provider = DbProviderFactories.GetFactory("System.Data.SqlClient");
         DataSet ds = new DataSet();
 
 
@@ -23,19 +25,24 @@ namespace WindowsFormsApplication1
         {
             string commandText = Convert.ToString(textBoxCommand.Text);
             string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
-            SqlConnection conn = new SqlConnection(ConnectionString);
+
+            // Использовать фабрику для получения соединения
+            DbConnection conn = provider.CreateConnection();
+            conn.ConnectionString = ConnectionString;
+
             labelInfo.Text = "Ход выполнения процесса заполнения базы данных:\r\n";
             labelInfo.Refresh();
 
             try
             {
+
+             
                 conn.Open();
 
                 labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-                SqlCommand MyCommand = new SqlCommand();
-                MyCommand.Connection = conn;
-                //или SqlCommand MyCommand=conn.CreateCommand(); 
+                //Создать команду
+                DbCommand MyCommand = provider.CreateCommand();
                 MyCommand.CommandText = commandText;
                 labelInfo.Text = labelInfo.Text + "2. заполнение таблиц базы данных начато, подождите немного...;\r\n";
                 labelInfo.Refresh();
@@ -61,7 +68,9 @@ namespace WindowsFormsApplication1
         {
             string commandText = Convert.ToString(textBoxCommand.Text);
             string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            // Использовать фабрику для получения соединения
+            DbConnection conn = provider.CreateConnection();
+            conn.ConnectionString = ConnectionString;
             labelInfo.Text = labelInfo.Text + "\r\n Ход выполнения процесса визуализации:\r\n";
             labelInfo.Refresh();
 
@@ -71,15 +80,19 @@ namespace WindowsFormsApplication1
                 ds.Clear();
                 labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-                SqlCommand MyCommand = new SqlCommand();
-                MyCommand.Connection = conn;
-                
+                //Создать команду
+                DbCommand MyCommand = provider.CreateCommand();
+
 
                 labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
                 MyCommand.CommandText = "SELECT * FROM Fuels";
+                
+                //Создать адаптер
+                DbDataAdapter dataAdapter = provider.CreateDataAdapter();
                 dataAdapter.SelectCommand = MyCommand;
+
                 if (!(ds.Tables.Contains("Fuels"))) ds.Tables.Add("Fuels");
                 dataAdapter.Fill(ds, "Fuels"); // 
 
@@ -122,19 +135,38 @@ namespace WindowsFormsApplication1
         {
             string commandText = Convert.ToString(textBoxCommand.Text);
             string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
-            SqlConnection conn = new SqlConnection(ConnectionString);
-            
+            // Использовать фабрику для получения соединения
+            DbConnection conn = provider.CreateConnection();
+            conn.ConnectionString = ConnectionString;
+
             try
             {
                 conn.Open();
 
                 DataTable table = ds.Tables["Fuels"];
-                SqlCommand command = new SqlCommand("UPDATE Fuels SET FuelType = @FuelType, FuelDensity=@FuelDensity WHERE FuelID = @FuelID", conn);
-                // Add the parameters for the UpdateCommand.
-                command.Parameters.Add("@FuelID", SqlDbType.Int, 5, "FuelID");
-                command.Parameters.Add("@FuelType", SqlDbType.NVarChar, 50, "FuelType");
-                command.Parameters.Add("@FuelDensity", SqlDbType.Real, 8, "FuelDensity");
 
+                //Создать команду
+                DbCommand command = provider.CreateCommand();
+                command.CommandText= "UPDATE Fuels SET FuelType = @FuelType, FuelDensity=@FuelDensity WHERE FuelID = @FuelID";
+                // Добавить параметры для UpdateCommand.
+                DbParameter parameter = command.CreateParameter();
+
+                parameter.ParameterName = "@FuelID";
+                parameter.DbType = DbType.Int32;
+                parameter.Value = "FuelID";
+                command.Parameters.Add(parameter);
+
+                parameter.ParameterName = "@FuelType";
+                parameter.DbType = DbType.String;
+                parameter.Value = "FuelType";
+                command.Parameters.Add(parameter);
+
+                parameter.ParameterName = "@FuelDensity";
+                parameter.DbType = DbType.Decimal;
+                parameter.Value = "FuelDensity";
+                command.Parameters.Add(parameter);
+
+                DbDataAdapter dataAdapter = provider.CreateDataAdapter();
                 dataAdapter.UpdateCommand = command;
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
 
