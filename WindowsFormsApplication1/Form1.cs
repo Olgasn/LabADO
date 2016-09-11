@@ -147,26 +147,28 @@ namespace WindowsFormsApplication1
                 // Добавить параметры для UpdateCommand.
                 DbParameter parameter1 = command.CreateParameter();
                 parameter1.ParameterName = "@FuelID";
-                parameter1.DbType = DbType.Int64;
-                parameter1.Value = "FuelID";
+                parameter1.DbType = DbType.Int32;
+                parameter1.SourceColumn = "FuelID";
                 command.Parameters.Add(parameter1);
                     
                 
                 DbParameter parameter2 = command.CreateParameter();
                 parameter2.ParameterName = "@FuelType";
                 parameter2.DbType = DbType.String;
-                parameter2.Value = "FuelType";
+                parameter2.SourceColumn = "FuelType";
                 command.Parameters.Add(parameter2);
 
                 DbParameter parameter3 = command.CreateParameter();
                 parameter3.ParameterName = "@FuelDensity";
                 parameter3.DbType = DbType.Decimal;
-                parameter3.Value = "FuelDensity";
+                parameter3.SourceColumn = "FuelDensity";
                 command.Parameters.Add(parameter3);
 
                 DbDataAdapter dataAdapter = provider.CreateDataAdapter();
                 dataAdapter.UpdateCommand = command;
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
+                labelInfo.Text = labelInfo.Text + "Сохранено!!!\r\n";
+                labelInfo.Refresh();
 
             }
             catch (Exception exeption)
