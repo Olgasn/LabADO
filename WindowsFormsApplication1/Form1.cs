@@ -43,6 +43,7 @@ namespace WindowsFormsApplication1
                 labelInfo.Refresh();
                 //Создать команду
                 DbCommand MyCommand = provider.CreateCommand();
+                MyCommand.Connection = conn;
                 MyCommand.CommandText = commandText;
                 labelInfo.Text = labelInfo.Text + "2. заполнение таблиц базы данных начато, подождите немного...;\r\n";
                 labelInfo.Refresh();
@@ -66,7 +67,7 @@ namespace WindowsFormsApplication1
 
         private void buttonDisplay_Click(object sender, EventArgs e)
         {
-            string commandText = Convert.ToString(textBoxCommand.Text);
+            //string commandText = Convert.ToString(textBoxCommand.Text);
             string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
             // Использовать фабрику для получения соединения
             DbConnection conn = provider.CreateConnection();
@@ -80,19 +81,20 @@ namespace WindowsFormsApplication1
                 ds.Clear();
                 labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-                //Создать команду
-                DbCommand MyCommand = provider.CreateCommand();
+               
 
 
                 labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
+                //Создать команду
+                DbCommand MyCommand = provider.CreateCommand();
                 MyCommand.CommandText = "SELECT * FROM Fuels";
-                
+                MyCommand.Connection = conn;
                 //Создать адаптер
                 DbDataAdapter dataAdapter = provider.CreateDataAdapter();
                 dataAdapter.SelectCommand = MyCommand;
-
+                
                 if (!(ds.Tables.Contains("Fuels"))) ds.Tables.Add("Fuels");
                 dataAdapter.Fill(ds, "Fuels"); // 
 
@@ -120,7 +122,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception exeption)
             {
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.Source;
+                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
             finally
@@ -133,7 +135,7 @@ namespace WindowsFormsApplication1
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            string commandText = Convert.ToString(textBoxCommand.Text);
+            //string commandText = Convert.ToString(textBoxCommand.Text);
             string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
             // Использовать фабрику для получения соединения
             DbConnection conn = provider.CreateConnection();
@@ -147,6 +149,7 @@ namespace WindowsFormsApplication1
 
                 //Создать команду
                 DbCommand command = provider.CreateCommand();
+                command.Connection = conn;
                 command.CommandText= "UPDATE Fuels SET FuelType = @FuelType, FuelDensity=@FuelDensity WHERE FuelID = @FuelID";
                 // Добавить параметры для UpdateCommand.
                 DbParameter parameter = command.CreateParameter();
