@@ -9,16 +9,14 @@ namespace WindowsFormsApplication1
 
     public partial class Form1 : Form
     {
-        // Получить фабрику
+        // Получить фабрику по имени "System.Data.SqlClient"
         DbProviderFactory provider = DbProviderFactories.GetFactory("System.Data.SqlClient");
-        DataSet ds = new DataSet();
 
+        DataSet ds = new DataSet();
 
         public Form1()
         {
-            InitializeComponent();
-            
-            
+            InitializeComponent();            
         }
 
         private void buttonFill_Click(object sender, EventArgs e)
@@ -34,13 +32,11 @@ namespace WindowsFormsApplication1
             labelInfo.Refresh();
 
             try
-            {
-
-             
+            {             
                 conn.Open();
-
                 labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
+                
                 //Создать команду
                 DbCommand MyCommand = provider.CreateCommand();
                 MyCommand.Connection = conn;
@@ -81,11 +77,6 @@ namespace WindowsFormsApplication1
                 ds.Clear();
                 labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-               
-
-
-                labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начат;\r\n";
-                labelInfo.Refresh();
 
                 //Создать команду
                 DbCommand MyCommand = provider.CreateCommand();
@@ -94,7 +85,10 @@ namespace WindowsFormsApplication1
                 //Создать адаптер
                 DbDataAdapter dataAdapter = provider.CreateDataAdapter();
                 dataAdapter.SelectCommand = MyCommand;
-                
+
+                labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начат;\r\n";
+                labelInfo.Refresh();
+                               
                 if (!(ds.Tables.Contains("Fuels"))) ds.Tables.Add("Fuels");
                 dataAdapter.Fill(ds, "Fuels"); // 
 
@@ -135,7 +129,6 @@ namespace WindowsFormsApplication1
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            //string commandText = Convert.ToString(textBoxCommand.Text);
             string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
             // Использовать фабрику для получения соединения
             DbConnection conn = provider.CreateConnection();
@@ -152,22 +145,24 @@ namespace WindowsFormsApplication1
                 command.Connection = conn;
                 command.CommandText= "UPDATE Fuels SET FuelType = @FuelType, FuelDensity=@FuelDensity WHERE FuelID = @FuelID";
                 // Добавить параметры для UpdateCommand.
-                DbParameter parameter = command.CreateParameter();
+                DbParameter parameter1 = command.CreateParameter();
+                parameter1.ParameterName = "@FuelID";
+                parameter1.DbType = DbType.Int64;
+                parameter1.Value = "FuelID";
+                command.Parameters.Add(parameter1);
+                    
+                
+                DbParameter parameter2 = command.CreateParameter();
+                parameter2.ParameterName = "@FuelType";
+                parameter2.DbType = DbType.String;
+                parameter2.Value = "FuelType";
+                command.Parameters.Add(parameter2);
 
-                parameter.ParameterName = "@FuelID";
-                parameter.DbType = DbType.Int32;
-                parameter.Value = "FuelID";
-                command.Parameters.Add(parameter);
-
-                parameter.ParameterName = "@FuelType";
-                parameter.DbType = DbType.String;
-                parameter.Value = "FuelType";
-                command.Parameters.Add(parameter);
-
-                parameter.ParameterName = "@FuelDensity";
-                parameter.DbType = DbType.Decimal;
-                parameter.Value = "FuelDensity";
-                command.Parameters.Add(parameter);
+                DbParameter parameter3 = command.CreateParameter();
+                parameter3.ParameterName = "@FuelDensity";
+                parameter3.DbType = DbType.Decimal;
+                parameter3.Value = "FuelDensity";
+                command.Parameters.Add(parameter3);
 
                 DbDataAdapter dataAdapter = provider.CreateDataAdapter();
                 dataAdapter.UpdateCommand = command;
@@ -176,7 +171,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception exeption)
             {
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.Source;
+                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
             finally
