@@ -145,25 +145,17 @@ namespace WindowsFormsApplication1
                 command.Connection = conn;
                 command.CommandText= "UPDATE Fuels SET FuelType = @FuelType, FuelDensity=@FuelDensity WHERE FuelID = @FuelID";
                 // Добавить параметры для UpdateCommand.
-                DbParameter parameter1 = command.CreateParameter();
-                parameter1.ParameterName = "@FuelID";
-                parameter1.DbType = DbType.Int32;
-                parameter1.SourceColumn = "FuelID";
-                command.Parameters.Add(parameter1);
-                    
+                DbParameter[] parameters = new DbParameter[table.Columns.Count];
+                int number = 0;
+                foreach (DataColumn column in table.Columns)
+                {
+                    parameters[number] = command.CreateParameter();
+                    parameters[number].ParameterName = "@"+ column.ColumnName;
+                    parameters[number].SourceColumn = column.ColumnName;
+                    command.Parameters.Add(parameters[number]);
+                    number = number + 1;
+                }
                 
-                DbParameter parameter2 = command.CreateParameter();
-                parameter2.ParameterName = "@FuelType";
-                parameter2.DbType = DbType.String;
-                parameter2.SourceColumn = "FuelType";
-                command.Parameters.Add(parameter2);
-
-                DbParameter parameter3 = command.CreateParameter();
-                parameter3.ParameterName = "@FuelDensity";
-                parameter3.DbType = DbType.Decimal;
-                parameter3.SourceColumn = "FuelDensity";
-                command.Parameters.Add(parameter3);
-
                 DbDataAdapter dataAdapter = provider.CreateDataAdapter();
                 dataAdapter.UpdateCommand = command;
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
