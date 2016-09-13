@@ -63,7 +63,7 @@ namespace WindowsFormsApplication1
 
         private void buttonDisplay_Click(object sender, EventArgs e)
         {
-            //string commandText = Convert.ToString(textBoxCommand.Text);
+            labelInfo.Text = "";
             string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
             // Использовать фабрику для получения соединения
             DbConnection conn = provider.CreateConnection();
