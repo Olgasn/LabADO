@@ -133,6 +133,7 @@ namespace WindowsFormsApplication1
             // Использовать фабрику для получения соединения
             DbConnection conn = provider.CreateConnection();
             conn.ConnectionString = ConnectionString;
+            labelInfo.Text = "";
 
             try
             {
@@ -160,6 +161,54 @@ namespace WindowsFormsApplication1
                 dataAdapter.UpdateCommand = command;
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
                 labelInfo.Text = labelInfo.Text + "Сохранено!!!\r\n";
+                labelInfo.Refresh();
+
+            }
+            catch (Exception exeption)
+            {
+                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Refresh();
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
+            // Использовать фабрику для получения соединения
+            DbConnection conn = provider.CreateConnection();
+            conn.ConnectionString = ConnectionString;
+            labelInfo.Text = "";
+            try
+            {
+                conn.Open();
+
+                DataTable table = ds.Tables["Fuels"];
+                
+                //Создать команду
+                DbCommand command = provider.CreateCommand();
+                command.Connection = conn;
+                command.CommandText = "DELETE FROM Fuels WHERE FuelID = @FuelID";
+                
+                // Добавить параметры для DeleteCommand.
+                DbParameter parameter = command.CreateParameter();                
+                parameter.ParameterName = "@FuelID";
+                parameter.SourceColumn = "FuelID";
+                int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                parameter.Value = id;
+                command.Parameters.Add(parameter);
+                command.ExecuteNonQuery();
+                DbDataAdapter dataAdapter = provider.CreateDataAdapter();
+                dataAdapter.DeleteCommand = command;
+                dataAdapter.Update(table);
+                DataRow row = table.Select("FuelID = " + id)[0];
+                row.Delete();
+                table.AcceptChanges();
+
+                labelInfo.Text = labelInfo.Text + "Удалено!!!\r\n";
                 labelInfo.Refresh();
 
             }
