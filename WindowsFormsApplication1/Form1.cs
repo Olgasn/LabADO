@@ -149,9 +149,63 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void labelInfo_Click(object sender, EventArgs e)
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
+            string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
+            // Использовать фабрику для получения соединения
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = ConnectionString;
+            labelInfo.Text = "";
+            //значение ключевого поля строки для удаления
+            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+
+            try
+            {
+                using (conn)
+                {
+                    // Определение строки запроса
+                    string queryString = "SELECT * FROM Fuels";
+
+                    // Создать команду на выборку
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = queryString;
+                    command.Connection = conn;
+
+                    // Создать DbDataAdapter.
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = command;
+
+                    // Создать DbCommandBuilder.
+                    SqlCommandBuilder builder = new SqlCommandBuilder();
+                    builder.DataAdapter = adapter;
+                    // Получить команду на удаление
+                    adapter.DeleteCommand = builder.GetDeleteCommand();
+
+                    DataTable table = ds.Tables["Fuels"];
+
+                    // Удаление строки
+                    DataRow[] deleteRow = table.Select("FuelID = " + id);
+                    foreach (DataRow row in deleteRow)
+                    {
+                        row.Delete();
+                    }
+                    adapter.Update(table);
+                    table.AcceptChanges();
+
+                }
+
+                labelInfo.Text = labelInfo.Text + "Удалено!!!\r\n";
+                labelInfo.Refresh();
+
+            }
+            catch (Exception exeption)
+            {
+                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Refresh();
+            }
 
         }
+
+        
     }
 }

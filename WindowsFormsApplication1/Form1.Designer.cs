@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonDisplay = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -98,7 +99,6 @@
             this.labelInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelInfo.Size = new System.Drawing.Size(382, 151);
             this.labelInfo.TabIndex = 5;
-            this.labelInfo.Click += new System.EventHandler(this.labelInfo_Click);
             // 
             // textBoxConnectionString
             // 
@@ -138,12 +138,23 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(122, 575);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(113, 23);
+            this.buttonDelete.TabIndex = 10;
+            this.buttonDelete.Text = "Удалить";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(888, 599);
+            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonDisplay);
             this.Controls.Add(this.label1);
@@ -176,6 +187,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonDisplay;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }
 
