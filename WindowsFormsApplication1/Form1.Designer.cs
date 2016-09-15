@@ -50,7 +50,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(-2, 258);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(256, 311);
+            this.dataGridView1.Size = new System.Drawing.Size(279, 311);
             this.dataGridView1.TabIndex = 0;
             // 
             // buttonFill
@@ -77,33 +77,35 @@
             // 
             this.dataGridView2.AllowUserToOrderColumns = true;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(260, 258);
+            this.dataGridView2.Location = new System.Drawing.Point(283, 258);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(289, 311);
+            this.dataGridView2.Size = new System.Drawing.Size(280, 311);
             this.dataGridView2.TabIndex = 3;
             // 
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToOrderColumns = true;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(555, 258);
+            this.dataGridView3.Location = new System.Drawing.Point(569, 258);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(306, 311);
+            this.dataGridView3.Size = new System.Drawing.Size(292, 311);
             this.dataGridView3.TabIndex = 4;
             // 
             // labelInfo
             // 
-            this.labelInfo.Location = new System.Drawing.Point(491, 62);
+            this.labelInfo.Location = new System.Drawing.Point(494, 75);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelInfo.Size = new System.Drawing.Size(370, 164);
+            this.labelInfo.Size = new System.Drawing.Size(382, 151);
             this.labelInfo.TabIndex = 5;
+            this.labelInfo.Click += new System.EventHandler(this.labelInfo_Click);
             // 
             // textBoxConnectionString
             // 
-            this.textBoxConnectionString.Location = new System.Drawing.Point(494, 39);
+            this.textBoxConnectionString.Location = new System.Drawing.Point(492, 39);
+            this.textBoxConnectionString.Multiline = true;
             this.textBoxConnectionString.Name = "textBoxConnectionString";
-            this.textBoxConnectionString.Size = new System.Drawing.Size(367, 20);
+            this.textBoxConnectionString.Size = new System.Drawing.Size(384, 33);
             this.textBoxConnectionString.TabIndex = 6;
             this.textBoxConnectionString.Text = "Data Source=.\\sqlexpress;Initial Catalog=toplivo;Integrated Security=True";
             // 
@@ -118,7 +120,7 @@
             // 
             // buttonDisplay
             // 
-            this.buttonDisplay.Location = new System.Drawing.Point(336, 575);
+            this.buttonDisplay.Location = new System.Drawing.Point(674, 229);
             this.buttonDisplay.Name = "buttonDisplay";
             this.buttonDisplay.Size = new System.Drawing.Size(134, 23);
             this.buttonDisplay.TabIndex = 8;
@@ -128,7 +130,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(494, 575);
+            this.buttonSave.Location = new System.Drawing.Point(-2, 575);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(105, 23);
             this.buttonSave.TabIndex = 9;
