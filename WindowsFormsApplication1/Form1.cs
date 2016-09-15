@@ -204,7 +204,7 @@ namespace WindowsFormsApplication1
                     // Создать DbCommandBuilder.
                     DbCommandBuilder builder = provider.CreateCommandBuilder();
                     builder.DataAdapter = adapter;
-                    // Получить команду
+                    // Получить команду на удаление
                     adapter.DeleteCommand = builder.GetDeleteCommand();
 
                     DataTable table = ds.Tables["Fuels"];

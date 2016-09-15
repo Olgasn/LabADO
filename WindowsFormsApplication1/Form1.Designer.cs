@@ -104,8 +104,9 @@
             // textBoxConnectionString
             // 
             this.textBoxConnectionString.Location = new System.Drawing.Point(494, 39);
+            this.textBoxConnectionString.Multiline = true;
             this.textBoxConnectionString.Name = "textBoxConnectionString";
-            this.textBoxConnectionString.Size = new System.Drawing.Size(367, 20);
+            this.textBoxConnectionString.Size = new System.Drawing.Size(367, 56);
             this.textBoxConnectionString.TabIndex = 6;
             this.textBoxConnectionString.Text = "Data Source=.\\sqlexpress;Initial Catalog=toplivo;Integrated Security=True";
             // 
