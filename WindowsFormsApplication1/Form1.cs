@@ -86,7 +86,7 @@ namespace WindowsFormsApplication1
                 DbDataAdapter dataAdapter = provider.CreateDataAdapter();
                 dataAdapter.SelectCommand = MyCommand;
 
-                labelInfo.Text = labelInfo.Text + "2. отбор ланных в локальное хранилище начат;\r\n";
+                labelInfo.Text = labelInfo.Text + "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
                                
                 if (!(ds.Tables.Contains("Fuels"))) ds.Tables.Add("Fuels");
@@ -103,7 +103,7 @@ namespace WindowsFormsApplication1
                 if (!(ds.Tables.Contains("Operations"))) ds.Tables.Add("Operations");
                 dataAdapter.Fill(ds, "Operations");
 
-                labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончено;\r\n";
+                labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончен;\r\n";
                 labelInfo.Refresh();
 
                 dataGridView1.DataSource = ds.Tables["Fuels"].DefaultView;
@@ -182,45 +182,54 @@ namespace WindowsFormsApplication1
             DbConnection conn = provider.CreateConnection();
             conn.ConnectionString = ConnectionString;
             labelInfo.Text = "";
+            //значение ключевого поля строки для удаления
+            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+
             try
             {
-                conn.Open();
+                using (conn)
+                {
+                    // Определение строки запроса
+                    string queryString = "SELECT * FROM Fuels";
 
-                DataTable table = ds.Tables["Fuels"];
-                
-                //Создать команду
-                DbCommand command = provider.CreateCommand();
-                command.Connection = conn;
-                command.CommandText = "DELETE FROM Fuels WHERE FuelID = @FuelID";
-                
-                // Добавить параметры для DeleteCommand.
-                DbParameter parameter = command.CreateParameter();                
-                parameter.ParameterName = "@FuelID";
-                parameter.SourceColumn = "FuelID";
-                int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
-                parameter.Value = id;
-                command.Parameters.Add(parameter);
-                command.ExecuteNonQuery();
-                DbDataAdapter dataAdapter = provider.CreateDataAdapter();
-                dataAdapter.DeleteCommand = command;
-                dataAdapter.Update(table);
-                DataRow row = table.Select("FuelID = " + id)[0];
-                row.Delete();
-                table.AcceptChanges();
+                    // Создать команду на выборку
+                    DbCommand command = provider.CreateCommand();
+                    command.CommandText = queryString;
+                    command.Connection = conn;
+
+                    // Создать DbDataAdapter.
+                    DbDataAdapter adapter = provider.CreateDataAdapter();
+                    adapter.SelectCommand = command;
+
+                    // Создать DbCommandBuilder.
+                    DbCommandBuilder builder = provider.CreateCommandBuilder();
+                    builder.DataAdapter = adapter;
+                    // Получить команду
+                    adapter.DeleteCommand = builder.GetDeleteCommand();
+
+                    DataTable table = ds.Tables["Fuels"];
+
+                    // Удаление строки
+                    DataRow[] deleteRow = table.Select("FuelID = "+id);
+                    foreach (DataRow row in deleteRow)
+                    {
+                        row.Delete();
+                    }
+                    adapter.Update(table);
+                    table.AcceptChanges();
+
+                }
 
                 labelInfo.Text = labelInfo.Text + "Удалено!!!\r\n";
                 labelInfo.Refresh();
-
+            
             }
             catch (Exception exeption)
             {
                 labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
-            finally
-            {
-                conn.Close();
-            }
+            
         }
     }
 }
