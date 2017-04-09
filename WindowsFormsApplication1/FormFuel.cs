@@ -5,56 +5,21 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class FormFuel : Form
     {
 
         SqlDataAdapter dataAdapter = new SqlDataAdapter();
         DataSet ds = new DataSet();
-
-        public Form1()
+        string ConnectionString = @"Data Source =.\sqlexpress;Initial Catalog = toplivo; Integrated Security = True";
+        public FormFuel()
         {
-            InitializeComponent();  
-            
+            InitializeComponent();
+            //Отображение всех данных из таблицы Fuels
+            DisplayFuels("");
         }
-
-        private void buttonFill_Click(object sender, EventArgs e)
+        private void DisplayFuels(string FindFuelType)
+        //загрузка данных в локальное хранилище и отображение их на форме
         {
-            string commandText = Convert.ToString(textBoxCommand.Text);
-            string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
-            SqlConnection conn = new SqlConnection(ConnectionString);
-            labelInfo.Text = "Ход выполнения процесса заполнения базы данных:\r\n";
-            labelInfo.Refresh();
-
-            try
-            {
-                conn.Open();
-                labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
-                labelInfo.Refresh();
-                SqlCommand MyCommand = conn.CreateCommand();
-                MyCommand.CommandText = commandText;
-                labelInfo.Text = labelInfo.Text + "2. заполнение таблиц базы данных начато, подождите немного...;\r\n";
-                labelInfo.Refresh();
-
-                MyCommand.ExecuteNonQuery();
-                labelInfo.Text = labelInfo.Text + "3. заполнение таблиц базы данных окончено!!!\r\n";
-                labelInfo.Refresh();
-
-            }
-            catch (Exception exeption)
-            {
-                labelInfo.Text = labelInfo.Text + "Ошибка: "+ exeption.Source;
-                labelInfo.Refresh();
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-        }
-
-        private void buttonDisplay_Click(object sender, EventArgs e)
-        {
-            string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
             SqlConnection conn = new SqlConnection(ConnectionString);
             labelInfo.Text = "\r\n Ход выполнения процесса визуализации:\r\n";
             labelInfo.Refresh();
@@ -67,33 +32,21 @@ namespace WindowsFormsApplication1
                 labelInfo.Refresh();
                 SqlCommand MyCommand = new SqlCommand();
                 MyCommand.Connection = conn;
-                
+
 
                 labelInfo.Text = labelInfo.Text + "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
-                MyCommand.CommandText = "SELECT * FROM Fuels";
+                MyCommand.CommandText = "SELECT * FROM Fuels Where FuelType LIKE '%' +@FindFuelType +'%'";
+                MyCommand.Parameters.AddWithValue("@FindFuelType", FindFuelType);
                 dataAdapter.SelectCommand = MyCommand;
-                if (!(ds.Tables.Contains("Fuels"))) ds.Tables.Add("Fuels");
-                dataAdapter.Fill(ds, "Fuels"); // 
+                dataAdapter.Fill(ds, "Fuels");
 
-                MyCommand.CommandText = "SELECT * FROM Tanks";
-                dataAdapter.SelectCommand = MyCommand;
-                if (!(ds.Tables.Contains("Tanks"))) ds.Tables.Add("Tanks");
-                dataAdapter.Fill(ds, "Tanks"); // 
-
-
-                MyCommand.CommandText = "SELECT * FROM Operations";
-                dataAdapter.SelectCommand = MyCommand;
-                if (!(ds.Tables.Contains("Operations"))) ds.Tables.Add("Operations");
-                dataAdapter.Fill(ds, "Operations");
 
                 labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончен;\r\n";
                 labelInfo.Refresh();
 
-                dataGridView1.DataSource = ds.Tables["Fuels"].DefaultView;
-                dataGridView2.DataSource = ds.Tables["Tanks"].DefaultView;
-                dataGridView3.DataSource = ds.Tables["Operations"].DefaultView;
+                dataGridViewFuels.DataSource = ds.Tables["Fuels"].DefaultView;
 
                 labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
@@ -112,9 +65,18 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+
+
+        private void buttonDisplay_Click(object sender, EventArgs e)
         {
-            string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
+            DisplayFuels(textBoxFindFuels.Text);      
+      
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            // Создание подключения
+
             SqlConnection conn = new SqlConnection(ConnectionString);
             
             try
@@ -151,13 +113,12 @@ namespace WindowsFormsApplication1
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            string ConnectionString = Convert.ToString(textBoxConnectionString.Text);
-            // Использовать фабрику для получения соединения
+            // Создание подключения
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = ConnectionString;
             labelInfo.Text = "";
             //значение ключевого поля строки для удаления
-            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            int id = (int)dataGridViewFuels.CurrentRow.Cells[0].Value;
 
             try
             {
@@ -206,6 +167,57 @@ namespace WindowsFormsApplication1
 
         }
 
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            // Создание подключения
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = ConnectionString;
+            labelInfo.Text = "";
+
+            try
+            {
+                using (conn)
+                {
+                    // Определение строки запроса
+                    string queryString = "SELECT * FROM Fuels";
+
+                    // Создать команду на выборку
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = queryString;
+                    command.Connection = conn;
+
+                    // Создать DbDataAdapter.
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    adapter.SelectCommand = command;
+
+                    // Создать DbCommandBuilder.
+                    SqlCommandBuilder builder = new SqlCommandBuilder();
+                    builder.DataAdapter = adapter;
+                    // Получить команду на вставку
+                    adapter.InsertCommand = builder.GetInsertCommand();
+
+                    DataTable table = ds.Tables["Fuels"];
+
+                    adapter.Update(table);
+                    table.AcceptChanges();
+
+                }
+
+                labelInfo.Text = labelInfo.Text + "Добавлено!!!\r\n";
+                labelInfo.Refresh();
+
+            }
+            catch (Exception exeption)
+            {
+                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Refresh();
+            }
+
+
+        }
+
         
+
+
     }
 }
