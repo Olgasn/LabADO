@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace WindowsFormsADO
 {
@@ -11,7 +12,8 @@ namespace WindowsFormsADO
         SqlDataAdapter dataAdapter;
         SqlCommandBuilder builder;
         string queryString = "SELECT * FROM Fuels";
-        string ConnectionString = @"Data Source =.\sqlexpress;Initial Catalog = toplivo; Integrated Security = True";
+        //string ConnectionString = @"Data Source =.\sqlexpress;Initial Catalog = toplivo; Integrated Security = True";
+        string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
 
         public FormFuel()
         {
