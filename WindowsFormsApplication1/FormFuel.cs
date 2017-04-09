@@ -83,20 +83,14 @@ namespace WindowsFormsApplication1
             {
                 conn.Open();
 
+                
+
+                // Создать DbCommandBuilder.
+                SqlCommandBuilder builder = new SqlCommandBuilder();
+                builder.DataAdapter = dataAdapter;
+                // Получить команду на обновление
+                dataAdapter.UpdateCommand = builder.GetUpdateCommand();
                 DataTable table = ds.Tables["Fuels"];
-                SqlCommand command = new SqlCommand("UPDATE Fuels SET FuelType = @FuelType, FuelDensity=@FuelDensity WHERE FuelID = @FuelID", conn);
-                // Добавить парметры для команды обновления
-                SqlParameter[] parameters = new SqlParameter[table.Columns.Count];
-                int number = 0;
-                foreach (DataColumn column in table.Columns)
-                {
-                    parameters[number] = command.CreateParameter();
-                    parameters[number].ParameterName = "@" + column.ColumnName;
-                    parameters[number].SourceColumn = column.ColumnName;
-                    command.Parameters.Add(parameters[number]);
-                    number = number + 1;
-                }
-                dataAdapter.UpdateCommand = command;
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
 
             }
@@ -132,11 +126,11 @@ namespace WindowsFormsApplication1
                     command.CommandText = queryString;
                     command.Connection = conn;
 
-                    // Создать DbDataAdapter.
+                    // Создать DataAdapter.
                     SqlDataAdapter adapter = new SqlDataAdapter();
                     adapter.SelectCommand = command;
 
-                    // Создать DbCommandBuilder.
+                    // Создать CommandBuilder.
                     SqlCommandBuilder builder = new SqlCommandBuilder();
                     builder.DataAdapter = adapter;
                     // Получить команду на удаление
@@ -186,11 +180,11 @@ namespace WindowsFormsApplication1
                     command.CommandText = queryString;
                     command.Connection = conn;
 
-                    // Создать DbDataAdapter.
+                    // Создать DataAdapter.
                     SqlDataAdapter adapter = new SqlDataAdapter();
                     adapter.SelectCommand = command;
 
-                    // Создать DbCommandBuilder.
+                    // Создать CommandBuilder.
                     SqlCommandBuilder builder = new SqlCommandBuilder();
                     builder.DataAdapter = adapter;
                     // Получить команду на вставку
