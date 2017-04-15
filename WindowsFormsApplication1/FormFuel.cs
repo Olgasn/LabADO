@@ -8,12 +8,17 @@ namespace WindowsFormsADO
 {
     public partial class FormFuel : Form
     {
+        // Локальное хранилище
         DataSet ds = new DataSet();
+        // Адаптер между локальным хранилищем и базой данных
         SqlDataAdapter dataAdapter;
+        // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
         SqlCommandBuilder builder;
+        // Строка запроса для выбора из заданной таблицы
         string queryString = "SELECT * FROM Fuels";
-        //string ConnectionString = @"Data Source =.\sqlexpress;Initial Catalog = toplivo; Integrated Security = True";
+        // Строка соединения с базой данных
         string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
+        //string ConnectionString = @"Data Source =.\sqlexpress;Initial Catalog = toplivo; Integrated Security = True";
 
         public FormFuel()
         {
@@ -36,10 +41,10 @@ namespace WindowsFormsADO
                 SqlCommand MyCommand = new SqlCommand();
                 MyCommand.Connection = conn;
 
-
                 labelInfo.Text = labelInfo.Text + "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
+                //Команда на выборку с параметром
                 MyCommand.CommandText = "SELECT * FROM Fuels Where FuelType LIKE '%' +@FindFuelType +'%'";
                 MyCommand.Parameters.AddWithValue("@FindFuelType", FindFuelType);
 
@@ -62,16 +67,14 @@ namespace WindowsFormsADO
             }
             finally
             {
-
                 conn.Close();
-
             }
         }
 
 
         private void buttonDisplay_Click(object sender, EventArgs e)
         {
-            DisplayFuels(textBoxFindFuels.Text);     
+            DisplayFuels(textBoxFind.Text);     
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -81,14 +84,25 @@ namespace WindowsFormsADO
             
             try
             {
-                conn.Open();          
+                conn.Open();
 
-                // Создать CommandBuilder.
+                // Создать команду на выборку
+                SqlCommand command = new SqlCommand();
+                command.CommandText = queryString;
+                command.Connection = conn;
+
+                // Создать DataAdapter.
+                dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = command;
+
+                // Создать экземпляр CommandBuilder
                 builder = new SqlCommandBuilder();
                 builder.DataAdapter = dataAdapter;
+
                 // Получить сгенерированную команду на обновление
                 dataAdapter.UpdateCommand = builder.GetUpdateCommand();
                 DataTable table = ds.Tables["Fuels"];
+                // Синхронизировать изменения с базой данных
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
 
             }
@@ -129,17 +143,18 @@ namespace WindowsFormsADO
                     // Создать CommandBuilder.
                     builder = new SqlCommandBuilder();
                     builder.DataAdapter = dataAdapter;
-                    // Получить сгенерированную команду на удаление
+                    // Задать сгенерированную команду на удаление для dataAdapter
                     dataAdapter.DeleteCommand = builder.GetDeleteCommand();
 
                     DataTable table = ds.Tables["Fuels"];
 
-                    // Удаление строки
+                    // Удаление строки из таблицы локального хранилища
                     DataRow[] deleteRow = table.Select("FuelID = " + id);
                     foreach (DataRow row in deleteRow)
                     {
                         row.Delete();
                     }
+                    // Синхронизировать изменения с базой данных
                     dataAdapter.Update(table);
                     table.AcceptChanges();
 
@@ -180,21 +195,17 @@ namespace WindowsFormsADO
                     // Создать CommandBuilder.
                     builder = new SqlCommandBuilder();
                     builder.DataAdapter = dataAdapter;
-                    // Получить команду на вставку
+                    // Получить команду на вставку для dataAdapter
                     dataAdapter.InsertCommand = builder.GetInsertCommand();
 
                     DataTable table = ds.Tables["Fuels"];
-
+                   // Синхронизировать изменения с базой данных
                     dataAdapter.Update(table);
                     table.AcceptChanges();
-
                 }
-
                 labelInfo.Text = labelInfo.Text + "Добавлено!!!\r\n";
                 labelInfo.Refresh();
-                DisplayFuels(textBoxFindFuels.Text);
-
-
+                DisplayFuels(textBoxFind.Text);
             }
             catch (Exception exeption)
             {
