@@ -56,6 +56,11 @@ namespace WindowsFormsADO
                 labelInfo.Refresh();
                 dataGridViewFuels.DataSource = ds.Tables["Fuels"].DefaultView;
 
+                dataGridViewFuels.Columns["FuelId"].HeaderText = "Код топлива";
+                dataGridViewFuels.Columns["FuelType"].HeaderText = "Название типлива";
+                dataGridViewFuels.Columns["FuelDensity"].HeaderText = "Плотность топлива";
+
+
                 labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
 
@@ -119,18 +124,15 @@ namespace WindowsFormsADO
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            // Создание подключения
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConnectionString;
             labelInfo.Text = "";
             //значение ключевого поля строки для удаления
             int id = (int)dataGridViewFuels.CurrentRow.Cells[0].Value;
 
             try
             {
-                using (conn)
+                // Создание подключения
+                using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
-
                     // Создать команду на выборку
                     SqlCommand command = new SqlCommand();
                     command.CommandText = queryString;
@@ -170,42 +172,39 @@ namespace WindowsFormsADO
                 labelInfo.Refresh();
             }
 
+
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            // Создание подключения
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = ConnectionString;
-            labelInfo.Text = "";
 
+            labelInfo.Text = "";
             try
             {
-                using (conn)
+                // Создание подключения
+                using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
-                    // Создать команду на выборку
-                    SqlCommand command = new SqlCommand();
-                    command.CommandText = queryString;
-                    command.Connection = conn;
+                    // Создать команду на добавление с параметрами
+                    SqlCommand insertCommand = new SqlCommand();
+                    insertCommand.CommandText = "INSERT INTO Fuels (FuelType, FuelDensity) VALUES (@FuelType, @FuelDensity)";
+                    insertCommand.Connection = conn;
 
-                    // Создать DataAdapter.
-                    dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = command;
+                    // добавляем параметры
+                    insertCommand.Parameters.Add("@FuelType",SqlDbType.VarChar);
+                    insertCommand.Parameters["@FuelType"].Value = groupBoxAdd.Controls[4].Text;
+                    insertCommand.Parameters.Add("@FuelDensity", SqlDbType.Real);
+                    insertCommand.Parameters["@FuelDensity"].Value = groupBoxAdd.Controls[5].Text;
 
-                    // Создать CommandBuilder.
-                    builder = new SqlCommandBuilder();
-                    builder.DataAdapter = dataAdapter;
-                    // Получить команду на вставку для dataAdapter
-                    dataAdapter.InsertCommand = builder.GetInsertCommand();
-
-                    DataTable table = ds.Tables["Fuels"];
-                   // Синхронизировать изменения с базой данных
-                    dataAdapter.Update(table);
-                    table.AcceptChanges();
+                    //выполняем запрос
+                    conn.Open();
+                    insertCommand.ExecuteNonQuery();
                 }
-                labelInfo.Text = labelInfo.Text + "Добавлено!!!\r\n";
-                labelInfo.Refresh();
+
                 DisplayFuels(textBoxFind.Text);
+                labelInfo.Text = "";
+                labelInfo.Text = labelInfo.Text + "Добавлено в конец набора!!!\r\n";
+                labelInfo.Refresh();
+                
             }
             catch (Exception exeption)
             {
@@ -213,11 +212,23 @@ namespace WindowsFormsADO
                 labelInfo.Refresh();
             }
 
-
         }
 
-        
+        private void dataGridViewFuels_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var currentRow = dataGridViewFuels.CurrentRow;
+            int colCount = dataGridViewFuels.Columns.Count;
 
+            if ((dataGridViewFuels.CurrentRow) != null)
+            {
+                for (int i = 0; i < colCount; i++)
+                {
 
+                    groupBoxAdd.Controls[3+i].Text = currentRow.Cells[i].Value.ToString();
+
+                }
+
+            }
+        }
     }
 }
