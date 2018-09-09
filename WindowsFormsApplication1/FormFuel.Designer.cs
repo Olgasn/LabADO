@@ -35,16 +35,17 @@
             this.buttonDisplay = new System.Windows.Forms.Button();
             this.textBoxFind = new System.Windows.Forms.TextBox();
             this.labelFindFuelType = new System.Windows.Forms.Label();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.groupBoxAdd = new System.Windows.Forms.GroupBox();
-            this.textBoxFuelDensity = new System.Windows.Forms.TextBox();
-            this.textBoxFuelId = new System.Windows.Forms.TextBox();
-            this.textBoxFuelType = new System.Windows.Forms.TextBox();
+            this.buttonAddRecord = new System.Windows.Forms.Button();
+            this.groupBoxForChange = new System.Windows.Forms.GroupBox();
+            this.buttonUpdateRecord = new System.Windows.Forms.Button();
             this.labelFuelDensity = new System.Windows.Forms.Label();
             this.labelFuelType = new System.Windows.Forms.Label();
             this.labelFuelId = new System.Windows.Forms.Label();
+            this.textBoxFuelId = new System.Windows.Forms.TextBox();
+            this.textBoxFuelType = new System.Windows.Forms.TextBox();
+            this.textBoxFuelDensity = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuels)).BeginInit();
-            this.groupBoxAdd.SuspendLayout();
+            this.groupBoxForChange.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonUpdate
@@ -111,52 +112,42 @@
             this.labelFindFuelType.TabIndex = 12;
             this.labelFindFuelType.Text = "Вид топлива";
             // 
-            // buttonAdd
+            // buttonAddRecord
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(551, 385);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(122, 23);
-            this.buttonAdd.TabIndex = 13;
-            this.buttonAdd.Text = "Сохранить";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAddRecord.Location = new System.Drawing.Point(9, 143);
+            this.buttonAddRecord.Name = "buttonAddRecord";
+            this.buttonAddRecord.Size = new System.Drawing.Size(109, 23);
+            this.buttonAddRecord.TabIndex = 13;
+            this.buttonAddRecord.Text = "Добавить";
+            this.buttonAddRecord.UseVisualStyleBackColor = true;
+            this.buttonAddRecord.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // groupBoxAdd
+            // groupBoxForChange
             // 
-            this.groupBoxAdd.Controls.Add(this.labelFuelDensity);
-            this.groupBoxAdd.Controls.Add(this.labelFuelType);
-            this.groupBoxAdd.Controls.Add(this.labelFuelId);
-            this.groupBoxAdd.Controls.Add(this.textBoxFuelId);
-            this.groupBoxAdd.Controls.Add(this.textBoxFuelType);
-            this.groupBoxAdd.Controls.Add(this.textBoxFuelDensity);
-            this.groupBoxAdd.Location = new System.Drawing.Point(479, 242);
-            this.groupBoxAdd.Name = "groupBoxAdd";
-            this.groupBoxAdd.Size = new System.Drawing.Size(245, 177);
-            this.groupBoxAdd.TabIndex = 20;
-            this.groupBoxAdd.TabStop = false;
-            this.groupBoxAdd.Text = "Добавить данные";
+            this.groupBoxForChange.Controls.Add(this.buttonUpdateRecord);
+            this.groupBoxForChange.Controls.Add(this.buttonAddRecord);
+            this.groupBoxForChange.Controls.Add(this.labelFuelDensity);
+            this.groupBoxForChange.Controls.Add(this.labelFuelType);
+            this.groupBoxForChange.Controls.Add(this.labelFuelId);
+            this.groupBoxForChange.Controls.Add(this.textBoxFuelId);
+            this.groupBoxForChange.Controls.Add(this.textBoxFuelType);
+            this.groupBoxForChange.Controls.Add(this.textBoxFuelDensity);
+            this.groupBoxForChange.Location = new System.Drawing.Point(479, 242);
+            this.groupBoxForChange.Name = "groupBoxForChange";
+            this.groupBoxForChange.Size = new System.Drawing.Size(245, 177);
+            this.groupBoxForChange.TabIndex = 20;
+            this.groupBoxForChange.TabStop = false;
+            this.groupBoxForChange.Text = "Изменить данные";
             // 
-            // textBoxFuelDensity
+            // buttonUpdateRecord
             // 
-            this.textBoxFuelDensity.Location = new System.Drawing.Point(115, 100);
-            this.textBoxFuelDensity.Name = "textBoxFuelDensity";
-            this.textBoxFuelDensity.Size = new System.Drawing.Size(114, 20);
-            this.textBoxFuelDensity.TabIndex = 24;
-            // 
-            // textBoxFuelId
-            // 
-            this.textBoxFuelId.Enabled = false;
-            this.textBoxFuelId.Location = new System.Drawing.Point(115, 26);
-            this.textBoxFuelId.Name = "textBoxFuelId";
-            this.textBoxFuelId.Size = new System.Drawing.Size(114, 20);
-            this.textBoxFuelId.TabIndex = 31;
-            // 
-            // textBoxFuelType
-            // 
-            this.textBoxFuelType.Location = new System.Drawing.Point(115, 59);
-            this.textBoxFuelType.Name = "textBoxFuelType";
-            this.textBoxFuelType.Size = new System.Drawing.Size(114, 20);
-            this.textBoxFuelType.TabIndex = 30;
+            this.buttonUpdateRecord.Location = new System.Drawing.Point(125, 143);
+            this.buttonUpdateRecord.Name = "buttonUpdateRecord";
+            this.buttonUpdateRecord.Size = new System.Drawing.Size(104, 23);
+            this.buttonUpdateRecord.TabIndex = 35;
+            this.buttonUpdateRecord.Text = "Обновить";
+            this.buttonUpdateRecord.UseVisualStyleBackColor = true;
+            this.buttonUpdateRecord.Click += new System.EventHandler(this.buttonUpdateRecord_Click);
             // 
             // labelFuelDensity
             // 
@@ -185,13 +176,34 @@
             this.labelFuelId.TabIndex = 32;
             this.labelFuelId.Text = "Код топлива";
             // 
+            // textBoxFuelId
+            // 
+            this.textBoxFuelId.Enabled = false;
+            this.textBoxFuelId.Location = new System.Drawing.Point(115, 26);
+            this.textBoxFuelId.Name = "textBoxFuelId";
+            this.textBoxFuelId.Size = new System.Drawing.Size(114, 20);
+            this.textBoxFuelId.TabIndex = 31;
+            // 
+            // textBoxFuelType
+            // 
+            this.textBoxFuelType.Location = new System.Drawing.Point(115, 59);
+            this.textBoxFuelType.Name = "textBoxFuelType";
+            this.textBoxFuelType.Size = new System.Drawing.Size(114, 20);
+            this.textBoxFuelType.TabIndex = 30;
+            // 
+            // textBoxFuelDensity
+            // 
+            this.textBoxFuelDensity.Location = new System.Drawing.Point(115, 100);
+            this.textBoxFuelDensity.Name = "textBoxFuelDensity";
+            this.textBoxFuelDensity.Size = new System.Drawing.Size(114, 20);
+            this.textBoxFuelDensity.TabIndex = 24;
+            // 
             // FormFuel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(727, 431);
-            this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.labelFindFuelType);
             this.Controls.Add(this.textBoxFind);
             this.Controls.Add(this.buttonDelete);
@@ -199,12 +211,12 @@
             this.Controls.Add(this.buttonDisplay);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.dataGridViewFuels);
-            this.Controls.Add(this.groupBoxAdd);
+            this.Controls.Add(this.groupBoxForChange);
             this.Name = "FormFuel";
             this.Text = "Топливо";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuels)).EndInit();
-            this.groupBoxAdd.ResumeLayout(false);
-            this.groupBoxAdd.PerformLayout();
+            this.groupBoxForChange.ResumeLayout(false);
+            this.groupBoxForChange.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,14 +230,15 @@
         private System.Windows.Forms.Button buttonDisplay;
         private System.Windows.Forms.TextBox textBoxFind;
         private System.Windows.Forms.Label labelFindFuelType;
-        private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.GroupBox groupBoxAdd;
+        private System.Windows.Forms.Button buttonAddRecord;
+        private System.Windows.Forms.GroupBox groupBoxForChange;
         private System.Windows.Forms.TextBox textBoxFuelDensity;
         private System.Windows.Forms.TextBox textBoxFuelId;
         private System.Windows.Forms.TextBox textBoxFuelType;
         private System.Windows.Forms.Label labelFuelDensity;
         private System.Windows.Forms.Label labelFuelType;
         private System.Windows.Forms.Label labelFuelId;
+        private System.Windows.Forms.Button buttonUpdateRecord;
     }
 }
 

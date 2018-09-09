@@ -7,8 +7,8 @@
     <ProjectGuid>{B770E4A4-DB8A-4A53-907D-145DAE56613D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LabADOExample</RootNamespace>
-    <AssemblyName>LabADOExample</AssemblyName>
+    <RootNamespace>WindowsFormsADO</RootNamespace>
+    <AssemblyName>WindowsFormsADO</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -78,7 +78,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Create&amp;FillDB.sql" />

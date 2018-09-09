@@ -106,9 +106,11 @@ namespace WindowsFormsADO
 
                 // Получить сгенерированную команду на обновление
                 dataAdapter.UpdateCommand = builder.GetUpdateCommand();
+
                 DataTable table = ds.Tables["Fuels"];
                 // Синхронизировать изменения с базой данных
                 dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
+
 
             }
             catch (Exception exeption)
@@ -191,9 +193,9 @@ namespace WindowsFormsADO
 
                     // добавляем параметры
                     insertCommand.Parameters.Add("@FuelType",SqlDbType.VarChar);
-                    insertCommand.Parameters["@FuelType"].Value = groupBoxAdd.Controls[4].Text;
+                    insertCommand.Parameters["@FuelType"].Value = groupBoxForChange.Controls["textBoxFuelType"].Text;
                     insertCommand.Parameters.Add("@FuelDensity", SqlDbType.Real);
-                    insertCommand.Parameters["@FuelDensity"].Value = groupBoxAdd.Controls[5].Text;
+                    insertCommand.Parameters["@FuelDensity"].Value = groupBoxForChange.Controls["textBoxFuelDensity"].Text;
 
                     //выполняем запрос
                     conn.Open();
@@ -204,7 +206,9 @@ namespace WindowsFormsADO
                 labelInfo.Text = "";
                 labelInfo.Text = labelInfo.Text + "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
-                
+                dataGridViewFuels.CurrentCell = dataGridViewFuels[0, dataGridViewFuels.Rows.Count-1];
+
+
             }
             catch (Exception exeption)
             {
@@ -224,11 +228,63 @@ namespace WindowsFormsADO
                 for (int i = 0; i < colCount; i++)
                 {
 
-                    groupBoxAdd.Controls[3+i].Text = currentRow.Cells[i].Value.ToString();
+                    groupBoxForChange.Controls[5+i].Text = currentRow.Cells[i].Value.ToString();
 
                 }
 
             }
+        }
+
+        private void buttonUpdateRecord_Click(object sender, EventArgs e)
+        {
+            labelInfo.Text = "";
+            int positionCurrentRow = dataGridViewFuels.CurrentRow.Index;
+            int idCurrentRow = 1;
+            if ((groupBoxForChange.Controls["textBoxFuelId"].Text) != "")
+            {
+                idCurrentRow = Convert.ToInt32(groupBoxForChange.Controls["textBoxFuelId"].Text);
+            }                   
+
+     
+            try
+            {
+                // Создание подключения
+                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                {
+                    // Создать команду на добавление с параметрами
+                    SqlCommand updateCommand = new SqlCommand();
+                    updateCommand.CommandText = "UPDATE Fuels SET FuelType=@FuelType, FuelDensity=@FuelDensity WHERE FuelId=@FuelId";
+                    updateCommand.Connection = conn;
+
+                    // добавляем параметры
+                    updateCommand.Parameters.Add("@FuelId", SqlDbType.Int);
+                    updateCommand.Parameters["@FuelId"].Value = idCurrentRow;
+                    updateCommand.Parameters.Add("@FuelType", SqlDbType.VarChar);
+                    updateCommand.Parameters["@FuelType"].Value = groupBoxForChange.Controls["textBoxFuelType"].Text;
+                    updateCommand.Parameters.Add("@FuelDensity", SqlDbType.Real);
+                    updateCommand.Parameters["@FuelDensity"].Value = groupBoxForChange.Controls["textBoxFuelDensity"].Text;
+
+                    //выполняем запрос
+                    conn.Open();
+                    updateCommand.ExecuteNonQuery();
+                }
+
+                var currentCell = dataGridViewFuels.CurrentCell;
+
+                DisplayFuels(textBoxFind.Text);
+
+                dataGridViewFuels.CurrentCell = dataGridViewFuels[0, positionCurrentRow];
+                labelInfo.Text = "";
+                labelInfo.Text = labelInfo.Text + "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
+                labelInfo.Refresh();
+
+            }
+            catch (Exception exeption)
+            {
+                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Refresh();
+            }
+
         }
     }
 }
