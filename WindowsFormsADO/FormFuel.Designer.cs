@@ -78,17 +78,18 @@
             // 
             // dataGridViewFuels
             // 
+            this.dataGridViewFuels.AllowUserToAddRows = false;
             this.dataGridViewFuels.AllowUserToOrderColumns = true;
             this.dataGridViewFuels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFuels.Location = new System.Drawing.Point(12, 52);
             this.dataGridViewFuels.Name = "dataGridViewFuels";
-            this.dataGridViewFuels.Size = new System.Drawing.Size(461, 311);
+            this.dataGridViewFuels.Size = new System.Drawing.Size(439, 311);
             this.dataGridViewFuels.TabIndex = 0;
             this.dataGridViewFuels.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFuels_CellClick);
             // 
             // buttonDisplay
             // 
-            this.buttonDisplay.Location = new System.Drawing.Point(356, 9);
+            this.buttonDisplay.Location = new System.Drawing.Point(320, 9);
             this.buttonDisplay.Name = "buttonDisplay";
             this.buttonDisplay.Size = new System.Drawing.Size(117, 23);
             this.buttonDisplay.TabIndex = 8;
@@ -98,7 +99,7 @@
             // 
             // textBoxFind
             // 
-            this.textBoxFind.Location = new System.Drawing.Point(146, 11);
+            this.textBoxFind.Location = new System.Drawing.Point(110, 11);
             this.textBoxFind.Name = "textBoxFind";
             this.textBoxFind.Size = new System.Drawing.Size(204, 20);
             this.textBoxFind.TabIndex = 11;
@@ -106,7 +107,7 @@
             // labelFindFuelType
             // 
             this.labelFindFuelType.AutoSize = true;
-            this.labelFindFuelType.Location = new System.Drawing.Point(70, 11);
+            this.labelFindFuelType.Location = new System.Drawing.Point(34, 11);
             this.labelFindFuelType.Name = "labelFindFuelType";
             this.labelFindFuelType.Size = new System.Drawing.Size(70, 13);
             this.labelFindFuelType.TabIndex = 12;

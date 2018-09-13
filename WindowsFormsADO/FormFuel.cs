@@ -57,13 +57,11 @@ namespace WindowsFormsADO
                 dataGridViewFuels.DataSource = ds.Tables["Fuels"].DefaultView;
 
                 dataGridViewFuels.Columns["FuelId"].HeaderText = "Код топлива";
-                dataGridViewFuels.Columns["FuelType"].HeaderText = "Название типлива";
+                dataGridViewFuels.Columns["FuelType"].HeaderText = "Название топлива";
                 dataGridViewFuels.Columns["FuelDensity"].HeaderText = "Плотность топлива";
-
 
                 labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
-
             }
             catch (Exception exeption)
             {
@@ -109,8 +107,7 @@ namespace WindowsFormsADO
 
                 DataTable table = ds.Tables["Fuels"];
                 // Синхронизировать изменения с базой данных
-                dataAdapter.Update(table.Select(null, null,DataViewRowState.ModifiedCurrent));
-
+                dataAdapter.Update(table);
 
             }
             catch (Exception exeption)
@@ -222,16 +219,12 @@ namespace WindowsFormsADO
         {
             var currentRow = dataGridViewFuels.CurrentRow;
             int colCount = dataGridViewFuels.Columns.Count;
-
             if ((dataGridViewFuels.CurrentRow) != null)
             {
                 for (int i = 0; i < colCount; i++)
                 {
-
                     groupBoxForChange.Controls[5+i].Text = currentRow.Cells[i].Value.ToString();
-
                 }
-
             }
         }
 
