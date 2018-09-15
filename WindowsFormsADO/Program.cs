@@ -13,7 +13,8 @@ namespace WindowsFormsADO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormFuel());
+            Application.Run(new FormOperation());
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsADO
 {
-    partial class FormFuel
+    partial class FormOperation
     {
         /// <summary>
         /// Требуется переменная конструктора.
@@ -28,40 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFuel));
-            this.buttonUpdate = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOperation));
             this.buttonDelete = new System.Windows.Forms.Button();
             this.labelInfo = new System.Windows.Forms.Label();
-            this.dataGridViewFuels = new System.Windows.Forms.DataGridView();
+            this.dataGridViewOperations = new System.Windows.Forms.DataGridView();
             this.buttonDisplay = new System.Windows.Forms.Button();
             this.textBoxFind = new System.Windows.Forms.TextBox();
             this.labelFindFuelType = new System.Windows.Forms.Label();
             this.buttonAddRecord = new System.Windows.Forms.Button();
             this.groupBoxForChange = new System.Windows.Forms.GroupBox();
+            this.c4 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.c2 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.c1 = new System.Windows.Forms.ComboBox();
             this.buttonUpdateRecord = new System.Windows.Forms.Button();
             this.labelFuelDensity = new System.Windows.Forms.Label();
             this.labelFuelType = new System.Windows.Forms.Label();
-            this.labelFuelId = new System.Windows.Forms.Label();
+            this.labelOperationId = new System.Windows.Forms.Label();
             this.c0 = new System.Windows.Forms.TextBox();
-            this.c1 = new System.Windows.Forms.TextBox();
-            this.c2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuels)).BeginInit();
+            this.c3 = new System.Windows.Forms.TextBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).BeginInit();
             this.groupBoxForChange.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonUpdate
-            // 
-            this.buttonUpdate.Location = new System.Drawing.Point(37, 396);
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(103, 23);
-            this.buttonUpdate.TabIndex = 9;
-            this.buttonUpdate.Text = "Обновить";
-            this.buttonUpdate.UseVisualStyleBackColor = true;
-            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(177, 396);
+            this.buttonDelete.Location = new System.Drawing.Point(12, 445);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(121, 23);
             this.buttonDelete.TabIndex = 10;
@@ -77,20 +74,20 @@
             this.labelInfo.Size = new System.Drawing.Size(222, 229);
             this.labelInfo.TabIndex = 5;
             // 
-            // dataGridViewFuels
+            // dataGridViewOperations
             // 
-            this.dataGridViewFuels.AllowUserToAddRows = false;
-            this.dataGridViewFuels.AllowUserToOrderColumns = true;
-            this.dataGridViewFuels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFuels.Location = new System.Drawing.Point(12, 41);
-            this.dataGridViewFuels.Name = "dataGridViewFuels";
-            this.dataGridViewFuels.Size = new System.Drawing.Size(461, 338);
-            this.dataGridViewFuels.TabIndex = 0;
-            this.dataGridViewFuels.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFuels_CellClick);
+            this.dataGridViewOperations.AllowUserToAddRows = false;
+            this.dataGridViewOperations.AllowUserToOrderColumns = true;
+            this.dataGridViewOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOperations.Location = new System.Drawing.Point(0, 72);
+            this.dataGridViewOperations.Name = "dataGridViewOperations";
+            this.dataGridViewOperations.Size = new System.Drawing.Size(473, 367);
+            this.dataGridViewOperations.TabIndex = 0;
+            this.dataGridViewOperations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOperations_CellClick);
             // 
             // buttonDisplay
             // 
-            this.buttonDisplay.Location = new System.Drawing.Point(304, 12);
+            this.buttonDisplay.Location = new System.Drawing.Point(308, 44);
             this.buttonDisplay.Name = "buttonDisplay";
             this.buttonDisplay.Size = new System.Drawing.Size(117, 23);
             this.buttonDisplay.TabIndex = 8;
@@ -100,7 +97,7 @@
             // 
             // textBoxFind
             // 
-            this.textBoxFind.Location = new System.Drawing.Point(94, 14);
+            this.textBoxFind.Location = new System.Drawing.Point(98, 46);
             this.textBoxFind.Name = "textBoxFind";
             this.textBoxFind.Size = new System.Drawing.Size(204, 20);
             this.textBoxFind.TabIndex = 11;
@@ -108,7 +105,7 @@
             // labelFindFuelType
             // 
             this.labelFindFuelType.AutoSize = true;
-            this.labelFindFuelType.Location = new System.Drawing.Point(18, 14);
+            this.labelFindFuelType.Location = new System.Drawing.Point(22, 46);
             this.labelFindFuelType.Name = "labelFindFuelType";
             this.labelFindFuelType.Size = new System.Drawing.Size(70, 13);
             this.labelFindFuelType.TabIndex = 12;
@@ -116,7 +113,7 @@
             // 
             // buttonAddRecord
             // 
-            this.buttonAddRecord.Location = new System.Drawing.Point(9, 143);
+            this.buttonAddRecord.Location = new System.Drawing.Point(9, 197);
             this.buttonAddRecord.Name = "buttonAddRecord";
             this.buttonAddRecord.Size = new System.Drawing.Size(109, 23);
             this.buttonAddRecord.TabIndex = 13;
@@ -126,24 +123,69 @@
             // 
             // groupBoxForChange
             // 
+            this.groupBoxForChange.Controls.Add(this.c4);
+            this.groupBoxForChange.Controls.Add(this.label2);
+            this.groupBoxForChange.Controls.Add(this.c2);
+            this.groupBoxForChange.Controls.Add(this.label1);
+            this.groupBoxForChange.Controls.Add(this.c1);
             this.groupBoxForChange.Controls.Add(this.buttonUpdateRecord);
             this.groupBoxForChange.Controls.Add(this.buttonAddRecord);
             this.groupBoxForChange.Controls.Add(this.labelFuelDensity);
             this.groupBoxForChange.Controls.Add(this.labelFuelType);
-            this.groupBoxForChange.Controls.Add(this.labelFuelId);
+            this.groupBoxForChange.Controls.Add(this.labelOperationId);
             this.groupBoxForChange.Controls.Add(this.c0);
-            this.groupBoxForChange.Controls.Add(this.c1);
-            this.groupBoxForChange.Controls.Add(this.c2);
+            this.groupBoxForChange.Controls.Add(this.c3);
             this.groupBoxForChange.Location = new System.Drawing.Point(479, 242);
             this.groupBoxForChange.Name = "groupBoxForChange";
-            this.groupBoxForChange.Size = new System.Drawing.Size(245, 177);
+            this.groupBoxForChange.Size = new System.Drawing.Size(245, 226);
             this.groupBoxForChange.TabIndex = 20;
             this.groupBoxForChange.TabStop = false;
             this.groupBoxForChange.Text = "Изменить данные";
             // 
+            // c4
+            // 
+            this.c4.Location = new System.Drawing.Point(117, 171);
+            this.c4.Name = "c4";
+            this.c4.Size = new System.Drawing.Size(114, 20);
+            this.c4.TabIndex = 41;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 171);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "Дата";
+            // 
+            // c2
+            // 
+            this.c2.FormattingEnabled = true;
+            this.c2.Location = new System.Drawing.Point(117, 98);
+            this.c2.Name = "c2";
+            this.c2.Size = new System.Drawing.Size(114, 21);
+            this.c2.TabIndex = 38;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 98);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Емкость";
+            // 
+            // c1
+            // 
+            this.c1.FormattingEnabled = true;
+            this.c1.Location = new System.Drawing.Point(115, 62);
+            this.c1.Name = "c1";
+            this.c1.Size = new System.Drawing.Size(114, 21);
+            this.c1.TabIndex = 36;
+            // 
             // buttonUpdateRecord
             // 
-            this.buttonUpdateRecord.Location = new System.Drawing.Point(125, 143);
+            this.buttonUpdateRecord.Location = new System.Drawing.Point(125, 197);
             this.buttonUpdateRecord.Name = "buttonUpdateRecord";
             this.buttonUpdateRecord.Size = new System.Drawing.Size(104, 23);
             this.buttonUpdateRecord.TabIndex = 35;
@@ -154,7 +196,7 @@
             // labelFuelDensity
             // 
             this.labelFuelDensity.AutoSize = true;
-            this.labelFuelDensity.Location = new System.Drawing.Point(4, 100);
+            this.labelFuelDensity.Location = new System.Drawing.Point(6, 134);
             this.labelFuelDensity.Name = "labelFuelDensity";
             this.labelFuelDensity.Size = new System.Drawing.Size(105, 13);
             this.labelFuelDensity.TabIndex = 34;
@@ -169,14 +211,15 @@
             this.labelFuelType.TabIndex = 33;
             this.labelFuelType.Text = "Название топлива";
             // 
-            // labelFuelId
+            // labelOperationId
             // 
-            this.labelFuelId.AutoSize = true;
-            this.labelFuelId.Location = new System.Drawing.Point(6, 26);
-            this.labelFuelId.Name = "labelFuelId";
-            this.labelFuelId.Size = new System.Drawing.Size(70, 13);
-            this.labelFuelId.TabIndex = 32;
-            this.labelFuelId.Text = "Код топлива";
+            this.labelOperationId.AutoSize = true;
+            this.labelOperationId.Location = new System.Drawing.Point(6, 26);
+            this.labelOperationId.Name = "labelOperationId";
+            this.labelOperationId.Size = new System.Drawing.Size(77, 13);
+            this.labelOperationId.TabIndex = 32;
+            this.labelOperationId.Text = "Код операции";
+            this.labelOperationId.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // c0
             // 
@@ -186,62 +229,93 @@
             this.c0.Size = new System.Drawing.Size(114, 20);
             this.c0.TabIndex = 31;
             // 
-            // c1
+            // c3
             // 
-            this.c1.Location = new System.Drawing.Point(115, 59);
-            this.c1.Name = "c1";
-            this.c1.Size = new System.Drawing.Size(114, 20);
-            this.c1.TabIndex = 30;
+            this.c3.Location = new System.Drawing.Point(117, 134);
+            this.c3.Name = "c3";
+            this.c3.Size = new System.Drawing.Size(114, 20);
+            this.c3.TabIndex = 24;
             // 
-            // c2
+            // toolStripButton1
             // 
-            this.c2.Location = new System.Drawing.Point(115, 100);
-            this.c2.Name = "c2";
-            this.c2.Size = new System.Drawing.Size(114, 20);
-            this.c2.TabIndex = 24;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(59, 22);
+            this.toolStripButton1.Text = "Топливо";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // FormFuel
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(57, 22);
+            this.toolStripButton2.Text = "Емкости";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(732, 25);
+            this.toolStrip1.TabIndex = 21;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // FormOperation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(727, 431);
+            this.ClientSize = new System.Drawing.Size(732, 480);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.labelFindFuelType);
             this.Controls.Add(this.textBoxFind);
             this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonDisplay);
             this.Controls.Add(this.labelInfo);
-            this.Controls.Add(this.dataGridViewFuels);
+            this.Controls.Add(this.dataGridViewOperations);
             this.Controls.Add(this.groupBoxForChange);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormFuel";
-            this.Text = "Топливо";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuels)).EndInit();
+            this.Name = "FormOperation";
+            this.Text = "Операции";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).EndInit();
             this.groupBoxForChange.ResumeLayout(false);
             this.groupBoxForChange.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Label labelInfo;
-        private System.Windows.Forms.DataGridView dataGridViewFuels;
+        private System.Windows.Forms.DataGridView dataGridViewOperations;
         private System.Windows.Forms.Button buttonDisplay;
         private System.Windows.Forms.TextBox textBoxFind;
         private System.Windows.Forms.Label labelFindFuelType;
         private System.Windows.Forms.Button buttonAddRecord;
         private System.Windows.Forms.GroupBox groupBoxForChange;
-        private System.Windows.Forms.TextBox c2;
+        private System.Windows.Forms.TextBox c3;
         private System.Windows.Forms.TextBox c0;
-        private System.Windows.Forms.TextBox c1;
         private System.Windows.Forms.Label labelFuelDensity;
         private System.Windows.Forms.Label labelFuelType;
-        private System.Windows.Forms.Label labelFuelId;
+        private System.Windows.Forms.Label labelOperationId;
         private System.Windows.Forms.Button buttonUpdateRecord;
+        private System.Windows.Forms.ComboBox c1;
+        private System.Windows.Forms.ComboBox c2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker c4;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }
 

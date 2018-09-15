@@ -6,7 +6,7 @@ using System.Configuration;
 
 namespace WindowsFormsADO
 {
-    public partial class FormFuel : Form
+    public partial class FormOperation : Form
     {
         // Локальное хранилище
         DataSet ds = new DataSet();
@@ -15,17 +15,17 @@ namespace WindowsFormsADO
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
         SqlCommandBuilder builder;
         // Строка запроса для выбора из заданной таблицы
-        string queryString = "SELECT * FROM Fuels";
+        string queryString = "SELECT  * FROM Operations";
         // Строка соединения с базой данных
         string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
 
-        public FormFuel()
+        public FormOperation()
         {
             InitializeComponent();
             //Отображение всех данных из таблицы Fuels
-            DisplayFuels("");
+            DisplayOperations("");
         }
-        private void DisplayFuels(string FindFuelType)
+        private void DisplayOperations(string FindFuelType)
         //загрузка данных в локальное хранилище и отображение их на форме
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
@@ -44,22 +44,38 @@ namespace WindowsFormsADO
                 labelInfo.Refresh();
 
                 //Команда на выборку с параметром
-                MyCommand.CommandText = "SELECT * FROM Fuels Where FuelType LIKE '%' +@FindFuelType +'%'";
+                
+                MyCommand.CommandText = "SELECT OperationId, Operations.FuelId, Operations.TankId, Inc_Exp, [Date], FuelType, TankType FROM Operations, Fuels, Tanks WHERE (Operations.TankID = Tanks.TankID AND Operations.FuelID = Fuels.FuelID AND FuelType LIKE '%' +@FindFuelType +'%');";
                 MyCommand.Parameters.AddWithValue("@FindFuelType", FindFuelType);
 
                 dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = MyCommand;
+                dataAdapter.Fill(ds, "Operations");
+
+                MyCommand.CommandText = "SELECT * FROM Fuels;";
                 dataAdapter.Fill(ds, "Fuels");
+
+                MyCommand.CommandText = "SELECT * FROM Tanks;";
+                dataAdapter.Fill(ds, "Tanks");
 
                 labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончен;\r\n";
                 labelInfo.Refresh();
+                dataGridViewOperations.DataSource = ds.Tables["Operations"].DefaultView;
 
-                dataGridViewFuels.DataSource = ds.Tables["Fuels"].DefaultView;
-                dataGridViewFuels.Columns["FuelId"].HeaderText = "Код топлива";
-                dataGridViewFuels.Columns["FuelType"].HeaderText = "Название топлива";
-                dataGridViewFuels.Columns["FuelDensity"].HeaderText = "Плотность топлива";
+                dataGridViewOperations.Columns["OperationID"].HeaderText = "Код операции";
+                dataGridViewOperations.Columns["FuelId"].Visible = false;
+                dataGridViewOperations.Columns["FuelId"].ReadOnly = true;
+                dataGridViewOperations.Columns["FuelType"].HeaderText = "Название топлива";
+                dataGridViewOperations.Columns["TankId"].Visible = false;
+                dataGridViewOperations.Columns["TankId"].ReadOnly = true;
+                dataGridViewOperations.Columns["TankType"].HeaderText = "Емкость";
+                dataGridViewOperations.Columns["Inc_Exp"].HeaderText = "Приход-Расход";
+                dataGridViewOperations.Columns["Date"].HeaderText = "Дата";
 
-                c0.Text = ds.Tables["Fuels"].Rows[0][0].ToString();
+                c0.Text = ds.Tables["Operations"].Rows[0][0].ToString();
+                c1.DataSource = ds.Tables["Fuels"]; c1.DisplayMember = "FuelType"; c1.ValueMember = "FuelId";
+                c2.DataSource = ds.Tables["Tanks"]; c2.DisplayMember = "TankType"; c2.ValueMember = "TankId";
+
                 labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
             }
@@ -77,55 +93,16 @@ namespace WindowsFormsADO
 
         private void buttonDisplay_Click(object sender, EventArgs e)
         {
-            DisplayFuels(textBoxFind.Text);     
+            DisplayOperations(textBoxFind.Text);     
         }
 
-        private void buttonUpdate_Click(object sender, EventArgs e)
-        {
-            // Создание подключения
-            SqlConnection conn = new SqlConnection(ConnectionString);
-            
-            try
-            {
-                conn.Open();
 
-                // Создать команду на выборку
-                SqlCommand command = new SqlCommand();
-                command.CommandText = queryString;
-                command.Connection = conn;
-
-                // Создать DataAdapter.
-                dataAdapter = new SqlDataAdapter();
-                dataAdapter.SelectCommand = command;
-
-                // Создать экземпляр CommandBuilder
-                builder = new SqlCommandBuilder();
-                builder.DataAdapter = dataAdapter;
-
-                // Получить сгенерированную команду на обновление
-                dataAdapter.UpdateCommand = builder.GetUpdateCommand();
-
-                DataTable table = ds.Tables["Fuels"];
-                // Синхронизировать изменения с базой данных
-                dataAdapter.Update(table);
-
-            }
-            catch (Exception exeption)
-            {
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
-                labelInfo.Refresh();
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             labelInfo.Text = "";
             //значение ключевого поля строки для удаления
-            int id = (int)dataGridViewFuels.CurrentRow.Cells[0].Value;
+            int id = (int)dataGridViewOperations.CurrentRow.Cells[0].Value;
 
             try
             {
@@ -147,10 +124,10 @@ namespace WindowsFormsADO
                     // Задать сгенерированную команду на удаление для dataAdapter
                     dataAdapter.DeleteCommand = builder.GetDeleteCommand();
 
-                    DataTable table = ds.Tables["Fuels"];
+                    DataTable table = ds.Tables["Operations"];
 
                     // Удаление строки из таблицы локального хранилища
-                    DataRow[] deleteRow = table.Select("FuelID = " + id);
+                    DataRow[] deleteRow = table.Select("OperationID = " + id);
                     foreach (DataRow row in deleteRow)
                     {
                         row.Delete();
@@ -185,25 +162,32 @@ namespace WindowsFormsADO
                 {
                     // Создать команду на добавление с параметрами
                     SqlCommand insertCommand = new SqlCommand();
-                    insertCommand.CommandText = "INSERT INTO Fuels (FuelType, FuelDensity) VALUES (@FuelType, @FuelDensity)";
+                    insertCommand.CommandText = "INSERT INTO Operations " +
+                        "(FuelId, TankId, Inc_Exp, [Date]) " +
+                        "VALUES (@FuelId, @TankId, @Inc_Exp, @Date)";
                     insertCommand.Connection = conn;
 
                     // добавляем параметры
-                    insertCommand.Parameters.Add("@FuelType",SqlDbType.VarChar);
-                    insertCommand.Parameters["@FuelType"].Value = groupBoxForChange.Controls["c1"].Text;
-                    insertCommand.Parameters.Add("@FuelDensity", SqlDbType.Real);
-                    insertCommand.Parameters["@FuelDensity"].Value = groupBoxForChange.Controls["c2"].Text;
+                    insertCommand.Parameters.Add("@FuelId", SqlDbType.Int);
+                    insertCommand.Parameters["@FuelId"].Value = c1.SelectedValue;
+                    insertCommand.Parameters.Add("@TankId", SqlDbType.Int);
+                    insertCommand.Parameters["@TankId"].Value = c2.SelectedValue;
+                    insertCommand.Parameters.Add("@Inc_Exp", SqlDbType.Real);
+                    insertCommand.Parameters["@Inc_Exp"].Value = c3.Text;
+                    insertCommand.Parameters.Add("@Date", SqlDbType.Date);
+                    insertCommand.Parameters["@Date"].Value = c4.Text;
+
 
                     //выполняем запрос
                     conn.Open();
                     insertCommand.ExecuteNonQuery();
                 }
 
-                DisplayFuels(textBoxFind.Text);
+                DisplayOperations(textBoxFind.Text);
                 labelInfo.Text = "";
                 labelInfo.Text = labelInfo.Text + "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
-                dataGridViewFuels.CurrentCell = dataGridViewFuels[0, dataGridViewFuels.Rows.Count-1];
+                dataGridViewOperations.CurrentCell = dataGridViewOperations[0, dataGridViewOperations.Rows.Count-1];
 
 
             }
@@ -215,27 +199,40 @@ namespace WindowsFormsADO
 
         }
 
-        private void dataGridViewFuels_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewOperations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var currentRow = dataGridViewFuels.CurrentRow;
-            int colCount = dataGridViewFuels.Columns.Count;
+            var currentRow = dataGridViewOperations.CurrentRow;
+            int colCount = dataGridViewOperations.Columns.Count;
             string controlName;
             for (int i = 0; i < colCount; i++)
-            {
+            {                
                 controlName = "c" + i;
-                groupBoxForChange.Controls[controlName].Text = currentRow.Cells[i].Value.ToString();
+                if (groupBoxForChange.Controls.ContainsKey(controlName))
+                {
+                    var currentControl = groupBoxForChange.Controls[controlName];
+                    if (currentControl.GetType().Equals(typeof(ComboBox)))
+                    {
+                        ComboBox comboBox = (ComboBox)currentControl;
+                        comboBox.SelectedValue = currentRow.Cells[i].Value.ToString();
+                    }
+                    else
+                    {
+                        groupBoxForChange.Controls[controlName].Text = currentRow.Cells[i].Value.ToString();
+                    }
+                }
             }
         }
+
 
         private void buttonUpdateRecord_Click(object sender, EventArgs e)
         {
             labelInfo.Text = "";
-            int positionCurrentRow = dataGridViewFuels.CurrentRow.Index;
+            int positionCurrentRow = dataGridViewOperations.CurrentRow.Index;
             int idCurrentRow = 1;
-            if ((groupBoxForChange.Controls["c0"].Text) != "")
+            if (c0.Text != "")
             {
-                idCurrentRow = Convert.ToInt32(groupBoxForChange.Controls["c0"].Text);
-            }                   
+                idCurrentRow = Convert.ToInt32(c0.Text);
+            }                  
 
      
             try
@@ -245,27 +242,33 @@ namespace WindowsFormsADO
                 {
                     // Создать команду на добавление с параметрами
                     SqlCommand updateCommand = new SqlCommand();
-                    updateCommand.CommandText = "UPDATE Fuels SET FuelType=@FuelType, FuelDensity=@FuelDensity WHERE FuelId=@FuelId";
+                    updateCommand.CommandText = "UPDATE Operations " +
+                        "SET FuelId=@FuelId, TankId=@TankId, Inc_Exp=@Inc_Exp, Date=@Date " +
+                        "WHERE OperationId=@OperationId";
                     updateCommand.Connection = conn;
 
                     // добавляем параметры
+                    updateCommand.Parameters.Add("@OperationId", SqlDbType.Int);
+                    updateCommand.Parameters["@OperationId"].Value = idCurrentRow;
                     updateCommand.Parameters.Add("@FuelId", SqlDbType.Int);
-                    updateCommand.Parameters["@FuelId"].Value = idCurrentRow;
-                    updateCommand.Parameters.Add("@FuelType", SqlDbType.VarChar);
-                    updateCommand.Parameters["@FuelType"].Value = groupBoxForChange.Controls["c1"].Text;
-                    updateCommand.Parameters.Add("@FuelDensity", SqlDbType.Real);
-                    updateCommand.Parameters["@FuelDensity"].Value = groupBoxForChange.Controls["c2"].Text;
+                    updateCommand.Parameters["@FuelId"].Value = c1.SelectedValue;
+                    updateCommand.Parameters.Add("@TankId", SqlDbType.Int);
+                    updateCommand.Parameters["@TankId"].Value = c2.SelectedValue;
+                    updateCommand.Parameters.Add("@Inc_Exp", SqlDbType.Real);
+                    updateCommand.Parameters["@Inc_Exp"].Value = c3.Text;
+                    updateCommand.Parameters.Add("@Date", SqlDbType.Date);
+                    updateCommand.Parameters["@Date"].Value = c4.Text;
 
                     //выполняем запрос
                     conn.Open();
                     updateCommand.ExecuteNonQuery();
                 }
 
-                var currentCell = dataGridViewFuels.CurrentCell;
+                var currentCell = dataGridViewOperations.CurrentCell;
 
-                DisplayFuels(textBoxFind.Text);
+                DisplayOperations(textBoxFind.Text);
 
-                dataGridViewFuels.CurrentCell = dataGridViewFuels[0, positionCurrentRow];
+                dataGridViewOperations.CurrentCell = dataGridViewOperations[0, positionCurrentRow];
                 labelInfo.Text = "";
                 labelInfo.Text = labelInfo.Text + "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
                 labelInfo.Refresh();
@@ -278,5 +281,13 @@ namespace WindowsFormsADO
             }
 
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            FormFuel formFuel = new FormFuel();
+            formFuel.Show();
+        }
+
+
     }
 }
