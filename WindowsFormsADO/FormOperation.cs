@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Linq;
 
 namespace WindowsFormsADO
 {
@@ -58,7 +59,7 @@ namespace WindowsFormsADO
                 MyCommand.Parameters.AddWithValue("@FindFuelType", FindFuelType);
                 MyCommand.Parameters.AddWithValue("@FindTankType", FindTankType);
 
-                // Заполнение Data Source данными таблиц Operations, Fuels, Tanks посредством соответсвующего метода адаптера
+                // Заполнение Data Source данными таблиц Operations, Fuels, Tanks посредством соответствующего метода адаптера
                 dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = MyCommand;
                 dataAdapter.Fill(ds, "Operations");
@@ -147,17 +148,18 @@ namespace WindowsFormsADO
                     // Задать сгенерированную команду на удаление для dataAdapter
                     dataAdapter.DeleteCommand = builder.GetDeleteCommand();
 
-                    DataTable table = ds.Tables["Operations"];
+                    DataTable dt = ds.Tables["Operations"];
 
                     // Удаление строки из таблицы локального хранилища
-                    DataRow[] deleteRow = table.Select("OperationID = " + id);
-                    foreach (DataRow row in deleteRow)
+                    DataRow[] drs = dt.Select("OperationID = " + id);
+                    foreach (DataRow dr in drs)
                     {
-                        row.Delete();
+                        dr.Delete();
                     }
+
                     // Синхронизировать изменения с базой данных
-                    dataAdapter.Update(table);
-                    table.AcceptChanges();
+                    dataAdapter.Update(dt);
+                    dt.AcceptChanges();
 
                 }
                 // Вывод сообщений
@@ -185,11 +187,21 @@ namespace WindowsFormsADO
                 // Создание подключения
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
+                    // Создать команду на выборку
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = queryString;
+                    command.Connection = conn;
+
+                    // Создать DataAdapter.
+                    dataAdapter = new SqlDataAdapter();
+                    dataAdapter.SelectCommand = command;
+
+
                     // Создать команду на добавление с параметрами
                     SqlCommand insertCommand = new SqlCommand();
-                    insertCommand.CommandText = "INSERT INTO Operations " +
-                        "(FuelId, TankId, Inc_Exp, [Date]) " +
-                        "VALUES (@FuelId, @TankId, @Inc_Exp, @Date)";
+                    insertCommand.CommandText = "INSERT INTO Operations (FuelId, TankId, Inc_Exp, [Date]) " +
+                        "VALUES (@FuelId, @TankId, @Inc_Exp, @Date);"+
+                        "SELECT * FROM Operations WHERE OperationId = SCOPE_IDENTITY();";
                     insertCommand.Connection = conn;
 
                     // добавляем параметры
@@ -201,21 +213,108 @@ namespace WindowsFormsADO
                     insertCommand.Parameters["@Inc_Exp"].Value = c3.Text;
                     insertCommand.Parameters.Add("@Date", SqlDbType.Date);
                     insertCommand.Parameters["@Date"].Value = c4.Text;
+                    insertCommand.UpdatedRowSource = UpdateRowSource.Both;
+                    dataAdapter.InsertCommand = insertCommand;
 
+                    DataTable dt = ds.Tables["Operations"];
+                    DataRow nr = dt.NewRow();
+                    dt.Rows.Add(nr);
+                    nr["FuelType"] = c1.Text;
+                    nr["TankType"] = c2.Text;
+                    nr["Inc_Exp"] = c3.Text;
+                    nr["Date"] = c4.Text;
+                    dataAdapter.Update(ds,"Operations");
+                    dt.AcceptChanges();
+                 }
 
-                    //выполняем запрос
-                    conn.Open();
-                    insertCommand.ExecuteNonQuery();
-                }
-
-                DisplayOperations("", "");
                 // Вывод сообщений
                 labelInfo.Text = "";
                 labelInfo.Text = labelInfo.Text + "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
 
                 dataGridViewOperations.CurrentCell = dataGridViewOperations[0, dataGridViewOperations.Rows.Count-1];
+                AssignValuesToControls();
 
+            }
+            catch (Exception exeption)
+            {
+                // Вывод сообщений
+                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Refresh();
+            }
+
+        }
+
+        // Обновление
+        private void buttonUpdateRecord_Click(object sender, EventArgs e)
+        {
+            labelInfo.Text = "";
+            if (dataGridViewOperations.CurrentRow==null)
+            {
+                // Вывод сообщений
+                labelInfo.Text = "";
+                labelInfo.Text = labelInfo.Text + "Не обновлено. Нет текущей записи" + "!!!\r\n";
+                labelInfo.Refresh();
+                return;
+            }
+            int idCurrentRow = 1;
+            if (c0.Text != "")
+            {
+                idCurrentRow = Convert.ToInt32(c0.Text);
+            }
+            
+            try
+            {
+                // Создание подключения
+                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                {
+                    // Создать команду на выборку
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = queryString;
+                    command.Connection = conn;
+
+                    // Создать DataAdapter.
+                    dataAdapter = new SqlDataAdapter();
+                    dataAdapter.SelectCommand = command;
+
+                    // Создать команду на добавление с параметрами
+                    SqlCommand updateCommand = new SqlCommand();
+                    updateCommand.CommandText = "UPDATE Operations " +
+                        "SET FuelId=@FuelId, TankId=@TankId, Inc_Exp=@Inc_Exp, Date=@Date " +
+                        "WHERE OperationId=@OperationId";
+                    updateCommand.Connection = conn;
+
+                    // добавляем параметры
+                    updateCommand.Parameters.Add("@OperationId", SqlDbType.Int);
+                    updateCommand.Parameters["@OperationId"].Value = idCurrentRow;
+                    updateCommand.Parameters.Add("@FuelId", SqlDbType.Int);
+                    updateCommand.Parameters["@FuelId"].Value = c1.SelectedValue;
+                    updateCommand.Parameters.Add("@TankId", SqlDbType.Int);
+                    updateCommand.Parameters["@TankId"].Value = c2.SelectedValue;
+                    updateCommand.Parameters.Add("@Inc_Exp", SqlDbType.Real);
+                    updateCommand.Parameters["@Inc_Exp"].Value = c3.Text;
+                    updateCommand.Parameters.Add("@Date", SqlDbType.Date);
+                    updateCommand.Parameters["@Date"].Value = c4.Text;
+
+                    dataAdapter.UpdateCommand = updateCommand;
+
+                    DataTable dt = ds.Tables["Operations"];
+                    DataRow dr = dt.Select("OperationID = " + idCurrentRow).FirstOrDefault();
+                    dr["FuelType"] = c1.Text;
+                    dr["TankType"] = c2.Text;
+                    dr["Inc_Exp"] = c3.Text;
+                    dr["Date"] = c4.Text;
+                    dataAdapter.Update(ds, "Operations");
+                    dt.AcceptChanges();
+                }
+
+                var currentCell = dataGridViewOperations.CurrentCell;
+                bindingSourceOperations.Position = bindingSourceOperations.Find("OperationId", idCurrentRow);
+
+                // Вывод сообщений
+                labelInfo.Text = "";
+                labelInfo.Text = labelInfo.Text + "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
+                labelInfo.Refresh();
 
             }
             catch (Exception exeption)
@@ -253,74 +352,6 @@ namespace WindowsFormsADO
 
         }
 
-        // Обновление
-        private void buttonUpdateRecord_Click(object sender, EventArgs e)
-        {
-            labelInfo.Text = "";
-            if (dataGridViewOperations.CurrentRow==null)
-            {
-                // Вывод сообщений
-                labelInfo.Text = "";
-                labelInfo.Text = labelInfo.Text + "Не обновлено. Нет текущей записи" + "!!!\r\n";
-                labelInfo.Refresh();
-                return;
-
-            }
-            int idCurrentRow = 1;
-            if (c0.Text != "")
-            {
-                idCurrentRow = Convert.ToInt32(c0.Text);
-            }                  
-
-     
-            try
-            {
-                // Создание подключения
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
-                {
-                    // Создать команду на добавление с параметрами
-                    SqlCommand updateCommand = new SqlCommand();
-                    updateCommand.CommandText = "UPDATE Operations " +
-                        "SET FuelId=@FuelId, TankId=@TankId, Inc_Exp=@Inc_Exp, Date=@Date " +
-                        "WHERE OperationId=@OperationId";
-                    updateCommand.Connection = conn;
-
-                    // добавляем параметры
-                    updateCommand.Parameters.Add("@OperationId", SqlDbType.Int);
-                    updateCommand.Parameters["@OperationId"].Value = idCurrentRow;
-                    updateCommand.Parameters.Add("@FuelId", SqlDbType.Int);
-                    updateCommand.Parameters["@FuelId"].Value = c1.SelectedValue;
-                    updateCommand.Parameters.Add("@TankId", SqlDbType.Int);
-                    updateCommand.Parameters["@TankId"].Value = c2.SelectedValue;
-                    updateCommand.Parameters.Add("@Inc_Exp", SqlDbType.Real);
-                    updateCommand.Parameters["@Inc_Exp"].Value = c3.Text;
-                    updateCommand.Parameters.Add("@Date", SqlDbType.Date);
-                    updateCommand.Parameters["@Date"].Value = c4.Text;
-
-                    // открываем соединение с БД и выполняем запрос
-                    conn.Open();
-                    updateCommand.ExecuteNonQuery();
-                }
-
-                
-                var currentCell = dataGridViewOperations.CurrentCell;
-                DisplayOperations("", "");
-                bindingSourceOperations.Position = bindingSourceOperations.Find("OperationId", idCurrentRow);
-
-                // Вывод сообщений
-                labelInfo.Text = "";
-                labelInfo.Text = labelInfo.Text + "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
-                labelInfo.Refresh();
-
-            }
-            catch (Exception exeption)
-            {
-                // Вывод сообщений
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
-                labelInfo.Refresh();
-            }
-
-        }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -331,8 +362,6 @@ namespace WindowsFormsADO
         private void dataGridViewOperations_SelectionChanged(object sender, EventArgs e)
         {
             AssignValuesToControls();
-
-
         }
     }
 }
