@@ -19,19 +19,22 @@ namespace WindowsFormsADO
         string queryString = "SELECT  * FROM Operations";
         // Строка соединения с базой данных
         string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
+        // Строка фильтрации
+        string FilterString;
         // Источник для табличного элемента управления
         private BindingSource bindingSourceOperations;
+
         public FormOperation()
         {
             InitializeComponent();
             //Отображение всех данных из таблицы Operations и связанных с ней Fuels и Tanks
-            DisplayOperations("","");
+            InitializeAndDisplayOperations();
         }
 
 
 
 
-        private void DisplayOperations(string FindFuelType, string FindTankType)
+        private void InitializeAndDisplayOperations()
         //загрузка данных в локальное хранилище и отображение их на форме
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
@@ -42,22 +45,17 @@ namespace WindowsFormsADO
                 conn.Open();
                 dataGridViewOperations.DataSource = null;
                 ds.Clear();
-                labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
+                labelInfo.Text += "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
                 SqlCommand MyCommand = new SqlCommand();
                 MyCommand.Connection = conn;
 
-                labelInfo.Text = labelInfo.Text + "2. отбор данных в локальное хранилище начат;\r\n";
+                labelInfo.Text += "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
                 //Команда на выборку с параметрами                
                 MyCommand.CommandText = "SELECT OperationId, Operations.FuelId, Operations.TankId, Inc_Exp, [Date], FuelType, TankType " +
-                    "FROM Operations, Fuels, Tanks " +
-                    "WHERE (Operations.TankID = Tanks.TankID AND Operations.FuelID = Fuels.FuelID " +
-                    "AND FuelType LIKE '%' +@FindFuelType +'%' " +
-                    "AND TankType LIKE '%' +@FindTankType +'%');";
-                MyCommand.Parameters.AddWithValue("@FindFuelType", FindFuelType);
-                MyCommand.Parameters.AddWithValue("@FindTankType", FindTankType);
+                    "FROM Operations INNER JOIN Fuels ON Operations.FuelID = Fuels.FuelID INNER JOIN Tanks ON Operations.TankID = Tanks.TankID;";
 
                 // Заполнение Data Source данными таблиц Operations, Fuels, Tanks посредством соответствующего метода адаптера
                 dataAdapter = new SqlDataAdapter();
@@ -69,7 +67,7 @@ namespace WindowsFormsADO
                 dataAdapter.Fill(ds, "Tanks");
 
                 // Вывод сообщений
-                labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончен;\r\n";
+                labelInfo.Text += "3. отбор данных в локальное хранилище закончен;\r\n";
                 labelInfo.Refresh();
 
                 // Настройка табличного элемента управления
@@ -90,10 +88,6 @@ namespace WindowsFormsADO
                 c1.DataSource = ds.Tables["Fuels"]; c1.DisplayMember = "FuelType"; c1.ValueMember = "FuelId";
                 c2.DataSource = ds.Tables["Tanks"]; c2.DisplayMember = "TankType"; c2.ValueMember = "TankId";
 
-                // синхронизация условий поиска
-                textBoxFindFuel.Text = FindFuelType; textBoxFindTank.Text = FindTankType;
-
-
                 //Привязка навигатора по записям к источнику данных
                 bindingNavigatorOperations.BindingSource = bindingSourceOperations;
 
@@ -105,7 +99,7 @@ namespace WindowsFormsADO
             catch (Exception exeption)
             {
                 // Вывод сообщений
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
             finally
@@ -117,7 +111,11 @@ namespace WindowsFormsADO
 
         private void buttonDisplay_Click(object sender, EventArgs e)
         {
-            DisplayOperations(textBoxFindFuel.Text, textBoxFindTank.Text);     
+            FilterString = "FuelType LIKE '%" + textBoxFindFuel.Text + "%' AND TankType LIKE '%" + textBoxFindTank.Text + "%'";
+            bindingSourceOperations.Filter= FilterString;
+            labelInfo.Text = "\r\n Фильтрация данных:\r\n";
+            labelInfo.Text += FilterString;
+            labelInfo.Refresh();
         }
 
 
@@ -160,17 +158,16 @@ namespace WindowsFormsADO
                     // Синхронизировать изменения с базой данных
                     dataAdapter.Update(dt);
                     dt.AcceptChanges();
-
                 }
                 // Вывод сообщений
-                labelInfo.Text = labelInfo.Text + "Удалено!!!\r\n";
+                labelInfo.Text += "Удалено!!!\r\n";
                 labelInfo.Refresh();
 
             }
             catch (Exception exeption)
             {
                 // Вывод сообщений
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
 
@@ -182,6 +179,7 @@ namespace WindowsFormsADO
         {
 
             labelInfo.Text = "";
+
             try
             {
                 // Создание подключения
@@ -231,6 +229,7 @@ namespace WindowsFormsADO
                 labelInfo.Text = "";
                 labelInfo.Text = labelInfo.Text + "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
+                removeFiltering();
 
                 dataGridViewOperations.CurrentCell = dataGridViewOperations[0, dataGridViewOperations.Rows.Count-1];
                 AssignValuesToControls();
@@ -239,7 +238,7 @@ namespace WindowsFormsADO
             catch (Exception exeption)
             {
                 // Вывод сообщений
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
 
@@ -309,13 +308,14 @@ namespace WindowsFormsADO
                 }
 
                 var currentCell = dataGridViewOperations.CurrentCell;
+                removeFiltering();
+
                 bindingSourceOperations.Position = bindingSourceOperations.Find("OperationId", idCurrentRow);
 
                 // Вывод сообщений
                 labelInfo.Text = "";
                 labelInfo.Text = labelInfo.Text + "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
                 labelInfo.Refresh();
-
             }
             catch (Exception exeption)
             {
@@ -332,23 +332,27 @@ namespace WindowsFormsADO
             var currentRow = dataGridViewOperations.CurrentRow;
             int colCount = dataGridViewOperations.Columns.Count;
             string controlName;
-            for (int i = 0; i < colCount; i++)
+            if (currentRow!=null)
             {
-                controlName = "c" + i;
-                if (groupBoxForChange.Controls.ContainsKey(controlName))
+                for (int i = 0; i < colCount; i++)
                 {
-                    var currentControl = groupBoxForChange.Controls[controlName];
-                    if (currentControl.GetType().Equals(typeof(ComboBox)))
+                    controlName = "c" + i;
+                    if (groupBoxForChange.Controls.ContainsKey(controlName))
                     {
-                        ComboBox comboBox = (ComboBox)currentControl;
-                        comboBox.SelectedValue = currentRow.Cells[i].Value.ToString();
-                    }
-                    else
-                    {
-                        groupBoxForChange.Controls[controlName].Text = currentRow.Cells[i].Value.ToString();
+                        var currentControl = groupBoxForChange.Controls[controlName];
+                        if (currentControl.GetType().Equals(typeof(ComboBox)))
+                        {
+                            ComboBox comboBox = (ComboBox)currentControl;
+                            comboBox.SelectedValue = currentRow.Cells[i].Value.ToString();
+                        }
+                        else
+                        {
+                            groupBoxForChange.Controls[controlName].Text = currentRow.Cells[i].Value.ToString();
+                        }
                     }
                 }
             }
+            
 
         }
 
@@ -362,6 +366,14 @@ namespace WindowsFormsADO
         private void dataGridViewOperations_SelectionChanged(object sender, EventArgs e)
         {
             AssignValuesToControls();
+        }
+        private void removeFiltering()
+        {
+            bindingSourceOperations.RemoveFilter();
+            textBoxFindFuel.Text = "";
+            textBoxFindTank.Text = "";
+
+
         }
     }
 }

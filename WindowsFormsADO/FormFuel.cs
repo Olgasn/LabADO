@@ -35,12 +35,12 @@ namespace WindowsFormsADO
             {
                 conn.Open();
                 ds.Clear();
-                labelInfo.Text = labelInfo.Text + "1. cоединение с базой данных установлено;\r\n";
+                labelInfo.Text += "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
                 SqlCommand MyCommand = new SqlCommand();
                 MyCommand.Connection = conn;
 
-                labelInfo.Text = labelInfo.Text + "2. отбор данных в локальное хранилище начат;\r\n";
+                labelInfo.Text += "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
                 //Команда на выборку с параметром
@@ -51,7 +51,7 @@ namespace WindowsFormsADO
                 dataAdapter.SelectCommand = MyCommand;
                 dataAdapter.Fill(ds, "Fuels");
 
-                labelInfo.Text = labelInfo.Text + "3. отбор данных в локальное хранилище закончен;\r\n";
+                labelInfo.Text += "3. отбор данных в локальное хранилище закончен;\r\n";
                 labelInfo.Refresh();
 
                 dataGridViewFuels.DataSource = ds.Tables["Fuels"].DefaultView;
@@ -60,12 +60,12 @@ namespace WindowsFormsADO
                 dataGridViewFuels.Columns["FuelDensity"].HeaderText = "Плотность топлива";
 
                 c0.Text = ds.Tables["Fuels"].Rows[0][0].ToString();
-                labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
+                labelInfo.Text += "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
             }
             catch (Exception exeption)
             {
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
             finally
@@ -112,7 +112,7 @@ namespace WindowsFormsADO
             }
             catch (Exception exeption)
             {
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
             finally
@@ -161,13 +161,13 @@ namespace WindowsFormsADO
 
                 }
 
-                labelInfo.Text = labelInfo.Text + "Удалено!!!\r\n";
+                labelInfo.Text += "Удалено!!!\r\n";
                 labelInfo.Refresh();
 
             }
             catch (Exception exeption)
             {
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
 
@@ -201,7 +201,7 @@ namespace WindowsFormsADO
 
                 DisplayFuels(textBoxFind.Text);
                 labelInfo.Text = "";
-                labelInfo.Text = labelInfo.Text + "Добавлено в конец набора!!!\r\n";
+                labelInfo.Text += "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
                 dataGridViewFuels.CurrentCell = dataGridViewFuels[0, dataGridViewFuels.Rows.Count-1];
 
@@ -209,7 +209,7 @@ namespace WindowsFormsADO
             }
             catch (Exception exeption)
             {
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
 
@@ -220,12 +220,17 @@ namespace WindowsFormsADO
             var currentRow = dataGridViewFuels.CurrentRow;
             int colCount = dataGridViewFuels.Columns.Count;
             string controlName;
-            for (int i = 0; i < colCount; i++)
+            if (currentRow!=null)
             {
-                controlName = "c" + i;
-                groupBoxForChange.Controls[controlName].Text = currentRow.Cells[i].Value.ToString();
+                for (int i = 0; i < colCount; i++)
+                {
+                    controlName = "c" + i;
+                    groupBoxForChange.Controls[controlName].Text = currentRow.Cells[i].Value.ToString();
+                }
             }
+
         }
+            
 
         private void buttonUpdateRecord_Click(object sender, EventArgs e)
         {
@@ -267,13 +272,13 @@ namespace WindowsFormsADO
 
                 dataGridViewFuels.CurrentCell = dataGridViewFuels[0, positionCurrentRow];
                 labelInfo.Text = "";
-                labelInfo.Text = labelInfo.Text + "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
+                labelInfo.Text += "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
                 labelInfo.Refresh();
 
             }
             catch (Exception exeption)
             {
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
 
