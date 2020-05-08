@@ -230,7 +230,7 @@ namespace WindowsFormsADO
                 labelInfo.Text = labelInfo.Text + "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
                 removeFiltering();
-
+                bindingSourceOperations.RemoveSort();
                 dataGridViewOperations.CurrentCell = dataGridViewOperations[0, dataGridViewOperations.Rows.Count-1];
                 AssignValuesToControls();
 

@@ -75,9 +75,10 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(12, 445);
+            this.buttonDelete.Location = new System.Drawing.Point(16, 548);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(121, 23);
+            this.buttonDelete.Size = new System.Drawing.Size(161, 28);
             this.buttonDelete.TabIndex = 10;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
@@ -85,10 +86,11 @@
             // 
             // labelInfo
             // 
-            this.labelInfo.Location = new System.Drawing.Point(479, 25);
+            this.labelInfo.Location = new System.Drawing.Point(639, 31);
+            this.labelInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelInfo.Size = new System.Drawing.Size(222, 213);
+            this.labelInfo.Size = new System.Drawing.Size(296, 262);
             this.labelInfo.TabIndex = 5;
             // 
             // dataGridViewOperations
@@ -96,17 +98,21 @@
             this.dataGridViewOperations.AllowUserToAddRows = false;
             this.dataGridViewOperations.AllowUserToOrderColumns = true;
             this.dataGridViewOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewOperations.Location = new System.Drawing.Point(0, 98);
+            this.dataGridViewOperations.Location = new System.Drawing.Point(0, 121);
+            this.dataGridViewOperations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewOperations.Name = "dataGridViewOperations";
-            this.dataGridViewOperations.Size = new System.Drawing.Size(473, 341);
+            this.dataGridViewOperations.ReadOnly = true;
+            this.dataGridViewOperations.RowHeadersWidth = 51;
+            this.dataGridViewOperations.Size = new System.Drawing.Size(631, 420);
             this.dataGridViewOperations.TabIndex = 0;
             this.dataGridViewOperations.SelectionChanged += new System.EventHandler(this.dataGridViewOperations_SelectionChanged);
             // 
             // buttonAddRecord
             // 
-            this.buttonAddRecord.Location = new System.Drawing.Point(9, 197);
+            this.buttonAddRecord.Location = new System.Drawing.Point(12, 242);
+            this.buttonAddRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAddRecord.Name = "buttonAddRecord";
-            this.buttonAddRecord.Size = new System.Drawing.Size(109, 23);
+            this.buttonAddRecord.Size = new System.Drawing.Size(145, 28);
             this.buttonAddRecord.TabIndex = 13;
             this.buttonAddRecord.Text = "Добавить";
             this.buttonAddRecord.UseVisualStyleBackColor = true;
@@ -126,59 +132,67 @@
             this.groupBoxForChange.Controls.Add(this.labelOperationId);
             this.groupBoxForChange.Controls.Add(this.c0);
             this.groupBoxForChange.Controls.Add(this.c3);
-            this.groupBoxForChange.Location = new System.Drawing.Point(479, 242);
+            this.groupBoxForChange.Location = new System.Drawing.Point(639, 298);
+            this.groupBoxForChange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxForChange.Name = "groupBoxForChange";
-            this.groupBoxForChange.Size = new System.Drawing.Size(245, 226);
+            this.groupBoxForChange.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxForChange.Size = new System.Drawing.Size(327, 278);
             this.groupBoxForChange.TabIndex = 20;
             this.groupBoxForChange.TabStop = false;
             this.groupBoxForChange.Text = "Изменить данные";
             // 
             // c4
             // 
-            this.c4.Location = new System.Drawing.Point(117, 171);
+            this.c4.Location = new System.Drawing.Point(156, 210);
+            this.c4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.c4.Name = "c4";
-            this.c4.Size = new System.Drawing.Size(114, 20);
+            this.c4.Size = new System.Drawing.Size(151, 22);
             this.c4.TabIndex = 41;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 171);
+            this.label2.Location = new System.Drawing.Point(8, 210);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(42, 17);
             this.label2.TabIndex = 40;
             this.label2.Text = "Дата";
             // 
             // c2
             // 
             this.c2.FormattingEnabled = true;
-            this.c2.Location = new System.Drawing.Point(117, 98);
+            this.c2.Location = new System.Drawing.Point(156, 121);
+            this.c2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.c2.Name = "c2";
-            this.c2.Size = new System.Drawing.Size(114, 21);
+            this.c2.Size = new System.Drawing.Size(151, 24);
             this.c2.TabIndex = 38;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 98);
+            this.label1.Location = new System.Drawing.Point(8, 121);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(62, 17);
             this.label1.TabIndex = 37;
             this.label1.Text = "Емкость";
             // 
             // c1
             // 
             this.c1.FormattingEnabled = true;
-            this.c1.Location = new System.Drawing.Point(115, 62);
+            this.c1.Location = new System.Drawing.Point(153, 76);
+            this.c1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.c1.Name = "c1";
-            this.c1.Size = new System.Drawing.Size(114, 21);
+            this.c1.Size = new System.Drawing.Size(151, 24);
             this.c1.TabIndex = 36;
             // 
             // buttonUpdateRecord
             // 
-            this.buttonUpdateRecord.Location = new System.Drawing.Point(125, 197);
+            this.buttonUpdateRecord.Location = new System.Drawing.Point(167, 242);
+            this.buttonUpdateRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonUpdateRecord.Name = "buttonUpdateRecord";
-            this.buttonUpdateRecord.Size = new System.Drawing.Size(104, 23);
+            this.buttonUpdateRecord.Size = new System.Drawing.Size(139, 28);
             this.buttonUpdateRecord.TabIndex = 35;
             this.buttonUpdateRecord.Text = "Обновить";
             this.buttonUpdateRecord.UseVisualStyleBackColor = true;
@@ -187,27 +201,30 @@
             // labelFuelDensity
             // 
             this.labelFuelDensity.AutoSize = true;
-            this.labelFuelDensity.Location = new System.Drawing.Point(6, 134);
+            this.labelFuelDensity.Location = new System.Drawing.Point(8, 165);
+            this.labelFuelDensity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFuelDensity.Name = "labelFuelDensity";
-            this.labelFuelDensity.Size = new System.Drawing.Size(105, 13);
+            this.labelFuelDensity.Size = new System.Drawing.Size(136, 17);
             this.labelFuelDensity.TabIndex = 34;
             this.labelFuelDensity.Text = "Плотность топлива";
             // 
             // labelFuelType
             // 
             this.labelFuelType.AutoSize = true;
-            this.labelFuelType.Location = new System.Drawing.Point(4, 62);
+            this.labelFuelType.Location = new System.Drawing.Point(5, 76);
+            this.labelFuelType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFuelType.Name = "labelFuelType";
-            this.labelFuelType.Size = new System.Drawing.Size(101, 13);
+            this.labelFuelType.Size = new System.Drawing.Size(130, 17);
             this.labelFuelType.TabIndex = 33;
             this.labelFuelType.Text = "Название топлива";
             // 
             // labelOperationId
             // 
             this.labelOperationId.AutoSize = true;
-            this.labelOperationId.Location = new System.Drawing.Point(6, 26);
+            this.labelOperationId.Location = new System.Drawing.Point(8, 32);
+            this.labelOperationId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOperationId.Name = "labelOperationId";
-            this.labelOperationId.Size = new System.Drawing.Size(77, 13);
+            this.labelOperationId.Size = new System.Drawing.Size(101, 17);
             this.labelOperationId.TabIndex = 32;
             this.labelOperationId.Text = "Код операции";
             this.labelOperationId.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -215,16 +232,18 @@
             // c0
             // 
             this.c0.Enabled = false;
-            this.c0.Location = new System.Drawing.Point(115, 26);
+            this.c0.Location = new System.Drawing.Point(153, 32);
+            this.c0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.c0.Name = "c0";
-            this.c0.Size = new System.Drawing.Size(114, 20);
+            this.c0.Size = new System.Drawing.Size(151, 22);
             this.c0.TabIndex = 31;
             // 
             // c3
             // 
-            this.c3.Location = new System.Drawing.Point(117, 134);
+            this.c3.Location = new System.Drawing.Point(156, 165);
+            this.c3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.c3.Name = "c3";
-            this.c3.Size = new System.Drawing.Size(114, 20);
+            this.c3.Size = new System.Drawing.Size(151, 22);
             this.c3.TabIndex = 24;
             // 
             // toolStripButton1
@@ -233,7 +252,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(59, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(73, 24);
             this.toolStripButton1.Text = "Топливо";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -243,17 +262,18 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(57, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(70, 24);
             this.toolStripButton2.Text = "Емкости";
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(735, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(980, 27);
             this.toolStrip1.TabIndex = 21;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -263,6 +283,7 @@
             this.bindingNavigatorOperations.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigatorOperations.DeleteItem = null;
             this.bindingNavigatorOperations.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bindingNavigatorOperations.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.bindingNavigatorOperations.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -273,21 +294,21 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2});
-            this.bindingNavigatorOperations.Location = new System.Drawing.Point(0, 482);
+            this.bindingNavigatorOperations.Location = new System.Drawing.Point(0, 597);
             this.bindingNavigatorOperations.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigatorOperations.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigatorOperations.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigatorOperations.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigatorOperations.Name = "bindingNavigatorOperations";
             this.bindingNavigatorOperations.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigatorOperations.Size = new System.Drawing.Size(735, 25);
+            this.bindingNavigatorOperations.Size = new System.Drawing.Size(980, 27);
             this.bindingNavigatorOperations.TabIndex = 22;
             this.bindingNavigatorOperations.Text = "bindingNavigatorOperations";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(43, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(55, 24);
             this.bindingNavigatorCountItem.Text = "для {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Общее число элементов";
             // 
@@ -297,7 +318,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Переместить в начало";
             // 
             // bindingNavigatorMovePreviousItem
@@ -306,27 +327,28 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMovePreviousItem.Text = "Переместить назад";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorPositionItem
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Положение";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(65, 27);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Текущее положение";
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -334,7 +356,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveNextItem.Text = "Переместить вперед";
             // 
             // bindingNavigatorMoveLastItem
@@ -343,13 +365,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveLastItem.Text = "Переместить в конец";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // groupBoxFind
             // 
@@ -358,9 +380,11 @@
             this.groupBoxFind.Controls.Add(this.labelFindFuelType);
             this.groupBoxFind.Controls.Add(this.textBoxFindFuel);
             this.groupBoxFind.Controls.Add(this.buttonDisplay);
-            this.groupBoxFind.Location = new System.Drawing.Point(12, 28);
+            this.groupBoxFind.Location = new System.Drawing.Point(16, 34);
+            this.groupBoxFind.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxFind.Name = "groupBoxFind";
-            this.groupBoxFind.Size = new System.Drawing.Size(461, 66);
+            this.groupBoxFind.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxFind.Size = new System.Drawing.Size(615, 81);
             this.groupBoxFind.TabIndex = 25;
             this.groupBoxFind.TabStop = false;
             this.groupBoxFind.Text = "Найти";
@@ -368,40 +392,45 @@
             // labelTankType
             // 
             this.labelTankType.AutoSize = true;
-            this.labelTankType.Location = new System.Drawing.Point(11, 38);
+            this.labelTankType.Location = new System.Drawing.Point(15, 47);
+            this.labelTankType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTankType.Name = "labelTankType";
-            this.labelTankType.Size = new System.Drawing.Size(51, 13);
+            this.labelTankType.Size = new System.Drawing.Size(62, 17);
             this.labelTankType.TabIndex = 29;
             this.labelTankType.Text = "Емкость";
             // 
             // textBoxFindTank
             // 
-            this.textBoxFindTank.Location = new System.Drawing.Point(87, 38);
+            this.textBoxFindTank.Location = new System.Drawing.Point(116, 47);
+            this.textBoxFindTank.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxFindTank.Name = "textBoxFindTank";
-            this.textBoxFindTank.Size = new System.Drawing.Size(204, 20);
+            this.textBoxFindTank.Size = new System.Drawing.Size(271, 22);
             this.textBoxFindTank.TabIndex = 28;
             // 
             // labelFindFuelType
             // 
             this.labelFindFuelType.AutoSize = true;
-            this.labelFindFuelType.Location = new System.Drawing.Point(11, 19);
+            this.labelFindFuelType.Location = new System.Drawing.Point(15, 23);
+            this.labelFindFuelType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFindFuelType.Name = "labelFindFuelType";
-            this.labelFindFuelType.Size = new System.Drawing.Size(70, 13);
+            this.labelFindFuelType.Size = new System.Drawing.Size(91, 17);
             this.labelFindFuelType.TabIndex = 27;
             this.labelFindFuelType.Text = "Вид топлива";
             // 
             // textBoxFindFuel
             // 
-            this.textBoxFindFuel.Location = new System.Drawing.Point(87, 19);
+            this.textBoxFindFuel.Location = new System.Drawing.Point(116, 23);
+            this.textBoxFindFuel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxFindFuel.Name = "textBoxFindFuel";
-            this.textBoxFindFuel.Size = new System.Drawing.Size(204, 20);
+            this.textBoxFindFuel.Size = new System.Drawing.Size(271, 22);
             this.textBoxFindFuel.TabIndex = 26;
             // 
             // buttonDisplay
             // 
-            this.buttonDisplay.Location = new System.Drawing.Point(338, 28);
+            this.buttonDisplay.Location = new System.Drawing.Point(451, 34);
+            this.buttonDisplay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDisplay.Name = "buttonDisplay";
-            this.buttonDisplay.Size = new System.Drawing.Size(104, 23);
+            this.buttonDisplay.Size = new System.Drawing.Size(139, 28);
             this.buttonDisplay.TabIndex = 25;
             this.buttonDisplay.Text = "Отобразить";
             this.buttonDisplay.UseVisualStyleBackColor = true;
@@ -409,10 +438,10 @@
             // 
             // FormOperation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(735, 507);
+            this.ClientSize = new System.Drawing.Size(980, 624);
             this.Controls.Add(this.groupBoxFind);
             this.Controls.Add(this.bindingNavigatorOperations);
             this.Controls.Add(this.toolStrip1);
@@ -421,6 +450,7 @@
             this.Controls.Add(this.dataGridViewOperations);
             this.Controls.Add(this.groupBoxForChange);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormOperation";
             this.Text = "Операции";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).EndInit();
