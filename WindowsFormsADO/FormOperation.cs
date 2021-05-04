@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-using System.Configuration;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace WindowsFormsADO
 {
@@ -15,10 +15,12 @@ namespace WindowsFormsADO
         SqlDataAdapter dataAdapter;
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
         SqlCommandBuilder builder;
+
         // Строка запроса для выбора из заданной таблицы
-        string queryString = "SELECT  * FROM Operations";
+        readonly string queryString = "SELECT  * FROM Operations";
+
         // Строка соединения с базой данных
-        string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
+        readonly string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
         // Строка фильтрации
         string FilterString;
         // Источник для табличного элемента управления
@@ -47,8 +49,10 @@ namespace WindowsFormsADO
                 ds.Clear();
                 labelInfo.Text += "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-                SqlCommand MyCommand = new SqlCommand();
-                MyCommand.Connection = conn;
+                SqlCommand MyCommand = new SqlCommand
+                {
+                    Connection = conn
+                };
 
                 labelInfo.Text += "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
@@ -58,8 +62,10 @@ namespace WindowsFormsADO
                     "FROM Operations INNER JOIN Fuels ON Operations.FuelID = Fuels.FuelID INNER JOIN Tanks ON Operations.TankID = Tanks.TankID;";
 
                 // Заполнение Data Source данными таблиц Operations, Fuels, Tanks посредством соответствующего метода адаптера
-                dataAdapter = new SqlDataAdapter();
-                dataAdapter.SelectCommand = MyCommand;
+                dataAdapter = new SqlDataAdapter
+                {
+                    SelectCommand = MyCommand
+                };
                 dataAdapter.Fill(ds, "Operations");
                 MyCommand.CommandText = "SELECT * FROM Fuels;";
                 dataAdapter.Fill(ds, "Fuels");
@@ -71,8 +77,10 @@ namespace WindowsFormsADO
                 labelInfo.Refresh();
 
                 // Настройка табличного элемента управления
-                bindingSourceOperations = new BindingSource();
-                bindingSourceOperations.DataSource= ds.Tables["Operations"].DefaultView;
+                bindingSourceOperations = new BindingSource
+                {
+                    DataSource = ds.Tables["Operations"].DefaultView
+                };
                 dataGridViewOperations.DataSource = bindingSourceOperations;
                 dataGridViewOperations.Columns["OperationID"].HeaderText = "Код операции";
                 dataGridViewOperations.Columns["FuelId"].Visible = false;
@@ -93,7 +101,7 @@ namespace WindowsFormsADO
 
 
                 // Вывод сообщений
-                labelInfo.Text = labelInfo.Text + "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
+                labelInfo.Text += "4. отображение данных из локального хранилища в табличных элементах управления закончено!!!\r\n";
                 labelInfo.Refresh();
             }
             catch (Exception exeption)
@@ -112,7 +120,7 @@ namespace WindowsFormsADO
         private void buttonDisplay_Click(object sender, EventArgs e)
         {
             FilterString = "FuelType LIKE '%" + textBoxFindFuel.Text + "%' AND TankType LIKE '%" + textBoxFindTank.Text + "%'";
-            bindingSourceOperations.Filter= FilterString;
+            bindingSourceOperations.Filter = FilterString;
             labelInfo.Text = "\r\n Фильтрация данных:\r\n";
             labelInfo.Text += FilterString;
             labelInfo.Refresh();
@@ -132,17 +140,23 @@ namespace WindowsFormsADO
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     // Создать команду на выборку
-                    SqlCommand command = new SqlCommand();
-                    command.CommandText = queryString;
-                    command.Connection = conn;
+                    SqlCommand command = new SqlCommand
+                    {
+                        CommandText = queryString,
+                        Connection = conn
+                    };
 
                     // Создать DataAdapter.
-                    dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = command;
+                    dataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = command
+                    };
 
                     // Создать CommandBuilder.
-                    builder = new SqlCommandBuilder();
-                    builder.DataAdapter = dataAdapter;
+                    builder = new SqlCommandBuilder
+                    {
+                        DataAdapter = dataAdapter
+                    };
                     // Задать сгенерированную команду на удаление для dataAdapter
                     dataAdapter.DeleteCommand = builder.GetDeleteCommand();
 
@@ -186,21 +200,27 @@ namespace WindowsFormsADO
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     // Создать команду на выборку
-                    SqlCommand command = new SqlCommand();
-                    command.CommandText = queryString;
-                    command.Connection = conn;
+                    SqlCommand command = new SqlCommand
+                    {
+                        CommandText = queryString,
+                        Connection = conn
+                    };
 
                     // Создать DataAdapter.
-                    dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = command;
+                    dataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = command
+                    };
 
 
                     // Создать команду на добавление с параметрами
-                    SqlCommand insertCommand = new SqlCommand();
-                    insertCommand.CommandText = "INSERT INTO Operations (FuelId, TankId, Inc_Exp, [Date]) " +
-                        "VALUES (@FuelId, @TankId, @Inc_Exp, @Date);"+
-                        "SELECT * FROM Operations WHERE OperationId = SCOPE_IDENTITY();";
-                    insertCommand.Connection = conn;
+                    SqlCommand insertCommand = new SqlCommand
+                    {
+                        CommandText = "INSERT INTO Operations (FuelId, TankId, Inc_Exp, [Date]) " +
+                        "VALUES (@FuelId, @TankId, @Inc_Exp, @Date);" +
+                        "SELECT * FROM Operations WHERE OperationId = SCOPE_IDENTITY();",
+                        Connection = conn
+                    };
 
                     // добавляем параметры
                     insertCommand.Parameters.Add("@FuelId", SqlDbType.Int);
@@ -221,17 +241,17 @@ namespace WindowsFormsADO
                     nr["TankType"] = c2.Text;
                     nr["Inc_Exp"] = c3.Text;
                     nr["Date"] = c4.Text;
-                    dataAdapter.Update(ds,"Operations");
+                    dataAdapter.Update(ds, "Operations");
                     dt.AcceptChanges();
-                 }
+                }
 
                 // Вывод сообщений
                 labelInfo.Text = "";
-                labelInfo.Text = labelInfo.Text + "Добавлено в конец набора!!!\r\n";
+                labelInfo.Text += "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
                 removeFiltering();
                 bindingSourceOperations.RemoveSort();
-                dataGridViewOperations.CurrentCell = dataGridViewOperations[0, dataGridViewOperations.Rows.Count-1];
+                dataGridViewOperations.CurrentCell = dataGridViewOperations[0, dataGridViewOperations.Rows.Count - 1];
                 AssignValuesToControls();
 
             }
@@ -248,7 +268,7 @@ namespace WindowsFormsADO
         private void buttonUpdateRecord_Click(object sender, EventArgs e)
         {
             labelInfo.Text = "";
-            if (dataGridViewOperations.CurrentRow==null)
+            if (dataGridViewOperations.CurrentRow == null)
             {
                 // Вывод сообщений
                 labelInfo.Text = "";
@@ -261,27 +281,33 @@ namespace WindowsFormsADO
             {
                 idCurrentRow = Convert.ToInt32(c0.Text);
             }
-            
+
             try
             {
                 // Создание подключения
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     // Создать команду на выборку
-                    SqlCommand command = new SqlCommand();
-                    command.CommandText = queryString;
-                    command.Connection = conn;
+                    SqlCommand command = new SqlCommand
+                    {
+                        CommandText = queryString,
+                        Connection = conn
+                    };
 
                     // Создать DataAdapter.
-                    dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = command;
+                    dataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = command
+                    };
 
                     // Создать команду на добавление с параметрами
-                    SqlCommand updateCommand = new SqlCommand();
-                    updateCommand.CommandText = "UPDATE Operations " +
+                    SqlCommand updateCommand = new SqlCommand
+                    {
+                        CommandText = "UPDATE Operations " +
                         "SET FuelId=@FuelId, TankId=@TankId, Inc_Exp=@Inc_Exp, Date=@Date " +
-                        "WHERE OperationId=@OperationId";
-                    updateCommand.Connection = conn;
+                        "WHERE OperationId=@OperationId",
+                        Connection = conn
+                    };
 
                     // добавляем параметры
                     updateCommand.Parameters.Add("@OperationId", SqlDbType.Int);
@@ -314,7 +340,7 @@ namespace WindowsFormsADO
 
                 // Вывод сообщений
                 labelInfo.Text = "";
-                labelInfo.Text = labelInfo.Text + "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
+                labelInfo.Text = labelInfo.Text + "Обновлена запись Id=" + idCurrentRow.ToString() + "!!!\r\n";
                 labelInfo.Refresh();
             }
             catch (Exception exeption)
@@ -332,7 +358,7 @@ namespace WindowsFormsADO
             var currentRow = dataGridViewOperations.CurrentRow;
             int colCount = dataGridViewOperations.Columns.Count;
             string controlName;
-            if (currentRow!=null)
+            if (currentRow != null)
             {
                 for (int i = 0; i < colCount; i++)
                 {
@@ -352,7 +378,7 @@ namespace WindowsFormsADO
                     }
                 }
             }
-            
+
 
         }
 
@@ -375,5 +401,7 @@ namespace WindowsFormsADO
 
 
         }
+
+
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Configuration;
 
 namespace WindowsFormsADO
 {
@@ -14,10 +14,12 @@ namespace WindowsFormsADO
         SqlDataAdapter dataAdapter;
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
         SqlCommandBuilder builder;
+
         // Строка запроса для выбора из заданной таблицы
-        string queryString = "SELECT * FROM Fuels";
+        readonly string queryString = "SELECT * FROM Fuels";
+
         // Строка соединения с базой данных
-        string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
+        readonly string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
 
         public FormFuel()
         {
@@ -37,8 +39,10 @@ namespace WindowsFormsADO
                 ds.Clear();
                 labelInfo.Text += "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-                SqlCommand MyCommand = new SqlCommand();
-                MyCommand.Connection = conn;
+                SqlCommand MyCommand = new SqlCommand
+                {
+                    Connection = conn
+                };
 
                 labelInfo.Text += "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
@@ -47,8 +51,10 @@ namespace WindowsFormsADO
                 MyCommand.CommandText = "SELECT * FROM Fuels Where FuelType LIKE '%' +@FindFuelType +'%'";
                 MyCommand.Parameters.AddWithValue("@FindFuelType", FindFuelType);
 
-                dataAdapter = new SqlDataAdapter();
-                dataAdapter.SelectCommand = MyCommand;
+                dataAdapter = new SqlDataAdapter
+                {
+                    SelectCommand = MyCommand
+                };
                 dataAdapter.Fill(ds, "Fuels");
 
                 labelInfo.Text += "3. отбор данных в локальное хранилище закончен;\r\n";
@@ -77,30 +83,36 @@ namespace WindowsFormsADO
 
         private void buttonDisplay_Click(object sender, EventArgs e)
         {
-            DisplayFuels(textBoxFind.Text);     
+            DisplayFuels(textBoxFind.Text);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             // Создание подключения
             SqlConnection conn = new SqlConnection(ConnectionString);
-            
+
             try
             {
                 conn.Open();
 
                 // Создать команду на выборку
-                SqlCommand command = new SqlCommand();
-                command.CommandText = queryString;
-                command.Connection = conn;
+                SqlCommand command = new SqlCommand
+                {
+                    CommandText = queryString,
+                    Connection = conn
+                };
 
                 // Создать DataAdapter.
-                dataAdapter = new SqlDataAdapter();
-                dataAdapter.SelectCommand = command;
+                dataAdapter = new SqlDataAdapter
+                {
+                    SelectCommand = command
+                };
 
                 // Создать экземпляр CommandBuilder
-                builder = new SqlCommandBuilder();
-                builder.DataAdapter = dataAdapter;
+                builder = new SqlCommandBuilder
+                {
+                    DataAdapter = dataAdapter
+                };
 
                 // Получить сгенерированную команду на обновление
                 dataAdapter.UpdateCommand = builder.GetUpdateCommand();
@@ -133,17 +145,23 @@ namespace WindowsFormsADO
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     // Создать команду на выборку
-                    SqlCommand command = new SqlCommand();
-                    command.CommandText = queryString;
-                    command.Connection = conn;
+                    SqlCommand command = new SqlCommand
+                    {
+                        CommandText = queryString,
+                        Connection = conn
+                    };
 
                     // Создать DataAdapter.
-                    dataAdapter = new SqlDataAdapter();
-                    dataAdapter.SelectCommand = command;
+                    dataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = command
+                    };
 
                     // Создать CommandBuilder.
-                    builder = new SqlCommandBuilder();
-                    builder.DataAdapter = dataAdapter;
+                    builder = new SqlCommandBuilder
+                    {
+                        DataAdapter = dataAdapter
+                    };
                     // Задать сгенерированную команду на удаление для dataAdapter
                     dataAdapter.DeleteCommand = builder.GetDeleteCommand();
 
@@ -184,12 +202,14 @@ namespace WindowsFormsADO
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     // Создать команду на добавление с параметрами
-                    SqlCommand insertCommand = new SqlCommand();
-                    insertCommand.CommandText = "INSERT INTO Fuels (FuelType, FuelDensity) VALUES (@FuelType, @FuelDensity)";
-                    insertCommand.Connection = conn;
+                    SqlCommand insertCommand = new SqlCommand
+                    {
+                        CommandText = "INSERT INTO Fuels (FuelType, FuelDensity) VALUES (@FuelType, @FuelDensity)",
+                        Connection = conn
+                    };
 
                     // добавляем параметры
-                    insertCommand.Parameters.Add("@FuelType",SqlDbType.VarChar);
+                    insertCommand.Parameters.Add("@FuelType", SqlDbType.VarChar);
                     insertCommand.Parameters["@FuelType"].Value = groupBoxForChange.Controls["c1"].Text;
                     insertCommand.Parameters.Add("@FuelDensity", SqlDbType.Real);
                     insertCommand.Parameters["@FuelDensity"].Value = groupBoxForChange.Controls["c2"].Text;
@@ -203,7 +223,7 @@ namespace WindowsFormsADO
                 labelInfo.Text = "";
                 labelInfo.Text += "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
-                dataGridViewFuels.CurrentCell = dataGridViewFuels[0, dataGridViewFuels.Rows.Count-1];
+                dataGridViewFuels.CurrentCell = dataGridViewFuels[0, dataGridViewFuels.Rows.Count - 1];
 
 
             }
@@ -220,7 +240,7 @@ namespace WindowsFormsADO
             var currentRow = dataGridViewFuels.CurrentRow;
             int colCount = dataGridViewFuels.Columns.Count;
             string controlName;
-            if (currentRow!=null)
+            if (currentRow != null)
             {
                 for (int i = 0; i < colCount; i++)
                 {
@@ -230,7 +250,7 @@ namespace WindowsFormsADO
             }
 
         }
-            
+
 
         private void buttonUpdateRecord_Click(object sender, EventArgs e)
         {
@@ -240,23 +260,25 @@ namespace WindowsFormsADO
             if ((groupBoxForChange.Controls["c0"].Text) != "")
             {
                 idCurrentRow = Convert.ToInt32(groupBoxForChange.Controls["c0"].Text);
-            }                   
+            }
 
-     
+
             try
             {
                 // Создание подключения
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     // Создать команду на добавление с параметрами
-                    SqlCommand updateCommand = new SqlCommand();
-                    updateCommand.CommandText = "UPDATE Fuels SET FuelType=@FuelType, FuelDensity=@FuelDensity WHERE FuelId=@FuelId";
-                    updateCommand.Connection = conn;
+                    SqlCommand updateCommand = new SqlCommand
+                    {
+                        CommandText = "UPDATE Fuels SET FuelType=@FuelType, FuelDensity=@FuelDensity WHERE FuelId=@FuelId",
+                        Connection = conn
+                    };
 
                     // добавляем параметры
                     updateCommand.Parameters.Add("@FuelId", SqlDbType.Int);
                     updateCommand.Parameters["@FuelId"].Value = idCurrentRow;
-                    updateCommand.Parameters.Add("@FuelType", SqlDbType.VarChar);
+                    updateCommand.Parameters.Add("@FuelType", SqlDbType.NVarChar);
                     updateCommand.Parameters["@FuelType"].Value = groupBoxForChange.Controls["c1"].Text;
                     updateCommand.Parameters.Add("@FuelDensity", SqlDbType.Real);
                     updateCommand.Parameters["@FuelDensity"].Value = groupBoxForChange.Controls["c2"].Text;
@@ -272,7 +294,7 @@ namespace WindowsFormsADO
 
                 dataGridViewFuels.CurrentCell = dataGridViewFuels[0, positionCurrentRow];
                 labelInfo.Text = "";
-                labelInfo.Text += "Обновлена запись Id="+ idCurrentRow.ToString()+ "!!!\r\n";
+                labelInfo.Text += "Обновлена запись Id=" + idCurrentRow.ToString() + "!!!\r\n";
                 labelInfo.Refresh();
 
             }
@@ -283,5 +305,7 @@ namespace WindowsFormsADO
             }
 
         }
+
+
     }
 }

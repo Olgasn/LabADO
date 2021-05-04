@@ -76,7 +76,7 @@
             // buttonDelete
             // 
             this.buttonDelete.Location = new System.Drawing.Point(16, 548);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(161, 28);
             this.buttonDelete.TabIndex = 10;
@@ -99,7 +99,7 @@
             this.dataGridViewOperations.AllowUserToOrderColumns = true;
             this.dataGridViewOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOperations.Location = new System.Drawing.Point(0, 121);
-            this.dataGridViewOperations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewOperations.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewOperations.Name = "dataGridViewOperations";
             this.dataGridViewOperations.ReadOnly = true;
             this.dataGridViewOperations.RowHeadersWidth = 51;
@@ -110,7 +110,7 @@
             // buttonAddRecord
             // 
             this.buttonAddRecord.Location = new System.Drawing.Point(12, 242);
-            this.buttonAddRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddRecord.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddRecord.Name = "buttonAddRecord";
             this.buttonAddRecord.Size = new System.Drawing.Size(145, 28);
             this.buttonAddRecord.TabIndex = 13;
@@ -133,9 +133,9 @@
             this.groupBoxForChange.Controls.Add(this.c0);
             this.groupBoxForChange.Controls.Add(this.c3);
             this.groupBoxForChange.Location = new System.Drawing.Point(639, 298);
-            this.groupBoxForChange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxForChange.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxForChange.Name = "groupBoxForChange";
-            this.groupBoxForChange.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxForChange.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxForChange.Size = new System.Drawing.Size(327, 278);
             this.groupBoxForChange.TabIndex = 20;
             this.groupBoxForChange.TabStop = false;
@@ -144,7 +144,7 @@
             // c4
             // 
             this.c4.Location = new System.Drawing.Point(156, 210);
-            this.c4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c4.Margin = new System.Windows.Forms.Padding(4);
             this.c4.Name = "c4";
             this.c4.Size = new System.Drawing.Size(151, 22);
             this.c4.TabIndex = 41;
@@ -163,7 +163,7 @@
             // 
             this.c2.FormattingEnabled = true;
             this.c2.Location = new System.Drawing.Point(156, 121);
-            this.c2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c2.Margin = new System.Windows.Forms.Padding(4);
             this.c2.Name = "c2";
             this.c2.Size = new System.Drawing.Size(151, 24);
             this.c2.TabIndex = 38;
@@ -182,7 +182,7 @@
             // 
             this.c1.FormattingEnabled = true;
             this.c1.Location = new System.Drawing.Point(153, 76);
-            this.c1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c1.Margin = new System.Windows.Forms.Padding(4);
             this.c1.Name = "c1";
             this.c1.Size = new System.Drawing.Size(151, 24);
             this.c1.TabIndex = 36;
@@ -190,7 +190,7 @@
             // buttonUpdateRecord
             // 
             this.buttonUpdateRecord.Location = new System.Drawing.Point(167, 242);
-            this.buttonUpdateRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUpdateRecord.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUpdateRecord.Name = "buttonUpdateRecord";
             this.buttonUpdateRecord.Size = new System.Drawing.Size(139, 28);
             this.buttonUpdateRecord.TabIndex = 35;
@@ -233,7 +233,7 @@
             // 
             this.c0.Enabled = false;
             this.c0.Location = new System.Drawing.Point(153, 32);
-            this.c0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c0.Margin = new System.Windows.Forms.Padding(4);
             this.c0.Name = "c0";
             this.c0.Size = new System.Drawing.Size(151, 22);
             this.c0.TabIndex = 31;
@@ -241,7 +241,7 @@
             // c3
             // 
             this.c3.Location = new System.Drawing.Point(156, 165);
-            this.c3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c3.Margin = new System.Windows.Forms.Padding(4);
             this.c3.Name = "c3";
             this.c3.Size = new System.Drawing.Size(151, 22);
             this.c3.TabIndex = 24;
@@ -381,9 +381,9 @@
             this.groupBoxFind.Controls.Add(this.textBoxFindFuel);
             this.groupBoxFind.Controls.Add(this.buttonDisplay);
             this.groupBoxFind.Location = new System.Drawing.Point(16, 34);
-            this.groupBoxFind.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxFind.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxFind.Name = "groupBoxFind";
-            this.groupBoxFind.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxFind.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxFind.Size = new System.Drawing.Size(615, 81);
             this.groupBoxFind.TabIndex = 25;
             this.groupBoxFind.TabStop = false;
@@ -402,7 +402,7 @@
             // textBoxFindTank
             // 
             this.textBoxFindTank.Location = new System.Drawing.Point(116, 47);
-            this.textBoxFindTank.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxFindTank.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFindTank.Name = "textBoxFindTank";
             this.textBoxFindTank.Size = new System.Drawing.Size(271, 22);
             this.textBoxFindTank.TabIndex = 28;
@@ -420,7 +420,7 @@
             // textBoxFindFuel
             // 
             this.textBoxFindFuel.Location = new System.Drawing.Point(116, 23);
-            this.textBoxFindFuel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxFindFuel.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFindFuel.Name = "textBoxFindFuel";
             this.textBoxFindFuel.Size = new System.Drawing.Size(271, 22);
             this.textBoxFindFuel.TabIndex = 26;
@@ -428,7 +428,7 @@
             // buttonDisplay
             // 
             this.buttonDisplay.Location = new System.Drawing.Point(451, 34);
-            this.buttonDisplay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDisplay.Name = "buttonDisplay";
             this.buttonDisplay.Size = new System.Drawing.Size(139, 28);
             this.buttonDisplay.TabIndex = 25;
@@ -450,7 +450,7 @@
             this.Controls.Add(this.dataGridViewOperations);
             this.Controls.Add(this.groupBoxForChange);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormOperation";
             this.Text = "Операции";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperations)).EndInit();
