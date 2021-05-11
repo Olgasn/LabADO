@@ -9,7 +9,7 @@ namespace WindowsFormsADO
     public partial class FormFuel : Form
     {
         // Локальное хранилище
-        readonly DataSet ds = new DataSet();
+        private DataSet ds = new DataSet();
         // Адаптер между локальным хранилищем и базой данных
         SqlDataAdapter dataAdapter;
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
@@ -19,7 +19,7 @@ namespace WindowsFormsADO
         readonly string queryString = "SELECT * FROM Fuels";
 
         // Строка соединения с базой данных
-        readonly string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
+        private readonly string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
 
         public FormFuel()
         {

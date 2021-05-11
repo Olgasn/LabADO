@@ -10,7 +10,7 @@ namespace WindowsFormsADO
     public partial class FormOperation : Form
     {
         // Локальное хранилище
-        readonly DataSet ds = new DataSet();
+        private readonly DataSet ds = new DataSet();
         // Адаптер между локальным хранилищем и базой данных
         private SqlDataAdapter dataAdapter;
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
@@ -32,8 +32,6 @@ namespace WindowsFormsADO
             //Отображение всех данных из таблицы Operations и связанных с ней Fuels и Tanks
             InitializeAndDisplayOperations();
         }
-
-
 
 
         private void InitializeAndDisplayOperations()
@@ -272,7 +270,7 @@ namespace WindowsFormsADO
             {
                 // Вывод сообщений
                 labelInfo.Text = "";
-                labelInfo.Text = labelInfo.Text + "Не обновлено. Нет текущей записи" + "!!!\r\n";
+                labelInfo.Text += "Не обновлено. Нет текущей записи" + "!!!\r\n";
                 labelInfo.Refresh();
                 return;
             }
@@ -340,13 +338,13 @@ namespace WindowsFormsADO
 
                 // Вывод сообщений
                 labelInfo.Text = "";
-                labelInfo.Text = labelInfo.Text + "Обновлена запись Id=" + idCurrentRow.ToString() + "!!!\r\n";
+                labelInfo.Text += "Обновлена запись Id=" + idCurrentRow.ToString() + "!!!\r\n";
                 labelInfo.Refresh();
             }
             catch (Exception exeption)
             {
                 // Вывод сообщений
-                labelInfo.Text = labelInfo.Text + "Ошибка: " + exeption.ToString();
+                labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
 
