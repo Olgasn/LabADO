@@ -24,11 +24,11 @@ namespace WindowsFormsADO
         public FormFuel()
         {
             InitializeComponent();
-            //Отображение всех данных из таблицы Fuels
+            //Загрузка данных из БД и отображение всех данных из таблицы Fuels
             DisplayFuels("");
         }
         private void DisplayFuels(string FindFuelType)
-        //загрузка данных в локальное хранилище и отображение их на форме
+        //загрузка данных в локальное хранилище и отображение их в элементах формы
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
             labelInfo.Text = "\r\n Ход выполнения процесса визуализации:\r\n";
@@ -237,18 +237,7 @@ namespace WindowsFormsADO
 
         private void DataGridViewFuels_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var currentRow = dataGridViewFuels.CurrentRow;
-            int colCount = dataGridViewFuels.Columns.Count;
-            string controlName;
-            if (currentRow != null)
-            {
-                for (int i = 0; i < colCount; i++)
-                {
-                    controlName = "c" + i;
-                    groupBoxForChange.Controls[controlName].Text = currentRow.Cells[i].Value.ToString();
-                }
-            }
-
+            AssignValuesToControls();
         }
 
 
@@ -305,7 +294,27 @@ namespace WindowsFormsADO
             }
 
         }
+        private void AssignValuesToControls()
+        {
+            var currentRow = dataGridViewFuels.CurrentRow;
+            int colCount = dataGridViewFuels.Columns.Count;
+            string controlName;
+            if (currentRow != null)
+            {
+                for (int i = 0; i < colCount; i++)
+                {
+                    controlName = "c" + i;
+                    groupBoxForChange.Controls[controlName].Text = currentRow.Cells[i].Value.ToString();
+                }
+            }
 
 
+
+        }
+
+        private void dataGridViewFuels_SelectionChanged(object sender, EventArgs e)
+        {
+            //AssignValuesToControls();
+        }
     }
 }

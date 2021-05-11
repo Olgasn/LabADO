@@ -51,19 +51,19 @@
             // 
             // buttonUpdate
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(49, 487);
-            this.buttonUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUpdate.Location = new System.Drawing.Point(226, 489);
+            this.buttonUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(137, 28);
+            this.buttonUpdate.Size = new System.Drawing.Size(199, 28);
             this.buttonUpdate.TabIndex = 9;
-            this.buttonUpdate.Text = "Обновить";
+            this.buttonUpdate.Text = "Сохранить изменения";
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(236, 487);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDelete.Location = new System.Drawing.Point(16, 488);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(161, 28);
             this.buttonDelete.TabIndex = 10;
@@ -77,7 +77,7 @@
             this.labelInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelInfo.Size = new System.Drawing.Size(296, 282);
+            this.labelInfo.Size = new System.Drawing.Size(391, 282);
             this.labelInfo.TabIndex = 5;
             // 
             // dataGridViewFuels
@@ -86,17 +86,18 @@
             this.dataGridViewFuels.AllowUserToOrderColumns = true;
             this.dataGridViewFuels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFuels.Location = new System.Drawing.Point(16, 50);
-            this.dataGridViewFuels.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewFuels.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewFuels.Name = "dataGridViewFuels";
             this.dataGridViewFuels.RowHeadersWidth = 51;
             this.dataGridViewFuels.Size = new System.Drawing.Size(615, 416);
             this.dataGridViewFuels.TabIndex = 0;
             this.dataGridViewFuels.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewFuels_CellClick);
+            this.dataGridViewFuels.SelectionChanged += new System.EventHandler(this.dataGridViewFuels_SelectionChanged);
             // 
             // buttonDisplay
             // 
             this.buttonDisplay.Location = new System.Drawing.Point(405, 15);
-            this.buttonDisplay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDisplay.Name = "buttonDisplay";
             this.buttonDisplay.Size = new System.Drawing.Size(156, 28);
             this.buttonDisplay.TabIndex = 8;
@@ -107,7 +108,7 @@
             // textBoxFind
             // 
             this.textBoxFind.Location = new System.Drawing.Point(125, 17);
-            this.textBoxFind.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxFind.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFind.Name = "textBoxFind";
             this.textBoxFind.Size = new System.Drawing.Size(271, 22);
             this.textBoxFind.TabIndex = 11;
@@ -125,7 +126,7 @@
             // buttonAddRecord
             // 
             this.buttonAddRecord.Location = new System.Drawing.Point(12, 176);
-            this.buttonAddRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddRecord.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddRecord.Name = "buttonAddRecord";
             this.buttonAddRecord.Size = new System.Drawing.Size(145, 28);
             this.buttonAddRecord.TabIndex = 13;
@@ -144,10 +145,10 @@
             this.groupBoxForChange.Controls.Add(this.c1);
             this.groupBoxForChange.Controls.Add(this.c2);
             this.groupBoxForChange.Location = new System.Drawing.Point(639, 298);
-            this.groupBoxForChange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxForChange.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxForChange.Name = "groupBoxForChange";
-            this.groupBoxForChange.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxForChange.Size = new System.Drawing.Size(327, 218);
+            this.groupBoxForChange.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxForChange.Size = new System.Drawing.Size(391, 218);
             this.groupBoxForChange.TabIndex = 20;
             this.groupBoxForChange.TabStop = false;
             this.groupBoxForChange.Text = "Изменить данные";
@@ -155,11 +156,11 @@
             // buttonUpdateRecord
             // 
             this.buttonUpdateRecord.Location = new System.Drawing.Point(167, 176);
-            this.buttonUpdateRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUpdateRecord.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUpdateRecord.Name = "buttonUpdateRecord";
-            this.buttonUpdateRecord.Size = new System.Drawing.Size(139, 28);
+            this.buttonUpdateRecord.Size = new System.Drawing.Size(197, 28);
             this.buttonUpdateRecord.TabIndex = 35;
-            this.buttonUpdateRecord.Text = "Обновить";
+            this.buttonUpdateRecord.Text = "Сохранить изменения";
             this.buttonUpdateRecord.UseVisualStyleBackColor = true;
             this.buttonUpdateRecord.Click += new System.EventHandler(this.ButtonUpdateRecord_Click);
             // 
@@ -197,25 +198,25 @@
             // 
             this.c0.Enabled = false;
             this.c0.Location = new System.Drawing.Point(153, 32);
-            this.c0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c0.Margin = new System.Windows.Forms.Padding(4);
             this.c0.Name = "c0";
-            this.c0.Size = new System.Drawing.Size(151, 22);
+            this.c0.Size = new System.Drawing.Size(130, 22);
             this.c0.TabIndex = 31;
             // 
             // c1
             // 
             this.c1.Location = new System.Drawing.Point(153, 73);
-            this.c1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c1.Margin = new System.Windows.Forms.Padding(4);
             this.c1.Name = "c1";
-            this.c1.Size = new System.Drawing.Size(151, 22);
+            this.c1.Size = new System.Drawing.Size(211, 22);
             this.c1.TabIndex = 30;
             // 
             // c2
             // 
             this.c2.Location = new System.Drawing.Point(153, 123);
-            this.c2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c2.Margin = new System.Windows.Forms.Padding(4);
             this.c2.Name = "c2";
-            this.c2.Size = new System.Drawing.Size(151, 22);
+            this.c2.Size = new System.Drawing.Size(211, 22);
             this.c2.TabIndex = 24;
             // 
             // FormFuel
@@ -223,7 +224,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(969, 530);
+            this.ClientSize = new System.Drawing.Size(1043, 530);
             this.Controls.Add(this.labelFindFuelType);
             this.Controls.Add(this.textBoxFind);
             this.Controls.Add(this.buttonDelete);
@@ -233,7 +234,7 @@
             this.Controls.Add(this.dataGridViewFuels);
             this.Controls.Add(this.groupBoxForChange);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormFuel";
             this.Text = "Топливо";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuels)).EndInit();

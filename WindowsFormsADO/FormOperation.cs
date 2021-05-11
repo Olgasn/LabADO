@@ -55,7 +55,7 @@ namespace WindowsFormsADO
                 labelInfo.Text += "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
-                //Команда на выборку с параметрами                
+                //Команда на выборку              
                 MyCommand.CommandText = "SELECT OperationId, Operations.FuelId, Operations.TankId, Inc_Exp, [Date], FuelType, TankType " +
                     "FROM Operations INNER JOIN Fuels ON Operations.FuelID = Fuels.FuelID INNER JOIN Tanks ON Operations.TankID = Tanks.TankID;";
 
