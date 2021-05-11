@@ -324,14 +324,16 @@ namespace WindowsFormsADO
                     DataTable dt = ds.Tables["Operations"];
                     DataRow dr = dt.Select("OperationID = " + idCurrentRow).FirstOrDefault();
                     dr["FuelType"] = c1.Text;
+                    dr["FuelId"] = c1.SelectedValue;
                     dr["TankType"] = c2.Text;
+                    dr["TankId"] = c2.SelectedValue;
                     dr["Inc_Exp"] = c3.Text;
                     dr["Date"] = c4.Text;
                     dataAdapter.Update(ds, "Operations");
                     dt.AcceptChanges();
                 }
 
-                var currentCell = dataGridViewOperations.CurrentCell;
+                DataGridViewCell currentCell = dataGridViewOperations.CurrentCell;
                 RemoveFiltering();
 
                 bindingSourceOperations.Position = bindingSourceOperations.Find("OperationId", idCurrentRow);
@@ -347,13 +349,12 @@ namespace WindowsFormsADO
                 labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
-
         }
 
 
         private void AssignValuesToControls()
         {
-            var currentRow = dataGridViewOperations.CurrentRow;
+            DataGridViewRow currentRow = dataGridViewOperations.CurrentRow;
             int colCount = dataGridViewOperations.Columns.Count;
             string controlName;
             if (currentRow != null)
