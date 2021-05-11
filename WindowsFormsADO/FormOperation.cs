@@ -10,11 +10,11 @@ namespace WindowsFormsADO
     public partial class FormOperation : Form
     {
         // Локальное хранилище
-        DataSet ds = new DataSet();
+        readonly DataSet ds = new DataSet();
         // Адаптер между локальным хранилищем и базой данных
-        SqlDataAdapter dataAdapter;
+        private SqlDataAdapter dataAdapter;
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
-        SqlCommandBuilder builder;
+        private SqlCommandBuilder builder;
 
         // Строка запроса для выбора из заданной таблицы
         readonly string queryString = "SELECT  * FROM Operations";
@@ -117,7 +117,7 @@ namespace WindowsFormsADO
         }
 
 
-        private void buttonDisplay_Click(object sender, EventArgs e)
+        private void ButtonDisplay_Click(object sender, EventArgs e)
         {
             FilterString = "FuelType LIKE '%" + textBoxFindFuel.Text + "%' AND TankType LIKE '%" + textBoxFindTank.Text + "%'";
             bindingSourceOperations.Filter = FilterString;
@@ -128,7 +128,7 @@ namespace WindowsFormsADO
 
 
         // Удаление
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private void ButtonDelete_Click(object sender, EventArgs e)
         {
             labelInfo.Text = "";
             //Сохранение значения ключевого поля строки для удаления
@@ -189,7 +189,7 @@ namespace WindowsFormsADO
         }
 
         // Добавление
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
 
             labelInfo.Text = "";
@@ -249,7 +249,7 @@ namespace WindowsFormsADO
                 labelInfo.Text = "";
                 labelInfo.Text += "Добавлено в конец набора!!!\r\n";
                 labelInfo.Refresh();
-                removeFiltering();
+                RemoveFiltering();
                 bindingSourceOperations.RemoveSort();
                 dataGridViewOperations.CurrentCell = dataGridViewOperations[0, dataGridViewOperations.Rows.Count - 1];
                 AssignValuesToControls();
@@ -265,7 +265,7 @@ namespace WindowsFormsADO
         }
 
         // Обновление
-        private void buttonUpdateRecord_Click(object sender, EventArgs e)
+        private void ButtonUpdateRecord_Click(object sender, EventArgs e)
         {
             labelInfo.Text = "";
             if (dataGridViewOperations.CurrentRow == null)
@@ -334,7 +334,7 @@ namespace WindowsFormsADO
                 }
 
                 var currentCell = dataGridViewOperations.CurrentCell;
-                removeFiltering();
+                RemoveFiltering();
 
                 bindingSourceOperations.Position = bindingSourceOperations.Find("OperationId", idCurrentRow);
 
@@ -383,17 +383,17 @@ namespace WindowsFormsADO
         }
 
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void ToolStripButton1_Click(object sender, EventArgs e)
         {
             FormFuel formFuel = new FormFuel();
             formFuel.Show();
         }
 
-        private void dataGridViewOperations_SelectionChanged(object sender, EventArgs e)
+        private void DataGridViewOperations_SelectionChanged(object sender, EventArgs e)
         {
             AssignValuesToControls();
         }
-        private void removeFiltering()
+        private void RemoveFiltering()
         {
             bindingSourceOperations.RemoveFilter();
             textBoxFindFuel.Text = "";
@@ -401,7 +401,12 @@ namespace WindowsFormsADO
 
 
         }
+        //Повторная загрузка данных из базы данных
+        private void ButtonReload_Click(object sender, EventArgs e)
+        {
+            RemoveFiltering();
+            InitializeAndDisplayOperations();
 
-
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace WindowsFormsADO
     public partial class FormFuel : Form
     {
         // Локальное хранилище
-        DataSet ds = new DataSet();
+        readonly DataSet ds = new DataSet();
         // Адаптер между локальным хранилищем и базой данных
         SqlDataAdapter dataAdapter;
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
@@ -81,12 +81,12 @@ namespace WindowsFormsADO
         }
 
 
-        private void buttonDisplay_Click(object sender, EventArgs e)
+        private void ButtonDisplay_Click(object sender, EventArgs e)
         {
             DisplayFuels(textBoxFind.Text);
         }
 
-        private void buttonUpdate_Click(object sender, EventArgs e)
+        private void ButtonUpdate_Click(object sender, EventArgs e)
         {
             // Создание подключения
             SqlConnection conn = new SqlConnection(ConnectionString);
@@ -133,7 +133,7 @@ namespace WindowsFormsADO
             }
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private void ButtonDelete_Click(object sender, EventArgs e)
         {
             labelInfo.Text = "";
             //значение ключевого поля строки для удаления
@@ -192,7 +192,7 @@ namespace WindowsFormsADO
 
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
 
             labelInfo.Text = "";
@@ -235,7 +235,7 @@ namespace WindowsFormsADO
 
         }
 
-        private void dataGridViewFuels_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewFuels_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var currentRow = dataGridViewFuels.CurrentRow;
             int colCount = dataGridViewFuels.Columns.Count;
@@ -252,7 +252,7 @@ namespace WindowsFormsADO
         }
 
 
-        private void buttonUpdateRecord_Click(object sender, EventArgs e)
+        private void ButtonUpdateRecord_Click(object sender, EventArgs e)
         {
             labelInfo.Text = "";
             int positionCurrentRow = dataGridViewFuels.CurrentRow.Index;

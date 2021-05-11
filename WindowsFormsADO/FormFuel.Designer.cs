@@ -58,7 +58,7 @@
             this.buttonUpdate.TabIndex = 9;
             this.buttonUpdate.Text = "Обновить";
             this.buttonUpdate.UseVisualStyleBackColor = true;
-            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
             // buttonDelete
             // 
@@ -69,7 +69,7 @@
             this.buttonDelete.TabIndex = 10;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
             // labelInfo
             // 
@@ -91,7 +91,7 @@
             this.dataGridViewFuels.RowHeadersWidth = 51;
             this.dataGridViewFuels.Size = new System.Drawing.Size(615, 416);
             this.dataGridViewFuels.TabIndex = 0;
-            this.dataGridViewFuels.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFuels_CellClick);
+            this.dataGridViewFuels.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewFuels_CellClick);
             // 
             // buttonDisplay
             // 
@@ -102,7 +102,7 @@
             this.buttonDisplay.TabIndex = 8;
             this.buttonDisplay.Text = "Отобразить";
             this.buttonDisplay.UseVisualStyleBackColor = true;
-            this.buttonDisplay.Click += new System.EventHandler(this.buttonDisplay_Click);
+            this.buttonDisplay.Click += new System.EventHandler(this.ButtonDisplay_Click);
             // 
             // textBoxFind
             // 
@@ -131,7 +131,7 @@
             this.buttonAddRecord.TabIndex = 13;
             this.buttonAddRecord.Text = "Добавить";
             this.buttonAddRecord.UseVisualStyleBackColor = true;
-            this.buttonAddRecord.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAddRecord.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // groupBoxForChange
             // 
@@ -161,7 +161,7 @@
             this.buttonUpdateRecord.TabIndex = 35;
             this.buttonUpdateRecord.Text = "Обновить";
             this.buttonUpdateRecord.UseVisualStyleBackColor = true;
-            this.buttonUpdateRecord.Click += new System.EventHandler(this.buttonUpdateRecord_Click);
+            this.buttonUpdateRecord.Click += new System.EventHandler(this.ButtonUpdateRecord_Click);
             // 
             // labelFuelDensity
             // 
