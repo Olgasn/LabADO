@@ -33,9 +33,8 @@ namespace WindowsFormsADO
             InitializeAndDisplayOperations();
         }
 
-
         private void InitializeAndDisplayOperations()
-        //загрузка данных в локальное хранилище и отображение их на форме
+        // загрузка данных в локальное хранилище и отображение их на форме
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
             labelInfo.Text = "\r\n Ход выполнения процесса визуализации:\r\n";
@@ -47,7 +46,7 @@ namespace WindowsFormsADO
                 ds.Clear();
                 labelInfo.Text += "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-                SqlCommand MyCommand = new SqlCommand
+                SqlCommand sqlCommand = new SqlCommand
                 {
                     Connection = conn
                 };
@@ -56,18 +55,21 @@ namespace WindowsFormsADO
                 labelInfo.Refresh();
 
                 //Команда на выборку              
-                MyCommand.CommandText = "SELECT OperationId, Operations.FuelId, Operations.TankId, Inc_Exp, [Date], FuelType, TankType " +
-                    "FROM Operations INNER JOIN Fuels ON Operations.FuelID = Fuels.FuelID INNER JOIN Tanks ON Operations.TankID = Tanks.TankID;";
+                sqlCommand.CommandText = 
+                    "SELECT OperationId, Operations.FuelId, Operations.TankId, Inc_Exp, [Date], FuelType, TankType " +
+                    "FROM Operations " +
+                    "INNER JOIN Fuels ON Operations.FuelID = Fuels.FuelID " +
+                    "INNER JOIN Tanks ON Operations.TankID = Tanks.TankID;";
 
                 // Заполнение Data Source данными таблиц Operations, Fuels, Tanks посредством соответствующего метода адаптера
                 dataAdapter = new SqlDataAdapter
                 {
-                    SelectCommand = MyCommand
+                    SelectCommand = sqlCommand
                 };
                 dataAdapter.Fill(ds, "Operations");
-                MyCommand.CommandText = "SELECT * FROM Fuels;";
+                sqlCommand.CommandText = "SELECT * FROM Fuels;";
                 dataAdapter.Fill(ds, "Fuels");
-                MyCommand.CommandText = "SELECT * FROM Tanks;";
+                sqlCommand.CommandText = "SELECT * FROM Tanks;";
                 dataAdapter.Fill(ds, "Tanks");
 
                 // Вывод сообщений
@@ -91,10 +93,14 @@ namespace WindowsFormsADO
                 dataGridViewOperations.Columns["Date"].HeaderText = "Дата";
 
                 // Заполнение списков
-                c1.DataSource = ds.Tables["Fuels"]; c1.DisplayMember = "FuelType"; c1.ValueMember = "FuelId";
-                c2.DataSource = ds.Tables["Tanks"]; c2.DisplayMember = "TankType"; c2.ValueMember = "TankId";
+                c1.DataSource = ds.Tables["Fuels"]; 
+                c1.DisplayMember = "FuelType"; 
+                c1.ValueMember = "FuelId";
+                c2.DataSource = ds.Tables["Tanks"]; 
+                c2.DisplayMember = "TankType"; 
+                c2.ValueMember = "TankId";
 
-                //Привязка навигатора по записям к источнику данных
+                // Привязка навигатора по записям к источнику данных
                 bindingNavigatorOperations.BindingSource = bindingSourceOperations;
 
 
@@ -129,7 +135,7 @@ namespace WindowsFormsADO
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             labelInfo.Text = "";
-            //Сохранение значения ключевого поля строки для удаления
+            // Сохранение значения ключевого поля строки для удаления
             int id = (int)dataGridViewOperations.CurrentRow.Cells[0].Value;
 
             try
@@ -191,7 +197,6 @@ namespace WindowsFormsADO
         {
 
             labelInfo.Text = "";
-
             try
             {
                 // Создание подключения
@@ -259,7 +264,6 @@ namespace WindowsFormsADO
                 labelInfo.Text += "Ошибка: " + exeption.ToString();
                 labelInfo.Refresh();
             }
-
         }
 
         // Обновление
@@ -377,8 +381,6 @@ namespace WindowsFormsADO
                     }
                 }
             }
-
-
         }
 
 
@@ -397,15 +399,12 @@ namespace WindowsFormsADO
             bindingSourceOperations.RemoveFilter();
             textBoxFindFuel.Text = "";
             textBoxFindTank.Text = "";
-
-
         }
-        //Повторная загрузка данных из базы данных
+        // Повторная загрузка данных из базы данных
         private void ButtonReload_Click(object sender, EventArgs e)
         {
             RemoveFiltering();
             InitializeAndDisplayOperations();
-
         }
     }
 }

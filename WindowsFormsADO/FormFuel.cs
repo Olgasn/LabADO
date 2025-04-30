@@ -25,8 +25,7 @@ namespace WindowsFormsADO
 
             try
             {
-                var fuels = _fuelRepository.GetAll(findFuelType).ToList();                   
-
+                var fuels = _fuelRepository.GetAll(findFuelType).ToList();     
 
                 dataGridViewFuels.DataSource = fuels;
 
@@ -141,10 +140,10 @@ namespace WindowsFormsADO
             AssignValuesToControls();
         }
 
-        // Adding the missing ButtonUpdate_Click method to resolve CS1061 error.
+
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
-            // Removed the call to SaveChanges as it does not exist in FuelRepository.  
+ 
             try
             {
                 // Refresh the data grid view to reflect any changes made.  
@@ -157,7 +156,7 @@ namespace WindowsFormsADO
             }
         }
 
-        private void dataGridViewFuels_SelectionChanged(object sender, EventArgs e)
+        private void DataGridViewFuels_SelectionChanged(object sender, EventArgs e)
         {
             // Implement logic to handle selection change in the DataGridView.  
             // For example, you can call AssignValuesToControls() to update the form controls  

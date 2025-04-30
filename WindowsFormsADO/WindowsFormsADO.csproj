@@ -69,6 +69,7 @@
     <Compile Include="DAL\FuelRepository.cs" />
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\Operation.cs" />
+    <Compile Include="DAL\OperationRepository.cs" />
     <Compile Include="DAL\Tank.cs" />
     <Compile Include="DAL\TankRepository.cs" />
     <Compile Include="FormOperation.cs">

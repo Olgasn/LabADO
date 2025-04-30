@@ -92,7 +92,7 @@
             this.dataGridViewFuels.Size = new System.Drawing.Size(615, 416);
             this.dataGridViewFuels.TabIndex = 0;
             this.dataGridViewFuels.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewFuels_CellClick);
-            this.dataGridViewFuels.SelectionChanged += new System.EventHandler(this.dataGridViewFuels_SelectionChanged);
+            this.dataGridViewFuels.SelectionChanged += new System.EventHandler(this.DataGridViewFuels_SelectionChanged);
             // 
             // buttonDisplay
             // 
