@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,7 +10,7 @@ namespace WindowsFormsADO
     public partial class FormOperation : Form
     {
         // Локальное хранилище
-        private readonly DataSet ds = new DataSet();
+        private readonly DataSet ds = new();
         // Адаптер между локальным хранилищем и базой данных
         private SqlDataAdapter dataAdapter;
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
@@ -20,7 +20,7 @@ namespace WindowsFormsADO
         readonly string queryString = "SELECT  * FROM Operations";
 
         // Строка соединения с базой данных
-        readonly string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
+        private readonly string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
         // Строка фильтрации
         string FilterString;
         // Источник для табличного элемента управления
@@ -37,7 +37,7 @@ namespace WindowsFormsADO
         private void InitializeAndDisplayOperations()
         //загрузка данных в локальное хранилище и отображение их на форме
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new(ConnectionString);
             labelInfo.Text = "\r\n Ход выполнения процесса визуализации:\r\n";
             labelInfo.Refresh();
             try
@@ -47,7 +47,7 @@ namespace WindowsFormsADO
                 ds.Clear();
                 labelInfo.Text += "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-                SqlCommand MyCommand = new SqlCommand
+                SqlCommand sqlCommand = new()
                 {
                     Connection = conn
                 };
@@ -56,18 +56,18 @@ namespace WindowsFormsADO
                 labelInfo.Refresh();
 
                 //Команда на выборку              
-                MyCommand.CommandText = "SELECT OperationId, Operations.FuelId, Operations.TankId, Inc_Exp, [Date], FuelType, TankType " +
+                sqlCommand.CommandText = "SELECT OperationId, Operations.FuelId, Operations.TankId, Inc_Exp, [Date], FuelType, TankType " +
                     "FROM Operations INNER JOIN Fuels ON Operations.FuelID = Fuels.FuelID INNER JOIN Tanks ON Operations.TankID = Tanks.TankID;";
 
                 // Заполнение Data Source данными таблиц Operations, Fuels, Tanks посредством соответствующего метода адаптера
                 dataAdapter = new SqlDataAdapter
                 {
-                    SelectCommand = MyCommand
+                    SelectCommand = sqlCommand
                 };
                 dataAdapter.Fill(ds, "Operations");
-                MyCommand.CommandText = "SELECT * FROM Fuels;";
+                sqlCommand.CommandText = "SELECT * FROM Fuels;";
                 dataAdapter.Fill(ds, "Fuels");
-                MyCommand.CommandText = "SELECT * FROM Tanks;";
+                sqlCommand.CommandText = "SELECT * FROM Tanks;";
                 dataAdapter.Fill(ds, "Tanks");
 
                 // Вывод сообщений
@@ -135,13 +135,13 @@ namespace WindowsFormsADO
             try
             {
                 // Создание подключения
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = new(ConnectionString))
                 {
                     // Создать команду на выборку
-                    SqlCommand command = new SqlCommand
+                    SqlCommand command = new()
                     {
                         CommandText = queryString,
-                        Connection = conn
+                        Connection = connection
                     };
 
                     // Создать DataAdapter.
@@ -195,13 +195,13 @@ namespace WindowsFormsADO
             try
             {
                 // Создание подключения
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = new(ConnectionString))
                 {
                     // Создать команду на выборку
-                    SqlCommand command = new SqlCommand
+                    SqlCommand command = new()
                     {
                         CommandText = queryString,
-                        Connection = conn
+                        Connection = connection
                     };
 
                     // Создать DataAdapter.
@@ -212,12 +212,12 @@ namespace WindowsFormsADO
 
 
                     // Создать команду на добавление с параметрами
-                    SqlCommand insertCommand = new SqlCommand
+                    SqlCommand insertCommand = new()
                     {
                         CommandText = "INSERT INTO Operations (FuelId, TankId, Inc_Exp, [Date]) " +
                         "VALUES (@FuelId, @TankId, @Inc_Exp, @Date);" +
                         "SELECT * FROM Operations WHERE OperationId = SCOPE_IDENTITY();",
-                        Connection = conn
+                        Connection = connection
                     };
 
                     // добавляем параметры
@@ -283,13 +283,13 @@ namespace WindowsFormsADO
             try
             {
                 // Создание подключения
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = new(ConnectionString))
                 {
                     // Создать команду на выборку
-                    SqlCommand command = new SqlCommand
+                    SqlCommand command = new()
                     {
                         CommandText = queryString,
-                        Connection = conn
+                        Connection = connection
                     };
 
                     // Создать DataAdapter.
@@ -299,12 +299,12 @@ namespace WindowsFormsADO
                     };
 
                     // Создать команду на добавление с параметрами
-                    SqlCommand updateCommand = new SqlCommand
+                    SqlCommand updateCommand = new()
                     {
                         CommandText = "UPDATE Operations " +
                         "SET FuelId=@FuelId, TankId=@TankId, Inc_Exp=@Inc_Exp, Date=@Date " +
                         "WHERE OperationId=@OperationId",
-                        Connection = conn
+                        Connection = connection
                     };
 
                     // добавляем параметры
@@ -384,7 +384,7 @@ namespace WindowsFormsADO
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
-            FormFuel formFuel = new FormFuel();
+            FormFuel formFuel = new();
             formFuel.Show();
         }
 

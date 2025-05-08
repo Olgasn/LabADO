@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace WindowsFormsADO
@@ -9,7 +9,7 @@ namespace WindowsFormsADO
     public partial class FormFuel : Form
     {
         // Локальное хранилище
-        private DataSet ds = new DataSet();
+        private DataSet ds = new();
         // Адаптер между локальным хранилищем и базой данных
         SqlDataAdapter dataAdapter;
         // Генератор однотабличных команд, используемые для согласования изменений, внесенных в DataSet, со связанной базой данных SQL Server
@@ -30,30 +30,30 @@ namespace WindowsFormsADO
         private void DisplayFuels(string FindFuelType)
         //загрузка данных в локальное хранилище и отображение их в элементах формы
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection connection = new(ConnectionString);
             labelInfo.Text = "\r\n Ход выполнения процесса визуализации:\r\n";
             labelInfo.Refresh();
             try
             {
-                conn.Open();
+                connection.Open();
                 ds.Clear();
                 labelInfo.Text += "1. cоединение с базой данных установлено;\r\n";
                 labelInfo.Refresh();
-                SqlCommand MyCommand = new SqlCommand
+                SqlCommand sqlCommand = new()
                 {
-                    Connection = conn
+                    Connection = connection
                 };
 
                 labelInfo.Text += "2. отбор данных в локальное хранилище начат;\r\n";
                 labelInfo.Refresh();
 
                 //Команда на выборку с параметром
-                MyCommand.CommandText = "SELECT * FROM Fuels Where FuelType LIKE '%' +@FindFuelType +'%'";
-                MyCommand.Parameters.AddWithValue("@FindFuelType", FindFuelType);
+                sqlCommand.CommandText = "SELECT * FROM Fuels Where FuelType LIKE '%' +@FindFuelType +'%'";
+                sqlCommand.Parameters.AddWithValue("@FindFuelType", FindFuelType);
 
                 dataAdapter = new SqlDataAdapter
                 {
-                    SelectCommand = MyCommand
+                    SelectCommand = sqlCommand
                 };
                 dataAdapter.Fill(ds, "Fuels");
 
@@ -76,10 +76,9 @@ namespace WindowsFormsADO
             }
             finally
             {
-                conn.Close();
+                connection.Close();
             }
         }
-
 
         private void ButtonDisplay_Click(object sender, EventArgs e)
         {
@@ -89,17 +88,17 @@ namespace WindowsFormsADO
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
             // Создание подключения
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection connection = new(ConnectionString);
 
             try
             {
-                conn.Open();
+                connection.Open();
 
                 // Создать команду на выборку
-                SqlCommand command = new SqlCommand
+                SqlCommand command = new()
                 {
                     CommandText = queryString,
-                    Connection = conn
+                    Connection = connection
                 };
 
                 // Создать DataAdapter.
@@ -129,7 +128,7 @@ namespace WindowsFormsADO
             }
             finally
             {
-                conn.Close();
+                connection.Close();
             }
         }
 
@@ -142,13 +141,13 @@ namespace WindowsFormsADO
             try
             {
                 // Создание подключения
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = new(ConnectionString))
                 {
                     // Создать команду на выборку
-                    SqlCommand command = new SqlCommand
+                    SqlCommand command = new()
                     {
                         CommandText = queryString,
-                        Connection = conn
+                        Connection = connection
                     };
 
                     // Создать DataAdapter.
@@ -194,18 +193,17 @@ namespace WindowsFormsADO
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-
             labelInfo.Text = "";
             try
             {
                 // Создание подключения
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = new(ConnectionString))
                 {
                     // Создать команду на добавление с параметрами
-                    SqlCommand insertCommand = new SqlCommand
+                    SqlCommand insertCommand = new()
                     {
                         CommandText = "INSERT INTO Fuels (FuelType, FuelDensity) VALUES (@FuelType, @FuelDensity)",
-                        Connection = conn
+                        Connection = connection
                     };
 
                     // добавляем параметры
@@ -215,7 +213,7 @@ namespace WindowsFormsADO
                     insertCommand.Parameters["@FuelDensity"].Value = groupBoxForChange.Controls["c2"].Text;
 
                     //выполняем запрос
-                    conn.Open();
+                    connection.Open();
                     insertCommand.ExecuteNonQuery();
                 }
 
@@ -255,13 +253,13 @@ namespace WindowsFormsADO
             try
             {
                 // Создание подключения
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = new(ConnectionString))
                 {
                     // Создать команду на добавление с параметрами
-                    SqlCommand updateCommand = new SqlCommand
+                    SqlCommand updateCommand = new()
                     {
                         CommandText = "UPDATE Fuels SET FuelType=@FuelType, FuelDensity=@FuelDensity WHERE FuelId=@FuelId",
-                        Connection = conn
+                        Connection = connection
                     };
 
                     // добавляем параметры
@@ -273,7 +271,7 @@ namespace WindowsFormsADO
                     updateCommand.Parameters["@FuelDensity"].Value = groupBoxForChange.Controls["c2"].Text;
 
                     //выполняем запрос
-                    conn.Open();
+                    connection.Open();
                     updateCommand.ExecuteNonQuery();
                 }
 
@@ -312,7 +310,7 @@ namespace WindowsFormsADO
 
         }
 
-        private void dataGridViewFuels_SelectionChanged(object sender, EventArgs e)
+        private void DataGridViewFuels_SelectionChanged(object sender, EventArgs e)
         {
             //AssignValuesToControls();
         }
