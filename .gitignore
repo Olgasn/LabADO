@@ -181,3 +181,6 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+/.vs/LabADOExample/copilot-chat/cab50872/sessions
+/.vs/LabADOExample/CopilotIndices/17.13.444.19527
+/.vs/LabADOExample/FileContentIndex
