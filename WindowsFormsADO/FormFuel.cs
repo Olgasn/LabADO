@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,30 +11,33 @@ namespace WindowsFormsADO
     {
         private readonly FuelRepository _fuelRepository;
         private readonly string ConnectionString = ConfigurationManager.ConnectionStrings["toplivoConnectionString"].ConnectionString;
-
+        // Источник для табличного элемента управления
+        private BindingSource bindingSourceFuels = [];
+        private ListSortDirection direction = ListSortDirection.Ascending;
         public FormFuel()
         {
             InitializeComponent();
             _fuelRepository = new FuelRepository(ConnectionString);
             DisplayFuels("");
+
         }
 
-        private void DisplayFuels(string findFuelType="")
+        private void DisplayFuels(string findFuelType = "")
         {
             labelInfo.Text = "\r\n Ход выполнения процесса визуализации:\r\n";
             labelInfo.Refresh();
 
             try
             {
-                var fuels = _fuelRepository.GetAll(findFuelType).ToList();     
-
-                dataGridViewFuels.DataSource = fuels;
-
+                var fuels = _fuelRepository.GetAll(findFuelType).ToList();
+                // Настройка табличного элемента управления
+                bindingSourceFuels.DataSource = fuels;
+                dataGridViewFuels.DataSource = bindingSourceFuels;
                 dataGridViewFuels.Columns["FuelId"].HeaderText = "Код топлива";
                 dataGridViewFuels.Columns["FuelType"].HeaderText = "Название топлива";
                 dataGridViewFuels.Columns["FuelDensity"].HeaderText = "Плотность топлива";
 
-                if (fuels.Any())
+                if (fuels.Count != 0)
                 {
                     c0.Text = fuels.First().FuelId.ToString();
                 }
@@ -143,7 +147,7 @@ namespace WindowsFormsADO
 
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
- 
+
             try
             {
                 // Refresh the data grid view to reflect any changes made.  
@@ -163,6 +167,23 @@ namespace WindowsFormsADO
             // based on the selected row in the DataGridView.  
 
             AssignValuesToControls();
+        }
+
+        private void DataGridViewFuels_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName = dataGridViewFuels.Columns[e.ColumnIndex].DataPropertyName;
+
+            // Проверяем текущую сортировку
+            if (dataGridViewFuels.SortedColumn == dataGridViewFuels.Columns[e.ColumnIndex] &&
+                dataGridViewFuels.SortOrder == SortOrder.Ascending)
+            {
+                direction = ListSortDirection.Descending;
+            }
+
+            // Применяем сортировку
+            bindingSourceFuels.Sort = $"{columnName} {(direction == ListSortDirection.Ascending ? "ASC" : "DESC")}";
+            
+
         }
     }
 }

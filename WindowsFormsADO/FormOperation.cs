@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -36,7 +36,7 @@ namespace WindowsFormsADO
         private void InitializeAndDisplayOperations()
         // загрузка данных в локальное хранилище и отображение их на форме
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new(ConnectionString);
             labelInfo.Text = "\r\n Ход выполнения процесса визуализации:\r\n";
             labelInfo.Refresh();
             try

@@ -3,15 +3,7 @@
   "WorkspaceRootPath": "C:\\Data\\Projects\\LabADO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\dal\\operationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\dal\\operationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\formoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\formoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\formfuel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|c:\\data\\projects\\labado\\windowsformsado\\formfuel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\formfuel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,28 +11,35 @@
       "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\formfuel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\dal\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\dal\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\dal\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\dal\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\formoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|c:\\data\\projects\\labado\\windowsformsado\\formoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\formoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\formfuel.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|c:\\data\\projects\\labado\\windowsformsado\\formoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\formoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|c:\\data\\projects\\labado\\windowsformsado\\formfuel.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\formfuel.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\formoperation.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\formoperation.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|c:\\data\\projects\\labado\\windowsformsado\\dal\\operationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\dal\\operationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|C:\\Data\\Projects\\LabADO\\windowsformsado\\formfuel.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
-      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\formfuel.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|c:\\data\\projects\\labado\\windowsformsado\\dal\\tankrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\dal\\tankrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|c:\\data\\projects\\labado\\windowsformsado\\dal\\fuelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\dal\\fuelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|c:\\data\\projects\\labado\\windowsformsado\\dal\\fuel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B770E4A4-DB8A-4A53-907D-145DAE56613D}|WindowsFormsADO\\WindowsFormsADO.csproj|solutionrelative:windowsformsado\\dal\\fuel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\NuGet\\17.0\\Microsoft.NuGet.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +49,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,125 +97,133 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IRepository.cs",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\IRepository.cs",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\DAL\\IRepository.cs",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\IRepository.cs",
-              "RelativeToolTip": "WindowsFormsADO\\DAL\\IRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T09:00:35.414Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormOperation.cs",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormOperation.cs",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\FormOperation.cs",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormOperation.cs",
-              "RelativeToolTip": "WindowsFormsADO\\FormOperation.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAYwGQAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T08:30:15.217Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OperationRepository.cs",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\OperationRepository.cs",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\DAL\\OperationRepository.cs",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\OperationRepository.cs",
-              "RelativeToolTip": "WindowsFormsADO\\DAL\\OperationRepository.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAAwEoAAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T08:23:52.303Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Operation.cs",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\Operation.cs",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\DAL\\Operation.cs",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\Operation.cs",
-              "RelativeToolTip": "WindowsFormsADO\\DAL\\Operation.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T08:21:25.263Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "FormFuel.cs",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.cs",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\FormFuel.cs",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.cs",
-              "RelativeToolTip": "WindowsFormsADO\\FormFuel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:02:12.594Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FormFuel.Designer.cs",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.Designer.cs",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\FormFuel.Designer.cs",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.Designer.cs",
-              "RelativeToolTip": "WindowsFormsADO\\FormFuel.Designer.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAsAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T19:53:45.003Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormFuel.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.cs",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\FormFuel.cs",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "WindowsFormsADO\\FormFuel.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:01:52.394Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "FormOperation.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormOperation.cs",
               "RelativeDocumentMoniker": "WindowsFormsADO\\FormOperation.cs",
               "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormOperation.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "WindowsFormsADO\\FormOperation.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:21:27.989Z"
+              "WhenOpened": "2025-05-08T14:45:45.138Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormFuel.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.cs",
+              "RelativeDocumentMoniker": "WindowsFormsADO\\FormFuel.cs",
+              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "RelativeToolTip": "WindowsFormsADO\\FormFuel.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T14:17:34.099Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormFuel.cs",
+              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.cs",
+              "RelativeDocumentMoniker": "WindowsFormsADO\\FormFuel.cs",
+              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.cs*",
+              "RelativeToolTip": "WindowsFormsADO\\FormFuel.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAAxwCIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T14:22:20.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormOperation.cs",
+              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormOperation.cs",
+              "RelativeDocumentMoniker": "WindowsFormsADO\\FormOperation.cs",
+              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormOperation.cs",
+              "RelativeToolTip": "WindowsFormsADO\\FormOperation.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T14:05:03.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormFuel.Designer.cs",
+              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.Designer.cs",
+              "RelativeDocumentMoniker": "WindowsFormsADO\\FormFuel.Designer.cs",
+              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.Designer.cs",
+              "RelativeToolTip": "WindowsFormsADO\\FormFuel.Designer.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAD4v14AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T14:32:34.188Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "FormOperation.Designer.cs",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormOperation.Designer.cs",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\FormOperation.Designer.cs",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormOperation.Designer.cs",
-              "RelativeToolTip": "WindowsFormsADO\\FormOperation.Designer.cs",
+              "Title": "Fuel.cs",
+              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\Fuel.cs",
+              "RelativeDocumentMoniker": "WindowsFormsADO\\DAL\\Fuel.cs",
+              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\Fuel.cs",
+              "RelativeToolTip": "WindowsFormsADO\\DAL\\Fuel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-29T20:05:36.455Z"
+              "WhenOpened": "2025-05-08T14:07:44.741Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TankRepository.cs",
+              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\TankRepository.cs",
+              "RelativeDocumentMoniker": "WindowsFormsADO\\DAL\\TankRepository.cs",
+              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\TankRepository.cs",
+              "RelativeToolTip": "WindowsFormsADO\\DAL\\TankRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T14:06:25.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OperationRepository.cs",
+              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\OperationRepository.cs",
+              "RelativeDocumentMoniker": "WindowsFormsADO\\DAL\\OperationRepository.cs",
+              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\OperationRepository.cs",
+              "RelativeToolTip": "WindowsFormsADO\\DAL\\OperationRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T14:06:15.868Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FuelRepository.cs",
+              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\FuelRepository.cs",
+              "RelativeDocumentMoniker": "WindowsFormsADO\\DAL\\FuelRepository.cs",
+              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\DAL\\FuelRepository.cs",
+              "RelativeToolTip": "WindowsFormsADO\\DAL\\FuelRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-08T14:05:58.243Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "FormFuel.resx",
-              "DocumentMoniker": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.resx",
-              "RelativeDocumentMoniker": "WindowsFormsADO\\FormFuel.resx",
-              "ToolTip": "C:\\Data\\Projects\\LabADO\\WindowsFormsADO\\FormFuel.resx",
-              "RelativeToolTip": "WindowsFormsADO\\FormFuel.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-04-29T19:59:15.024Z"
+              "Title": "Microsoft.NuGet.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\NuGet\\17.0\\Microsoft.NuGet.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\NuGet\\17.0\\Microsoft.NuGet.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\NuGet\\17.0\\Microsoft.NuGet.targets",
+              "RelativeToolTip": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Msbuild\\Microsoft\\NuGet\\17.0\\Microsoft.NuGet.targets",
+              "ViewState": "AgIAALoAAAAAAAAAAAAjwMUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-05-08T14:03:03.932Z"
             }
           ]
         }
